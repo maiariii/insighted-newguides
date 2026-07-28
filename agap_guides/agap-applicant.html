@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>AGAP Portal Applicant Guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --paper: #ffffff;
@@ -98,8 +101,33 @@
       text-transform: uppercase;
     }
 
-    h1, h2, h3, p {
+    h1,
+    h2,
+    h3,
+    p {
       margin: 0;
+    }
+
+    .section-video {
+      margin: 0 0 22px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000000;
+      box-shadow: 0 12px 32px rgba(8, 49, 95, .12);
+    }
+    .section-video video {
+      display: block;
+      width: 100%;
+      max-height: 460px;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      object-fit: contain;
+    }
+    @media print {
+      .section-video {
+        display: none !important;
+      }
     }
 
     h1 {
@@ -192,7 +220,8 @@
       line-height: 1.2;
     }
 
-    ol, ul {
+    ol,
+    ul {
       margin: 0;
       padding-left: 22px;
     }
@@ -418,10 +447,11 @@
       border-left: 8px solid var(--accent);
       border-radius: 20px;
       background:
-        radial-gradient(circle at 96% 0%, rgba(251,191,36,.18), transparent 24%),
+        radial-gradient(circle at 96% 0%, rgba(251, 191, 36, .18), transparent 24%),
         linear-gradient(135deg, #ffffff 0%, var(--accent-soft) 100%);
       box-shadow: 0 14px 40px rgba(8, 49, 95, .08);
     }
+
     .guide-header .guide-kicker {
       margin-bottom: 5px;
       color: var(--accent);
@@ -431,6 +461,7 @@
       letter-spacing: .12em;
       text-transform: uppercase;
     }
+
     .guide-header .guide-title {
       color: var(--ink);
       font-family: var(--font-heading);
@@ -439,12 +470,14 @@
       line-height: 1.08;
       letter-spacing: -.04em;
     }
+
     .guide-header .guide-section {
       margin-top: 4px;
       color: var(--muted);
       font-size: 14px;
       font-weight: 800;
     }
+
     .guide-header .guide-print {
       flex: 0 0 auto;
     }
@@ -467,10 +500,12 @@
       box-shadow: 18px 0 48px rgba(8, 49, 95, .20);
       transition: width .12s ease-out, padding .12s ease-out;
     }
+
     .side-nav.is-expanded {
       width: 288px;
       padding: 18px 14px;
     }
+
     .side-nav .side-top {
       display: flex;
       align-items: center;
@@ -478,8 +513,9 @@
       gap: 8px;
       margin-bottom: 8px;
       padding: 4px 4px 10px;
-      border-bottom: 1px solid rgba(224,242,254,.22);
+      border-bottom: 1px solid rgba(224, 242, 254, .22);
     }
+
     .side-nav .side-brand {
       padding: 0 8px;
       font-family: var(--font-heading);
@@ -490,23 +526,26 @@
       color: #FBBF24;
       white-space: nowrap;
     }
+
     .side-toggle {
       appearance: none;
       display: inline-grid;
       place-items: center;
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(255,255,255,.28);
+      border: 1px solid rgba(255, 255, 255, .28);
       border-radius: 12px;
-      background: rgba(255,255,255,.10);
+      background: rgba(255, 255, 255, .10);
       color: #fff;
       cursor: pointer;
       font: inherit;
       font-weight: 900;
     }
+
     .side-toggle:hover {
-      background: rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, .18);
     }
+
     .side-nav a {
       display: flex;
       align-items: center;
@@ -524,17 +563,20 @@
       cursor: pointer;
       transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
     }
+
     .side-nav a:hover {
-      background: rgba(255,255,255,.11);
+      background: rgba(255, 255, 255, .11);
       color: #fff;
       transform: translateX(2px);
     }
+
     .side-nav a.active {
-      background: rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, .18);
       color: #fff;
-      border-color: rgba(255,255,255,.34);
+      border-color: rgba(255, 255, 255, .34);
       box-shadow: inset 4px 0 0 #FBBF24;
     }
+
     .side-nav .side-letter {
       display: inline-grid;
       place-items: center;
@@ -542,41 +584,48 @@
       height: 28px;
       flex: 0 0 auto;
       border-radius: 9px;
-      background: rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, .18);
       font-family: var(--font-heading);
       font-weight: 900;
       font-size: 13px;
     }
+
     .side-nav .side-text {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+
     .side-nav:not(.is-expanded) .side-brand,
     .side-nav:not(.is-expanded) .side-text {
       display: none;
     }
+
     .side-nav:not(.is-expanded) .side-top {
       justify-content: center;
     }
+
     .side-nav:not(.is-expanded) a {
       justify-content: center;
       padding-left: 8px;
       padding-right: 8px;
     }
+
     .side-nav:not(.is-expanded) a:hover {
       transform: none;
     }
+
     .side-spacer {
       flex: 1 1 auto;
       min-height: 18px;
     }
+
     .side-print {
       appearance: none;
       width: 100%;
       margin-top: auto;
       padding: 12px 14px;
-      border: 1px solid rgba(255,255,255,.28);
+      border: 1px solid rgba(255, 255, 255, .28);
       border-radius: 14px;
       background: #0F172A;
       color: #ffffff;
@@ -584,11 +633,13 @@
       font-size: 13px;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(15,23,42,.24);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, .24);
     }
+
     .side-print:hover {
       background: #111827;
     }
+
     .side-nav:not(.is-expanded) .side-print {
       width: 44px;
       height: 44px;
@@ -598,6 +649,7 @@
       text-indent: -999px;
       position: relative;
     }
+
     .side-nav:not(.is-expanded) .side-print::after {
       content: "PDF";
       position: absolute;
@@ -615,33 +667,42 @@
       margin-right: 24px;
       transition: width .12s ease-out, margin .12s ease-out;
     }
+
     body.nav-expanded .sheet {
       width: min(1180px, calc(100% - 336px));
       margin-left: 312px;
     }
+
     body.has-side-nav .guide-grid {
       grid-template-columns: 1fr;
     }
+
     body.has-side-nav .section-card {
       display: none;
     }
+
     body.has-side-nav .section-card.is-active {
       display: block;
     }
+
     body.has-side-nav .footer-note {
       display: none;
     }
+
     body.cover-active .guide-grid,
     body.cover-active .footer-note,
     body.cover-active .guide-header {
       display: none;
     }
+
     body.section-active .hero {
       display: none;
     }
+
     body.section-active .guide-header {
       display: flex;
     }
+
     body.cover-active .hero {
       min-height: calc(100vh - 120px);
       display: grid;
@@ -649,16 +710,18 @@
       padding: 56px 48px;
       border-radius: 28px;
       background:
-        radial-gradient(circle at 15% 12%, rgba(125,211,252,.30), transparent 34%),
-        radial-gradient(circle at 85% 15%, rgba(251,191,36,.22), transparent 30%),
+        radial-gradient(circle at 15% 12%, rgba(125, 211, 252, .30), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(251, 191, 36, .22), transparent 30%),
         linear-gradient(160deg, #ffffff 0%, #F8FCFF 45%, var(--accent-soft) 100%);
       border: 1px solid var(--line);
       box-shadow: 0 30px 80px rgba(8, 49, 95, .12);
     }
+
     body.cover-active .hero .hero-logo {
       width: min(168px, 42vw);
       margin: 0 auto 10px;
     }
+
     body.cover-active .hero .eyebrow {
       justify-self: center;
       margin: 0 auto 18px;
@@ -667,6 +730,7 @@
       letter-spacing: .14em;
       box-shadow: 0 6px 18px rgba(8, 49, 95, .10);
     }
+
     body.cover-active .hero h1 {
       max-width: 18ch;
       margin: 0 auto;
@@ -674,12 +738,14 @@
       line-height: 1.03;
       letter-spacing: -.045em;
     }
+
     body.cover-active .hero .subtitle {
       max-width: 60ch;
       margin: 20px auto 0;
       font-size: 18px;
       line-height: 1.6;
     }
+
     body.cover-active .hero .notice,
     body.cover-active .hero .quick-note {
       max-width: 66ch;
@@ -698,6 +764,7 @@
       border-radius: 16px;
       background: #F8FCFF;
     }
+
     .section-step-nav button {
       appearance: none;
       border: 1px solid var(--line);
@@ -710,6 +777,7 @@
       font-weight: 900;
       cursor: pointer;
     }
+
     .section-step-nav button:hover,
     .section-step-nav button.active {
       border-color: var(--accent);
@@ -718,6 +786,7 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
+
     .step {
       position: relative;
       margin: 12px 0;
@@ -728,10 +797,12 @@
       background: linear-gradient(180deg, #ffffff 0%, #F8FCFF 100%);
       box-shadow: 0 8px 26px rgba(8, 49, 95, .05);
     }
+
     .step:first-of-type {
       border-top: 1px solid var(--line);
       padding-top: 16px;
     }
+
     .step h3 {
       display: inline-flex;
       align-items: center;
@@ -742,16 +813,19 @@
       background: var(--accent-soft);
       color: var(--accent);
     }
+
     .step h3 .step-number {
       font-weight: 900;
       text-decoration: underline;
       text-underline-offset: 3px;
       text-decoration-thickness: 2px;
     }
+
     .step h3 .step-title {
       font-weight: 900;
       font-style: italic;
     }
+
     .step li strong,
     .step td strong,
     .notice strong,
@@ -760,12 +834,14 @@
       color: var(--accent);
       font-weight: 900;
     }
+
     .step.step-focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 4px var(--accent-soft), 0 18px 44px rgba(8, 49, 95, .12);
     }
 
     @media (max-width: 900px) {
+
       .side-nav,
       .side-nav.is-expanded {
         position: sticky;
@@ -778,34 +854,47 @@
         padding: 14px;
         border-radius: 18px;
       }
+
       .side-nav:not(.is-expanded) .side-brand,
       .side-nav:not(.is-expanded) .side-text {
         display: inline;
       }
+
       body.has-side-nav .sheet,
       body.nav-expanded .sheet {
         width: min(100%, calc(100% - 20px));
         margin: 10px auto;
       }
+
       .guide-header {
         align-items: flex-start;
         flex-direction: column;
       }
     }
+
     @media print {
+
       .side-nav,
-      .guide-header { display: none !important; }
+      .guide-header {
+        display: none !important;
+      }
+
       body.has-side-nav .sheet {
         width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
       }
+
       body.section-active .hero,
       body.has-side-nav .footer-note,
       body.has-side-nav .section-card {
         display: block !important;
       }
-      .section-step-nav { display: none !important; }
+
+      .section-step-nav {
+        display: none !important;
+      }
+
       .step {
         margin: 0;
         box-shadow: none;
@@ -816,10 +905,12 @@
     body {
       line-height: 1.65;
     }
+
     body.has-side-nav .sheet {
       padding: 16px;
-      background: rgba(255,255,255,.96);
+      background: rgba(255, 255, 255, .96);
     }
+
     .guide-header {
       margin-bottom: 18px;
       padding: 20px 24px;
@@ -827,14 +918,16 @@
       border-left: 8px solid var(--accent);
       border-radius: 24px;
       background:
-        radial-gradient(circle at 98% 0%, rgba(251,191,36,.16), transparent 26%),
+        radial-gradient(circle at 98% 0%, rgba(251, 191, 36, .16), transparent 26%),
         linear-gradient(135deg, #ffffff 0%, #F8FCFF 58%, var(--accent-soft) 100%);
       box-shadow: 0 18px 52px rgba(8, 49, 95, .08);
     }
+
     .guide-header .guide-title {
       font-size: clamp(30px, 4vw, 54px);
       letter-spacing: -.055em;
     }
+
     .section-card {
       border: 0 !important;
       border-radius: 28px;
@@ -842,20 +935,23 @@
       background: #ffffff;
       box-shadow: none;
     }
+
     .section-head {
       margin-bottom: 24px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--line);
     }
+
     .section-head h2 {
       font-size: clamp(26px, 3vw, 36px);
       letter-spacing: -.04em;
     }
+
     .letter {
       width: 40px;
       height: 40px;
       border-radius: 14px;
-      box-shadow: 0 10px 22px rgba(7,89,133,.16);
+      box-shadow: 0 10px 22px rgba(7, 89, 133, .16);
     }
 
     .section-step-nav {
@@ -868,9 +964,10 @@
       border: 0;
       border-bottom: 1px solid var(--line);
       border-radius: 0;
-      background: rgba(255,255,255,.92);
+      background: rgba(255, 255, 255, .92);
       backdrop-filter: blur(14px);
     }
+
     .section-step-nav button {
       border: 1px solid transparent;
       background: transparent;
@@ -879,12 +976,14 @@
       font-size: 13px;
       font-weight: 800;
     }
+
     .section-step-nav button:hover {
       border-color: var(--line);
       background: #F8FCFF;
       color: var(--accent);
       text-decoration: none;
     }
+
     .section-step-nav button.active {
       border-color: var(--accent-soft);
       background: var(--accent-soft);
@@ -902,9 +1001,11 @@
       background: transparent !important;
       box-shadow: none !important;
     }
+
     .step:last-child {
       margin-bottom: 8px !important;
     }
+
     .step h3 {
       display: flex !important;
       align-items: center;
@@ -918,6 +1019,7 @@
       font-size: 21px;
       line-height: 1.25;
     }
+
     .step h3 .step-number {
       display: inline-grid;
       place-items: center;
@@ -931,11 +1033,13 @@
       font-weight: 900;
       text-decoration: none !important;
     }
+
     .step h3 .step-title {
       color: var(--ink);
       font-style: normal !important;
       font-weight: 850;
     }
+
     .step ol,
     .step ul {
       max-width: 900px;
@@ -943,17 +1047,21 @@
       color: #334155;
       line-height: 1.75;
     }
+
     .step li {
       margin: 0 0 12px;
       padding-left: 4px;
     }
+
     .step li:last-child {
       margin-bottom: 0;
     }
+
     .step.step-focus {
       border: 0 !important;
       box-shadow: none !important;
     }
+
     .step.step-focus h3 {
       border-bottom-color: var(--accent);
     }
@@ -964,6 +1072,7 @@
       gap: 14px;
       max-width: 920px;
     }
+
     .mini-card,
     .doc-card,
     .check-item {
@@ -971,9 +1080,11 @@
       background: #F8FCFF;
       box-shadow: none;
     }
+
     .status-table {
       max-width: 980px;
     }
+
     .tag {
       border: 0;
       font-weight: 850;
@@ -982,28 +1093,34 @@
     .side-nav {
       transition: width .1s ease-out, padding .1s ease-out;
     }
+
     .side-nav a {
       position: relative;
     }
+
     .side-nav .side-letter {
       position: relative;
       overflow: hidden;
-      background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255,255,255,.18) 0);
+      background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255, 255, 255, .18) 0);
     }
+
     .side-nav .side-letter::before {
       content: "";
       position: absolute;
       inset: 3px;
       border-radius: 7px;
-      background: rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, .18);
     }
+
     .side-nav a.active .side-letter::before {
       background: #E0F2FE;
     }
+
     .side-nav .side-letter span {
       position: relative;
       z-index: 1;
     }
+
     .side-nav a.active .side-letter span {
       color: #08315F;
     }
@@ -1012,28 +1129,34 @@
       body.has-side-nav .sheet {
         padding: 24px;
       }
+
       .section-card {
         padding: 28px 22px;
       }
+
       .section-step-nav {
         top: 0;
         overflow-x: auto;
         flex-wrap: nowrap;
       }
     }
+
     /* Remove redundant in-page section title/TOC now that the header card + sidebar carry navigation context */
     body.section-active .section-head,
     body.section-active .section-step-nav {
       display: none !important;
     }
+
     body.section-active .section-card {
       padding-top: 16px;
     }
+
     body.section-active .step:first-of-type {
       margin-top: 0 !important;
     }
 
     @media print {
+
       /* Always print the complete guide, regardless of current interactive state */
       @page {
         size: A4;
@@ -1356,6 +1479,7 @@
     }
 
     @media print {
+
       /* Table-based running header/footer: thead/tfoot repeat AND reserve space on every page */
       @page {
         size: A4;
@@ -1389,9 +1513,9 @@
         display: table-footer-group !important;
       }
 
-      .print-wrap > tbody > tr > td,
-      .print-wrap > thead > tr > td,
-      .print-wrap > tfoot > tr > td {
+      .print-wrap>tbody>tr>td,
+      .print-wrap>thead>tr>td,
+      .print-wrap>tfoot>tr>td {
         padding: 0 !important;
         border: 0 !important;
         vertical-align: top !important;
@@ -1434,6 +1558,7 @@
     }
 
     @media print {
+
       /* Clean, compact cover for PDF: no oversized empty box, tighter hierarchy */
       body.cover-active .hero,
       body.section-active .hero,
@@ -1454,12 +1579,14 @@
         page-break-after: always !important;
         break-after: page !important;
       }
+
       body.cover-active .hero .hero-logo,
       body.applicant-guide .hero .hero-logo,
       .hero .hero-logo {
         width: 32mm !important;
         margin: 0 auto 4mm !important;
       }
+
       body.cover-active .hero .eyebrow,
       .hero .eyebrow {
         display: inline-block !important;
@@ -1471,6 +1598,7 @@
         font-size: 8.5pt !important;
         letter-spacing: .1em !important;
       }
+
       body.cover-active .hero h1,
       .hero h1 {
         max-width: 100% !important;
@@ -1479,6 +1607,7 @@
         line-height: 1.08 !important;
         letter-spacing: -.035em !important;
       }
+
       body.cover-active .hero .subtitle,
       .hero .subtitle {
         max-width: 100% !important;
@@ -1486,6 +1615,7 @@
         font-size: 10pt !important;
         line-height: 1.5 !important;
       }
+
       body.cover-active .hero .notice,
       body.cover-active .hero .quick-note,
       .hero .notice,
@@ -1499,26 +1629,32 @@
     }
 
     @media print {
+
       /* Let long content flow across pages instead of jumping to a near-blank page */
       .section-card {
         page-break-inside: auto !important;
         break-inside: auto !important;
       }
+
       .step {
         page-break-inside: auto !important;
         break-inside: auto !important;
       }
+
       .step h3 {
         page-break-after: avoid !important;
         break-after: avoid !important;
       }
+
       .status-table {
         page-break-inside: auto !important;
         break-inside: auto !important;
       }
+
       .status-table thead {
         display: table-header-group !important;
       }
+
       .status-table tr {
         page-break-inside: avoid !important;
         break-inside: avoid !important;
@@ -1526,6 +1662,7 @@
     }
   </style>
 </head>
+
 <body class="applicant-guide">
   <style>
     body.applicant-guide.cover-active .hero {
@@ -1558,6 +1695,13 @@
           <h2>Create your account</h2>
         </div>
 
+        <div class="section-video">
+          <video class="tab-video" controls playsinline preload="metadata">
+            <source src="agap_a.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+
         <div class="step">
           <h3>Step 1: Open the AGAP Portal</h3>
           <ol>
@@ -1570,7 +1714,7 @@
           <h3>Step 2: Register your account</h3>
           <ol>
             <li>Enter your required personal information.</li>
-            <li>Provide an active email address and mobile number, if required.</li>
+            <li>Provide an active email address.</li>
             <li>Create and confirm a secure password.</li>
             <li>Submit the registration form.</li>
           </ol>
@@ -1658,7 +1802,8 @@
         <div class="step">
           <h3>Step 3: Check if you qualify</h3>
           <ol>
-            <li>Compare your profile against the required education, experience, training, eligibility, and documents.</li>
+            <li>Compare your profile against the required education, experience, training, eligibility, and documents.
+            </li>
             <li>Review your supporting records carefully before submitting.</li>
             <li>Confirm the deadline and submit before it closes.</li>
           </ol>
@@ -1821,8 +1966,8 @@
       guideHeader.className = 'guide-header';
       guideHeader.innerHTML =
         '<div>' +
-          '<div class="guide-kicker"></div>' +
-          '<div class="guide-title"></div>' +
+        '<div class="guide-kicker"></div>' +
+        '<div class="guide-title"></div>' +
         '</div>';
       guideHeader.querySelector('.guide-kicker').textContent = guideLabel;
       guideHeader.querySelector('.guide-title').textContent = guideTitle;
@@ -2175,4 +2320,5 @@
     })();
   </script>
 </body>
+
 </html>
