@@ -560,7 +560,9 @@
       width: 44px;
       height: 44px;
       padding: 0;
-      align-self: flex-end;
+      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
       overflow: hidden;
       text-indent: -999px;
       position: relative;
@@ -954,14 +956,14 @@
     .side-nav .side-letter {
       position: relative;
       overflow: hidden;
-      background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255,255,255,.18) 0);
+      background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255,255,255,.22) 0);
     }
     .side-nav .side-letter::before {
       content: "";
       position: absolute;
-      inset: 3px;
-      border-radius: 7px;
-      background: rgba(255,255,255,.18);
+      inset: 2.5px;
+      border-radius: 6.5px;
+      background: #075985;
     }
     .side-nav a.active .side-letter::before {
       background: #E0F2FE;
@@ -969,6 +971,7 @@
     .side-nav .side-letter span {
       position: relative;
       z-index: 1;
+      color: #ffffff;
     }
     .side-nav a.active .side-letter span {
       color: #08315F;
@@ -1530,22 +1533,22 @@
 
         <div class="step">
           <h3>Step 1: Upload the NOSCA</h3>
-          <ol>
+          <ul>
             <li>Log in using an authorized HRMO account.</li>
             <li>Open the NOSCA upload or position import module.</li>
             <li>Upload the applicable NOSCA file.</li>
             <li>Confirm that the system correctly extracted the item number and position title from the uploaded NOSCA.</li>
             <li>Tick the relevant item number and position title that should be added into the Vacancies List of your Division.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
           <h3>Step 2: Confirm publication period</h3>
-          <ol>
+          <ul>
             <li>Check the publication period in CS Form 9 revised 2025.</li>
             <li>Confirm that the portal publication period matches it.</li>
             <li>Correct date issues before opening applications.</li>
-          </ol>
+          </ul>
         </div>
       </article>
 
@@ -1564,13 +1567,13 @@
 
         <div class="step">
           <h3>Step 1: Open the position for applications</h3>
-          <ol>
+          <ul>
             <li>Select the position record.</li>
             <li>Review all details one final time.</li>
             <li>Confirm that the QS, JD, requirements, hiring purpose, and application deadline are complete.</li>
             <li>Change the position status from Closed to Open.</li>
             <li>Verify that the position appears in the applicant-facing open positions list.</li>
-          </ol>
+          </ul>
         </div>
 
 
@@ -1579,56 +1582,7 @@
       <article class="section-card">
         <div class="section-head">
           <div class="letter">C</div>
-          <h2>Review applications</h2>
-        </div>
-
-        <div class="step">
-          <h3>Step 1: Access and Filter the Applications Dashboard</h3>
-          <ul>
-            <li><strong>Navigate:</strong> Open the HRMO Applications Dashboard directly from the sidebar menu.</li>
-            <li><strong>Scan the Applicant List:</strong> Verify that the summary table clearly displays the core tracking columns for each candidate:
-              <ul>
-                <li>Applicant Name &amp; Position Applied For</li>
-                <li>Application Date &amp; Submission Deadline Status</li>
-                <li>Bachelor's Degree, Years of Experience, &amp; Hours of Training</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 2: Comprehensive Profile &amp; QS Evaluation</h3>
-          <ul>
-            <li><strong>Open Applicant Record:</strong> Select an individual applicant from the list to open their detailed profile view.</li>
-            <li><strong>Evaluate Qualification Standards (QS):</strong> Review the integrated QS Evaluation Matrix to cross-check the applicant's credentials against the position's legal requirements:
-              <ul>
-                <li><strong>Education &amp; Training:</strong> Verify completed degrees, required units, and learning development hours.</li>
-                <li><strong>Experience &amp; Performance:</strong> Check relevant work history, key duties, accomplishments, and performance ratings.</li>
-                <li><strong>Eligibility &amp; License:</strong> Confirm valid professional licenses, board ratings, or civil service eligibilities.</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Document Verification (View Document Tool)</h3>
-          <ul>
-            <li><strong>Launch Document Viewer:</strong> Click the View Document button to open the integrated document repository.</li>
-            <li><strong>Check Completeness &amp; Authenticity:</strong>
-              <ul>
-                <li>Verify that all required documentary requirements (e.g., Personal Data Sheet [PDS], Work Experience Sheet, transcripts, diplomas, certificates) are fully attached.</li>
-                <li>Inspect the files to ensure they are the correct, uncorrupted documents submitted by the applicant.</li>
-              </ul>
-            </li>
-            <li><strong>Confirm Attachment Accuracy:</strong> Ensure all uploaded credentials correspond directly to the active application and position being reviewed.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="section-card">
-        <div class="section-head">
-          <div class="letter">D</div>
-          <h2>Evaluate qualifications</h2>
+          <h2>Applicant Evaluation &amp; Verification Guide</h2>
         </div>
 
         <div class="section-video">
@@ -1639,21 +1593,28 @@
         </div>
 
         <div class="step">
-          <h3>Step 1: Check document completeness</h3>
-          <ol>
-            <li>Check the completeness of the documents submitted by the applicant.</li>
-
-            <li>Unlock the scoring and assessment section only after the submitted documents are complete.</li>
-          </ol>
+          <h3>Step 1: Document Completeness &amp; Verification</h3>
+          <ul>
+            <li>Open the HRMO Applications Dashboard from the sidebar menu and scan the applicant summary table.</li>
+            <li>Select a candidate to open their detailed profile view.</li>
+            <li>Click the View Document button to open the integrated document repository.</li>
+            <li>Check that all mandatory attachments (e.g., PDS, Work Experience Sheet, transcripts, diplomas, certificates) are fully attached, uncorrupted, and correspond directly to the active application.</li>
+            <li>The scoring and assessment section will automatically unlock only after the submitted documents are confirmed complete.</li>
+          </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Review documents against QS</h3>
-          <ol>
-            <li>Review the applicant's submitted documents against the Qualification Standards of the position applied for.</li>
-            <li>Check the education, experience, training, eligibility, license, certification, and other required credentials as one complete QS review.</li>
-            <li>Add remarks for missing, unclear, mismatched, expired, or incomplete documents.</li>
-          </ol>
+          <h3>Step 2: Qualification Standards (QS) Evaluation</h3>
+          <ul>
+            <li>Review the integrated QS Evaluation Matrix to cross-check the candidate's credentials against the legal requirements of the position applied for:
+              <ul>
+                <li>Education &amp; Training: Verify completed degrees, required units, and learning development hours.</li>
+                <li>Experience &amp; Performance: Check relevant work history, key duties, accomplishments, and performance ratings.</li>
+                <li>Eligibility &amp; License: Confirm valid professional licenses, board ratings, or civil service eligibilities.</li>
+              </ul>
+            </li>
+            <li>Input detailed remarks for any missing, unclear, mismatched, expired, or incomplete documents to ensure transparent tracking.</li>
+          </ul>
         </div>
 
         <div class="step">
@@ -1691,7 +1652,7 @@
 
       <article class="section-card">
         <div class="section-head">
-          <div class="letter">E</div>
+          <div class="letter">D</div>
           <h2>Start Assessment</h2>
         </div>
 
@@ -1703,21 +1664,36 @@
         </div>
 
         <div class="step">
-          <h3>Step 1: Start applicant assessment</h3>
-          <ol>
-            <li>Initially, qualified applicants will have an assessment status of <strong>Assessment Not Started</strong>.</li>
-            <li>Click any qualified applicant to open the modal.</li>
-            <li>Use the modal to check and view the submitted documents.</li>
-            <li>Score the applicant based on the Qualification Standards of the position applied for.</li>
-            <li>Once all required areas are appropriately scored, the applicant's assessment status will become <strong>Assessment Completed</strong>.</li>
-            <li>When the assessment status becomes <strong>Assessment Completed</strong>, the <strong>Appoint</strong> button will be activated for that applicant.</li>
-          </ol>
+          <h3>Step 1: Access the Applicant Profile</h3>
+          <ul>
+            <li>Find the list of qualified applicants on the Comparative Assessment page.</li>
+            <li>Note that their initial status is <strong>Assessment Not Started</strong>.</li>
+            <li>Click on any applicant's name to open their detailed modal.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Review and Score</h3>
+          <ul>
+            <li>Examine the submitted documents directly inside the modal.</li>
+            <li>Evaluate the applicant thoroughly against the official Qualification Standards of the target position.</li>
+            <li>Complete the scoring for all required areas.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Finalize and Appoint</h3>
+          <ul>
+            <li>Once all required fields are filled and saved, the system automatically changes the status to <strong>Assessment Completed</strong>.</li>
+            <li>The <strong>Appoint</strong> button will instantly activate once this completion status is reached.</li>
+            <li>Click the button to proceed with the appointment.</li>
+          </ul>
         </div>
       </article>
 
       <article class="section-card">
         <div class="section-head">
-          <div class="letter">F</div>
+          <div class="letter">E</div>
           <h2>Appoint Applicants</h2>
         </div>
 
@@ -1729,21 +1705,69 @@
         </div>
 
         <div class="step">
-          <h3>Step 1: Confirm assessment completion</h3>
-          <ol>
-            <li>Once the assessment phase has been completed, print the Comparative Assessment Results.</li>
-            <li>Present the Comparative Assessment Results to the Appointing Authority.</li>
-            <li>The HRMO must confirm that the results have been presented to the Appointing Authority before confirming the appointment of the applicant.</li>
-          </ol>
+          <h3>Step 1: Print and Present Results</h3>
+          <ul>
+            <li>Once the assessment phase is completed, print the Comparative Assessment Results.</li>
+            <li>Present these official results directly to the Appointing Authority.</li>
+            <li>The HRMO must verify that this presentation has taken place before proceeding with any appointments.</li>
+          </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Confirm the appointment</h3>
-          <ol>
-            <li>The Appointing Authority shall select which applicant to appoint.</li>
-            <li>After the Appointing Authority has selected an applicant, click the <strong>Appoint</strong> button for that applicant.</li>
-            <li>Confirm the appointment of the selected applicant in the portal.</li>
-          </ol>
+          <h3>Step 2: Initiate Appointment</h3>
+          <ul>
+            <li>Go to the system once the Appointing Authority confirms the applicant's appointment.</li>
+            <li>Click the <strong>Appoint</strong> button for the candidate.</li>
+            <li>Select <strong>Yes, Confirmed with SDS</strong> when prompted to verify the Appointing Authority's approval.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Assign Item Number &amp; Confirm</h3>
+          <ul>
+            <li>Select the specific <strong>Item No.</strong> to which the applicant will be appointed.</li>
+            <li>Click <strong>Confirm Appointment</strong> to finalize the action.</li>
+            <li>The applicant will now successfully appear under the <strong>Appointed Applicant</strong> list.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="section-card">
+        <div class="section-head">
+          <div class="letter">F</div>
+          <h2>Confirming Appointments</h2>
+        </div>
+
+        <div class="section-video">
+          <video class="tab-video" controls playsinline preload="metadata">
+            <source src="hrmo_confirmappointment.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Accessing the Appointed Applicants Queue</h3>
+          <ul>
+            <li>Navigate to the Appointed Applicants module in the system dashboard.</li>
+            <li>Locate your target applicant and verify that their current system status is set to <strong>For Appointment</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Conducting Document Inspection</h3>
+          <ul>
+            <li>Click the <strong>View Document</strong> button to open the applicant's digital document repository.</li>
+            <li>Cross-reference all uploaded credentials, clearances, and attachments against your organization's appointment requirements.</li>
+            <li>Ensure every file is authentic, up-to-date, and fully complete before proceeding.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Finalizing the Appointment</h3>
+          <ul>
+            <li>Once you have confirmed that all prerequisites and documents are fully checked and complete, click the <strong>Confirm</strong> button.</li>
+            <li>Click the newly appeared <strong>Notice of Appointment</strong> button to print or save the final document.</li>
+          </ul>
         </div>
       </article>
     </section>
@@ -1810,11 +1834,7 @@
           video.currentTime = 0;
           var attempt = video.play();
           if (attempt && typeof attempt.catch === 'function') {
-            attempt.catch(function () {
-              video.muted = true;
-              var retry = video.play();
-              if (retry && typeof retry.catch === 'function') { retry.catch(function () {}); }
-            });
+            attempt.catch(function () {});
           }
         } catch (e) {}
       }
@@ -1974,6 +1994,18 @@
         links.forEach(function (l) { l.classList.toggle('active', l === activeLink); });
       }
 
+      function updateProgressForActiveCard(activeCard) {
+        cards.forEach(function (card, i) {
+          if (!card._navLink || !card._navLink._sideLetter) return;
+          if (card === activeCard) {
+            var stepPct = Math.round(((i + 1) / cards.length) * 100);
+            card._navLink._sideLetter.style.setProperty('--progress', String(stepPct));
+          } else {
+            card._navLink._sideLetter.style.setProperty('--progress', '0');
+          }
+        });
+      }
+
       function resetProgress() {
         cards.forEach(function (card) {
           if (card._navLink && card._navLink._sideLetter) {
@@ -1994,10 +2026,7 @@
           button.classList.toggle('active', i === clamped);
         });
 
-        resetProgress();
-        if (card._navLink && card._navLink._sideLetter) {
-          card._navLink._sideLetter.style.setProperty('--progress', String(((clamped + 1) / card._steps.length) * 100));
-        }
+        updateProgressForActiveCard(card);
       }
 
       function showCover() {
