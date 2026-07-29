@@ -644,7 +644,9 @@
       width: 44px;
       height: 44px;
       padding: 0;
-      align-self: flex-end;
+      align-self: center;
+      margin-left: auto;
+      margin-right: auto;
       overflow: hidden;
       text-indent: -999px;
       position: relative;
@@ -1101,6 +1103,10 @@
     .side-nav .side-letter {
       position: relative;
       overflow: hidden;
+      background: rgba(255, 255, 255, .18);
+    }
+
+    .side-nav a.active .side-letter {
       background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255, 255, 255, .18) 0);
     }
 
@@ -1109,7 +1115,7 @@
       position: absolute;
       inset: 3px;
       border-radius: 7px;
-      background: rgba(255, 255, 255, .18);
+      background: #08315F;
     }
 
     .side-nav a.active .side-letter::before {
@@ -1704,20 +1710,20 @@
 
         <div class="step">
           <h3>Step 1: Open the AGAP Portal</h3>
-          <ol>
+          <ul>
             <li>Go to the AGAP Portal.</li>
             <li>Select Login or Create Account.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
           <h3>Step 2: Register your account</h3>
-          <ol>
+          <ul>
             <li>Enter your required personal information.</li>
             <li>Provide an active email address.</li>
             <li>Create and confirm a secure password.</li>
             <li>Submit the registration form.</li>
-          </ol>
+          </ul>
         </div>
       </article>
 
@@ -1727,13 +1733,20 @@
           <h2>Create your profile</h2>
         </div>
 
+        <div class="section-video">
+          <video class="tab-video" controls playsinline preload="metadata">
+            <source src="agap_b.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+
         <div class="step">
           <h3>Step 1: Open your application profile</h3>
-          <ol>
+          <ul>
             <li>After logging in, go to My Profile.</li>
             <li>Start completing your applicant details.</li>
             <li>Make sure your information is accurate, complete, and consistent with your documents.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
@@ -1764,12 +1777,12 @@
 
         <div class="step">
           <h3>Step 4: Save and review your profile</h3>
-          <ol>
+          <ul>
             <li>Save your profile.</li>
             <li>Review every section.</li>
             <li>Correct incomplete or inaccurate information.</li>
             <li>Update your profile whenever your credentials change.</li>
-          </ol>
+          </ul>
         </div>
       </article>
 
@@ -1779,13 +1792,20 @@
           <h2>Find open positions</h2>
         </div>
 
+        <div class="section-video">
+          <video class="tab-video" controls playsinline preload="metadata">
+            <source src="agap_c.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+
         <div class="step">
           <h3>Step 1: Open the list of positions</h3>
-          <ol>
+          <ul>
             <li>Go to Job Portal.</li>
             <li>Review the list of published positions.</li>
             <li>Use filters if available.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
@@ -1801,12 +1821,12 @@
 
         <div class="step">
           <h3>Step 3: Check if you qualify</h3>
-          <ol>
+          <ul>
             <li>Compare your profile against the required education, experience, training, eligibility, and documents.
             </li>
             <li>Review your supporting records carefully before submitting.</li>
             <li>Confirm the deadline and submit before it closes.</li>
-          </ol>
+          </ul>
         </div>
       </article>
 
@@ -1818,31 +1838,32 @@
 
         <div class="step">
           <h3>Step 1: Select the position</h3>
-          <ol>
+          <ul>
             <li>Open the position you want to apply for.</li>
             <li>Review the full details again.</li>
             <li>Select Apply.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
           <h3>Step 2: Confirm your profile and documents</h3>
-          <ol>
+          <ul>
             <li>Review the profile information that will be used for the application.</li>
             <li>Confirm that education, experience, training, eligibility, and documents are complete.</li>
             <li>Update your profile first if important information is missing.</li>
-          </ol>
+            <li>Confirm if the attached documents are up to date, and click the Update button to replace them with your latest documents if necessary.</li>
+          </ul>
         </div>
 
         <div class="step">
           <h3>Step 3: Submit the application</h3>
-          <ol>
-            <li>Review the position applied for.</li>
-            <li>Review your profile and attached credentials.</li>
-            <li>Confirm that the application is complete.</li>
-            <li>Submit the application and wait for the confirmation message.</li>
-            <li>Take note of the application reference number.</li>
-          </ol>
+          <ul>
+            <li>If all documents and information are already confirmed, click Submit Application.</li>
+            <li>Once you click Submit Application, the system will prompt you to upload the Letter of Intent.</li>
+            <li>Click Upload and the Next button for a new modal for CAV (Certification, Authentication, and Verification) to appear.</li>
+            <li>Download the template and accomplish the CAV Form, have it subscribed and sworn to before a Notary Public or any public officer authorized to administer oaths, and upload the duly accomplished form as one (1) of the required application documents.</li>
+            <li>After uploading and verifying your documents, click Submit Application to finalize the process.</li>
+          </ul>
         </div>
       </article>
 
@@ -1854,20 +1875,20 @@
 
         <div class="step">
           <h3>Step 1: Review other vacancies</h3>
-          <ol>
+          <ul>
             <li>Return to the open positions list.</li>
             <li>Review other positions that match your qualifications.</li>
             <li>Open each position and read the requirements carefully.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
           <h3>Step 2: Submit separate applications</h3>
-          <ol>
+          <ul>
             <li>Apply separately to each position.</li>
             <li>Confirm that your profile and credentials satisfy the specific position requirements.</li>
             <li>Remember that each application is evaluated separately.</li>
-          </ol>
+          </ul>
         </div>
       </article>
 
@@ -1879,11 +1900,11 @@
 
         <div class="step">
           <h3>Step 1: Open My Applications</h3>
-          <ol>
+          <ul>
             <li>Go to My Applications.</li>
             <li>Review each submitted application.</li>
             <li>Check the position, date submitted, and current status.</li>
-          </ol>
+          </ul>
         </div>
 
         <div class="step">
@@ -2078,6 +2099,8 @@
         card._navLink = link;
       });
 
+      initSectionProgress();
+
       var spacer = document.createElement('div');
       spacer.className = 'side-spacer';
       nav.appendChild(spacer);
@@ -2152,12 +2175,17 @@
         links.forEach(function (l) { l.classList.toggle('active', l === activeLink); });
       }
 
-      function resetProgress() {
-        cards.forEach(function (card) {
+      function initSectionProgress() {
+        cards.forEach(function (card, i) {
           if (card._navLink && card._navLink._sideLetter) {
-            card._navLink._sideLetter.style.setProperty('--progress', '0');
+            var percent = Math.round(((i + 1) / cards.length) * 100);
+            card._navLink._sideLetter.style.setProperty('--progress', String(percent));
           }
         });
+      }
+
+      function resetProgress() {
+        initSectionProgress();
       }
 
       function updateActiveStep(card, index) {
@@ -2172,10 +2200,7 @@
           button.classList.toggle('active', i === clamped);
         });
 
-        resetProgress();
-        if (card._navLink && card._navLink._sideLetter) {
-          card._navLink._sideLetter.style.setProperty('--progress', String(((clamped + 1) / card._steps.length) * 100));
-        }
+        initSectionProgress();
       }
 
       function showCover() {
