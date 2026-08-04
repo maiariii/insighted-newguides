@@ -1,15 +1,12 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AGAP Portal Applicant Guide</title>
+  <title>InsightED eSF7 User Input Guide</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --paper: #ffffff;
@@ -17,24 +14,26 @@
       --ink: #0F172A;
       --muted: #64748B;
       --line: #BAE6FD;
-      --accent: #16A34A;
-      --accent-soft: #dcfce7;
-      --blue: #075985;
-      --blue-soft: #E0F2FE;
-      --orange: #D97706;
-      --orange-soft: #ffedd5;
-      --red: #B91C1C;
-      --red-soft: #fee2e2;
+      --accent: #075985;
+      --accent-soft: #E0F2FE;
+      --good: #16A34A;
+      --good-soft: #dcfce7;
+      --bad: #B91C1C;
+      --bad-soft: #fee2e2;
+      --warn: #D97706;
+      --warn-soft: #FEF3C7;
       --radius: 18px;
       --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --print-header: "AGAP Portal · Applicant Guide";
-      --print-footer: "AGAP Portal Application Guide";
+      --print-header: "InsightED eSF7 · User Input Guide";
+      --print-footer: "InsightED eSF7 User Guide";
     }
 
     * {
       box-sizing: border-box;
     }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -42,7 +41,7 @@
       color: var(--ink);
       font-family: var(--font-body);
       font-size: 16px;
-      line-height: 1.55;
+      line-height: 1.65;
     }
 
     .sheet {
@@ -83,8 +82,55 @@
       display: block;
       width: min(130px, 34vw);
       height: auto;
-      margin: 0 auto -16px;
+      margin: 0 auto 4px;
       object-fit: contain;
+    }
+
+    .hero-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin: 0 auto 12px;
+    }
+    .hero-logos .hero-logo {
+      display: block;
+      width: auto;
+      margin: 0;
+      object-fit: contain;
+    }
+    .hero-logos .logo-insighted {
+      height: 78px;
+    }
+    .hero-logos .logo-module {
+      height: 40px;
+      margin-left: -4px;
+    }
+    .hero-logos .logo-plus {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 28px;
+      font-weight: 900;
+      line-height: 1;
+      opacity: 0.7;
+      user-select: none;
+      transform: translateY(-10px);
+      margin: 0;
+    }
+    body.cover-active .hero .hero-logos {
+      margin: 0 auto 18px;
+    }
+    body.cover-active .hero .hero-logos .logo-insighted {
+      height: 80px;
+    }
+    body.cover-active .hero .hero-logos .logo-module {
+      height: 56px;
+    }
+    body.cover-active .hero .hero-logos .logo-plus {
+      font-size: 28px;
     }
 
     .eyebrow {
@@ -101,33 +147,8 @@
       text-transform: uppercase;
     }
 
-    h1,
-    h2,
-    h3,
-    p {
+    h1, h2, h3, h4, p {
       margin: 0;
-    }
-
-    .section-video {
-      margin: 0 0 22px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      overflow: hidden;
-      background: #000000;
-      box-shadow: 0 12px 32px rgba(8, 49, 95, .12);
-    }
-    .section-video video {
-      display: block;
-      width: 100%;
-      max-height: 460px;
-      aspect-ratio: 16 / 9;
-      background: #000000;
-      object-fit: contain;
-    }
-    @media print {
-      .section-video {
-        display: none !important;
-      }
     }
 
     h1 {
@@ -144,7 +165,7 @@
       font-size: 17px;
     }
 
-    .quick-note {
+    .notice, .callout {
       max-width: 920px;
       margin: 12px auto 0;
       padding: 12px 16px;
@@ -154,6 +175,18 @@
       background: #fafafa;
       text-align: left;
       font-size: 14px;
+    }
+
+    .callout.warning, .warning {
+      border-left-color: var(--warn);
+      background: var(--warn-soft);
+      color: #78350f;
+    }
+
+    .callout.success, .success {
+      border-left-color: var(--good);
+      background: var(--good-soft);
+      color: #14532d;
     }
 
     .guide-grid {
@@ -220,8 +253,7 @@
       line-height: 1.2;
     }
 
-    ol,
-    ul {
+    ol, ul {
       margin: 0;
       padding-left: 22px;
     }
@@ -230,22 +262,33 @@
       margin: 6px 0;
     }
 
-    .doc-grid {
+    .mini-grid, .check-grid, .field-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 10px;
     }
 
-    .doc-card {
+    .mini-card, .check-item, .field-card {
       border: 1px solid var(--line);
       border-radius: 14px;
       padding: 12px;
       background: #fafafa;
       break-inside: avoid;
       page-break-inside: avoid;
+    }
+
+    .mini-card strong, .field-card strong {
+      display: block;
+      margin-bottom: 4px;
       font-size: 14px;
-      font-weight: 700;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     .tag {
@@ -260,25 +303,10 @@
       border: 1px solid transparent;
     }
 
-    .tag.blue {
-      background: var(--blue-soft);
-      color: var(--blue);
-    }
-
-    .tag.green {
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .tag.orange {
-      background: var(--orange-soft);
-      color: var(--orange);
-    }
-
-    .tag.red {
-      background: var(--red-soft);
-      color: var(--red);
-    }
+    .tag.blue { background: var(--accent-soft); color: var(--accent); }
+    .tag.green { background: var(--good-soft); color: var(--good); }
+    .tag.red { background: var(--bad-soft); color: var(--bad); }
+    .tag.orange { background: var(--warn-soft); color: var(--warn); }
 
     .status-table {
       width: 100%;
@@ -301,57 +329,6 @@
       letter-spacing: 0.05em;
     }
 
-    .checklist {
-      display: grid;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .check-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 13px 14px;
-      background: #fafafa;
-      font-weight: 700;
-      cursor: pointer;
-      break-inside: avoid;
-      page-break-inside: avoid;
-      transition: border-color .15s ease, background .15s ease, color .15s ease;
-    }
-
-    .check-item:hover {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-    }
-
-    .check-item input {
-      width: 18px;
-      height: 18px;
-      margin-top: 2px;
-      accent-color: var(--accent);
-      flex: 0 0 auto;
-      cursor: pointer;
-    }
-
-    .check-item span {
-      line-height: 1.45;
-    }
-
-    .check-item:has(input:checked) {
-      border-color: var(--accent);
-      background: var(--accent-soft);
-      color: var(--accent);
-    }
-
-    .check-item:has(input:checked) span {
-      text-decoration: line-through;
-      text-decoration-thickness: 2px;
-      text-decoration-color: rgba(22, 163, 74, .45);
-    }
-
     .footer-note {
       margin-top: 18px;
       padding: 14px 16px;
@@ -362,80 +339,6 @@
       font-weight: 700;
     }
 
-    @media (max-width: 900px) {
-      .sheet {
-        width: min(100%, calc(100% - 20px));
-        padding: 18px;
-      }
-
-      .guide-grid,
-      .doc-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media print {
-      @page {
-        size: A4;
-        margin: 12mm;
-      }
-
-      body {
-        background: #ffffff;
-        font-size: 10.5pt;
-        line-height: 1.42;
-      }
-
-      .sheet {
-        width: 100%;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        border-radius: 0;
-      }
-
-      .print-actions {
-        display: none !important;
-      }
-
-      .guide-grid {
-        gap: 12px;
-      }
-
-      .hero,
-      .section-card,
-      .step,
-      .doc-card,
-      .check-item,
-      .status-table,
-      .status-table tr,
-      .footer-note {
-        break-inside: avoid;
-        page-break-inside: avoid;
-      }
-
-      .section-card {
-        padding: 14px;
-      }
-
-      .section-head h2 {
-        font-size: 17pt;
-      }
-
-      .step h3 {
-        font-size: 12pt;
-      }
-
-      .subtitle,
-      .quick-note,
-      li,
-      td,
-      th {
-        font-size: 10pt;
-      }
-    }
-
-    /* InsightED guide app: cover page, true auto-hide sidebar, section header cards, and substep highlights */
     .guide-header {
       display: none;
       align-items: center;
@@ -447,11 +350,10 @@
       border-left: 8px solid var(--accent);
       border-radius: 20px;
       background:
-        radial-gradient(circle at 96% 0%, rgba(251, 191, 36, .18), transparent 24%),
+        radial-gradient(circle at 96% 0%, rgba(251,191,36,.18), transparent 24%),
         linear-gradient(135deg, #ffffff 0%, var(--accent-soft) 100%);
       box-shadow: 0 14px 40px rgba(8, 49, 95, .08);
     }
-
     .guide-header .guide-kicker {
       margin-bottom: 5px;
       color: var(--accent);
@@ -461,7 +363,6 @@
       letter-spacing: .12em;
       text-transform: uppercase;
     }
-
     .guide-header .guide-title {
       color: var(--ink);
       font-family: var(--font-heading);
@@ -469,17 +370,6 @@
       font-weight: 900;
       line-height: 1.08;
       letter-spacing: -.04em;
-    }
-
-    .guide-header .guide-section {
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .guide-header .guide-print {
-      flex: 0 0 auto;
     }
 
     .side-nav {
@@ -500,42 +390,34 @@
       box-shadow: 18px 0 48px rgba(8, 49, 95, .20);
       transition: width .12s ease-out, padding .12s ease-out;
     }
-
     .side-nav:not(.is-expanded) {
       scrollbar-width: none;
       -ms-overflow-style: none;
     }
-
     .side-nav:not(.is-expanded)::-webkit-scrollbar {
       display: none;
       width: 0;
       height: 0;
     }
-
     .side-nav.is-expanded {
       width: 288px;
       padding: 18px 14px;
       scrollbar-width: thin;
       scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
     }
-
     .side-nav.is-expanded::-webkit-scrollbar {
       width: 6px;
     }
-
     .side-nav.is-expanded::-webkit-scrollbar-track {
       background: transparent;
     }
-
     .side-nav.is-expanded::-webkit-scrollbar-thumb {
       background: rgba(255, 255, 255, 0.35);
       border-radius: 999px;
     }
-
     .side-nav.is-expanded::-webkit-scrollbar-thumb:hover {
       background: rgba(255, 255, 255, 0.55);
     }
-
     .side-nav .side-top {
       display: flex;
       align-items: center;
@@ -543,9 +425,8 @@
       gap: 8px;
       margin-bottom: 8px;
       padding: 4px 4px 10px;
-      border-bottom: 1px solid rgba(224, 242, 254, .22);
+      border-bottom: 1px solid rgba(224,242,254,.22);
     }
-
     .side-nav .side-brand {
       padding: 0 8px;
       font-family: var(--font-heading);
@@ -556,26 +437,23 @@
       color: #FBBF24;
       white-space: nowrap;
     }
-
     .side-toggle {
       appearance: none;
       display: inline-grid;
       place-items: center;
       width: 34px;
       height: 34px;
-      border: 1px solid rgba(255, 255, 255, .28);
+      border: 1px solid rgba(255,255,255,.28);
       border-radius: 12px;
-      background: rgba(255, 255, 255, .10);
+      background: rgba(255,255,255,.10);
       color: #fff;
       cursor: pointer;
       font: inherit;
       font-weight: 900;
     }
-
     .side-toggle:hover {
-      background: rgba(255, 255, 255, .18);
+      background: rgba(255,255,255,.18);
     }
-
     .side-nav a {
       display: flex;
       align-items: center;
@@ -593,20 +471,17 @@
       cursor: pointer;
       transition: background .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
     }
-
     .side-nav a:hover {
-      background: rgba(255, 255, 255, .11);
+      background: rgba(255,255,255,.11);
       color: #fff;
       transform: translateX(2px);
     }
-
     .side-nav a.active {
-      background: rgba(255, 255, 255, .18);
+      background: rgba(255,255,255,.18);
       color: #fff;
-      border-color: rgba(255, 255, 255, .34);
+      border-color: rgba(255,255,255,.34);
       position: relative;
     }
-
     .side-nav a.active::after {
       content: "";
       position: absolute;
@@ -617,7 +492,6 @@
       border-radius: 0 4px 4px 0;
       background: #FBBF24;
     }
-
     .side-nav .side-letter {
       display: inline-grid;
       place-items: center;
@@ -625,48 +499,41 @@
       height: 28px;
       flex: 0 0 auto;
       border-radius: 9px;
-      background: rgba(255, 255, 255, .18);
+      background: rgba(255,255,255,.18);
       font-family: var(--font-heading);
       font-weight: 900;
       font-size: 13px;
     }
-
     .side-nav .side-text {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
     }
-
     .side-nav:not(.is-expanded) .side-brand,
     .side-nav:not(.is-expanded) .side-text {
       display: none;
     }
-
     .side-nav:not(.is-expanded) .side-top {
       justify-content: center;
     }
-
     .side-nav:not(.is-expanded) a {
       justify-content: center;
       padding-left: 8px;
       padding-right: 8px;
     }
-
     .side-nav:not(.is-expanded) a:hover {
       transform: none;
     }
-
     .side-spacer {
       flex: 1 1 auto;
       min-height: 18px;
     }
-
     .side-print {
       appearance: none;
       width: 100%;
       margin-top: auto;
       padding: 12px 14px;
-      border: 1px solid rgba(255, 255, 255, .28);
+      border: 1px solid rgba(255,255,255,.28);
       border-radius: 14px;
       background: #0F172A;
       color: #ffffff;
@@ -674,13 +541,11 @@
       font-size: 13px;
       font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, .24);
+      box-shadow: 0 10px 24px rgba(15,23,42,.24);
     }
-
     .side-print:hover {
       background: #111827;
     }
-
     .side-nav:not(.is-expanded) .side-print {
       width: 44px;
       height: 44px;
@@ -692,7 +557,6 @@
       text-indent: -999px;
       position: relative;
     }
-
     .side-nav:not(.is-expanded) .side-print::after {
       content: "PDF";
       position: absolute;
@@ -710,33 +574,26 @@
       margin-right: 24px;
       transition: width .12s ease-out, margin .12s ease-out;
     }
-
     body.nav-expanded .sheet {
       width: min(1180px, calc(100% - 336px));
       margin-left: 312px;
     }
-
     body.has-side-nav .guide-grid {
       grid-template-columns: 1fr;
     }
-
     body.has-side-nav .section-card {
       display: none;
     }
-
     body.has-side-nav .section-card.is-active {
       display: block;
     }
-
     body.has-side-nav .footer-note {
       display: none;
     }
-
     body.cover-active {
       height: 100vh;
       overflow: hidden;
     }
-
     body.cover-active .sheet {
       height: calc(100vh - 32px);
       margin: 16px 24px 16px 120px;
@@ -746,26 +603,21 @@
       justify-content: center;
       box-sizing: border-box;
     }
-
     body.nav-expanded.cover-active .sheet {
       margin-left: 312px;
     }
-
     body.cover-active .guide-grid,
     body.cover-active .footer-note,
     body.cover-active .guide-header,
     body.cover-active .print-actions {
       display: none;
     }
-
     body.section-active .hero {
       display: none;
     }
-
     body.section-active .guide-header {
       display: flex;
     }
-
     body.cover-active .hero {
       height: 100%;
       min-height: 0;
@@ -777,19 +629,27 @@
       margin: 0;
       border-radius: 28px;
       background:
-        radial-gradient(circle at 15% 12%, rgba(125, 211, 252, .30), transparent 34%),
-        radial-gradient(circle at 85% 15%, rgba(251, 191, 36, .22), transparent 30%),
+        radial-gradient(circle at 15% 12%, rgba(125,211,252,.30), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(251,191,36,.22), transparent 30%),
         linear-gradient(160deg, #ffffff 0%, #F8FCFF 45%, var(--accent-soft) 100%);
       border: 1px solid var(--line);
       box-shadow: 0 30px 80px rgba(8, 49, 95, .12);
       box-sizing: border-box;
     }
-
-    body.cover-active .hero .hero-logo {
-      width: min(150px, 38vw);
-      margin: 0 auto -22px;
+    body.cover-active .hero .hero-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      gap: 4px;
     }
-
+    body.cover-active .hero .hero-logos .logo-insighted {
+      height: 78px;
+    }
+    body.cover-active .hero .hero-logos .logo-module {
+      height: 40px;
+      margin-left: -4px;
+    }
     body.cover-active .hero .eyebrow {
       justify-self: center;
       margin: 0 auto 12px;
@@ -798,23 +658,20 @@
       letter-spacing: .14em;
       box-shadow: 0 6px 18px rgba(8, 49, 95, .10);
     }
-
     body.cover-active .hero h1 {
       max-width: 18ch;
       margin: 0 auto;
-      font-size: clamp(34px, 4.8vw, 58px);
-      line-height: 1.05;
+      font-size: clamp(36px, 5.2vw, 62px);
+      line-height: 1.04;
       font-weight: 900;
       letter-spacing: -.045em;
     }
-
     body.cover-active .hero .subtitle {
       max-width: 58ch;
       margin: 12px auto 0;
       font-size: 15px;
       line-height: 1.5;
     }
-
     body.cover-active .hero .notice,
     body.cover-active .hero .quick-note {
       max-width: 62ch;
@@ -835,7 +692,6 @@
       border-radius: 16px;
       background: #F8FCFF;
     }
-
     .section-step-nav button {
       appearance: none;
       border: 1px solid var(--line);
@@ -848,7 +704,6 @@
       font-weight: 900;
       cursor: pointer;
     }
-
     .section-step-nav button:hover,
     .section-step-nav button.active {
       border-color: var(--accent);
@@ -857,7 +712,6 @@
       text-decoration: underline;
       text-underline-offset: 3px;
     }
-
     .step {
       position: relative;
       margin: 12px 0;
@@ -868,12 +722,10 @@
       background: linear-gradient(180deg, #ffffff 0%, #F8FCFF 100%);
       box-shadow: 0 8px 26px rgba(8, 49, 95, .05);
     }
-
     .step:first-of-type {
       border-top: 1px solid var(--line);
       padding-top: 16px;
     }
-
     .step h3 {
       display: inline-flex;
       align-items: center;
@@ -884,20 +736,16 @@
       background: var(--accent-soft);
       color: var(--accent);
     }
-
     .step h3 .step-number {
       font-weight: 900;
       text-decoration: underline;
       text-underline-offset: 3px;
       text-decoration-thickness: 2px;
     }
-
     .step h3 .step-title {
       font-weight: 900;
       font-style: italic;
     }
-
-    .step li strong,
     .step td strong,
     .notice strong,
     .quick-note strong,
@@ -905,14 +753,12 @@
       color: var(--accent);
       font-weight: 900;
     }
-
     .step.step-focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 4px var(--accent-soft), 0 18px 44px rgba(8, 49, 95, .12);
     }
 
     @media (max-width: 900px) {
-
       .side-nav,
       .side-nav.is-expanded {
         position: sticky;
@@ -925,63 +771,47 @@
         padding: 14px;
         border-radius: 18px;
       }
-
       .side-nav:not(.is-expanded) .side-brand,
       .side-nav:not(.is-expanded) .side-text {
         display: inline;
       }
-
       body.has-side-nav .sheet,
       body.nav-expanded .sheet {
         width: min(100%, calc(100% - 20px));
         margin: 10px auto;
       }
-
       .guide-header {
         align-items: flex-start;
         flex-direction: column;
       }
     }
-
     @media print {
-
       .side-nav,
-      .guide-header {
-        display: none !important;
-      }
-
+      .guide-header { display: none !important; }
       body.has-side-nav .sheet {
         width: 100% !important;
         margin-left: 0 !important;
         margin-right: 0 !important;
       }
-
       body.section-active .hero,
       body.has-side-nav .footer-note,
       body.has-side-nav .section-card {
         display: block !important;
       }
-
-      .section-step-nav {
-        display: none !important;
-      }
-
+      .section-step-nav { display: none !important; }
       .step {
         margin: 0;
         box-shadow: none;
       }
     }
 
-    /* UX clarity overhaul: reduced box fatigue, stronger hierarchy, scroll-spy TOC */
     body {
       line-height: 1.65;
     }
-
     body.has-side-nav .sheet {
       padding: 16px;
-      background: rgba(255, 255, 255, .96);
+      background: rgba(255,255,255,.96);
     }
-
     .guide-header {
       margin-bottom: 18px;
       padding: 20px 24px;
@@ -989,16 +819,14 @@
       border-left: 8px solid var(--accent);
       border-radius: 24px;
       background:
-        radial-gradient(circle at 98% 0%, rgba(251, 191, 36, .16), transparent 26%),
+        radial-gradient(circle at 98% 0%, rgba(251,191,36,.16), transparent 26%),
         linear-gradient(135deg, #ffffff 0%, #F8FCFF 58%, var(--accent-soft) 100%);
       box-shadow: 0 18px 52px rgba(8, 49, 95, .08);
     }
-
     .guide-header .guide-title {
       font-size: clamp(30px, 4vw, 54px);
       letter-spacing: -.055em;
     }
-
     .section-card {
       border: 0 !important;
       border-radius: 28px;
@@ -1006,23 +834,20 @@
       background: #ffffff;
       box-shadow: none;
     }
-
     .section-head {
       margin-bottom: 24px;
       padding-bottom: 20px;
       border-bottom: 1px solid var(--line);
     }
-
     .section-head h2 {
       font-size: clamp(26px, 3vw, 36px);
       letter-spacing: -.04em;
     }
-
     .letter {
       width: 40px;
       height: 40px;
       border-radius: 14px;
-      box-shadow: 0 10px 22px rgba(7, 89, 133, .16);
+      box-shadow: 0 10px 22px rgba(7,89,133,.16);
     }
 
     .section-step-nav {
@@ -1035,10 +860,9 @@
       border: 0;
       border-bottom: 1px solid var(--line);
       border-radius: 0;
-      background: rgba(255, 255, 255, .92);
+      background: rgba(255,255,255,.92);
       backdrop-filter: blur(14px);
     }
-
     .section-step-nav button {
       border: 1px solid transparent;
       background: transparent;
@@ -1047,14 +871,12 @@
       font-size: 13px;
       font-weight: 800;
     }
-
     .section-step-nav button:hover {
       border-color: var(--line);
       background: #F8FCFF;
       color: var(--accent);
       text-decoration: none;
     }
-
     .section-step-nav button.active {
       border-color: var(--accent-soft);
       background: var(--accent-soft);
@@ -1072,11 +894,9 @@
       background: transparent !important;
       box-shadow: none !important;
     }
-
     .step:last-child {
       margin-bottom: 8px !important;
     }
-
     .step h3 {
       display: flex !important;
       align-items: center;
@@ -1090,7 +910,6 @@
       font-size: 21px;
       line-height: 1.25;
     }
-
     .step h3 .step-number {
       display: inline-grid;
       place-items: center;
@@ -1104,13 +923,11 @@
       font-weight: 900;
       text-decoration: none !important;
     }
-
     .step h3 .step-title {
       color: var(--ink);
       font-style: normal !important;
       font-weight: 850;
     }
-
     .step ol,
     .step ul {
       max-width: 900px;
@@ -1118,21 +935,17 @@
       color: #334155;
       line-height: 1.75;
     }
-
     .step li {
       margin: 0 0 12px;
       padding-left: 4px;
     }
-
     .step li:last-child {
       margin-bottom: 0;
     }
-
     .step.step-focus {
       border: 0 !important;
       box-shadow: none !important;
     }
-
     .step.step-focus h3 {
       border-bottom-color: var(--accent);
     }
@@ -1143,7 +956,6 @@
       gap: 14px;
       max-width: 920px;
     }
-
     .mini-card,
     .doc-card,
     .check-item {
@@ -1151,11 +963,9 @@
       background: #F8FCFF;
       box-shadow: none;
     }
-
     .status-table {
       max-width: 980px;
     }
-
     .tag {
       border: 0;
       font-weight: 850;
@@ -1164,38 +974,29 @@
     .side-nav {
       transition: width .1s ease-out, padding .1s ease-out;
     }
-
     .side-nav a {
       position: relative;
     }
-
     .side-nav .side-letter {
       position: relative;
       overflow: hidden;
-      background: rgba(255, 255, 255, .18);
+      background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255,255,255,.22) 0);
     }
-
-    .side-nav a.active .side-letter {
-      background: conic-gradient(#FBBF24 calc(var(--progress, 0) * 1%), rgba(255, 255, 255, .18) 0);
-    }
-
     .side-nav .side-letter::before {
       content: "";
       position: absolute;
-      inset: 3px;
-      border-radius: 7px;
-      background: #08315F;
+      inset: 2.5px;
+      border-radius: 6.5px;
+      background: #075985;
     }
-
     .side-nav a.active .side-letter::before {
       background: #E0F2FE;
     }
-
     .side-nav .side-letter span {
       position: relative;
       z-index: 1;
+      color: #ffffff;
     }
-
     .side-nav a.active .side-letter span {
       color: #08315F;
     }
@@ -1204,35 +1005,27 @@
       body.has-side-nav .sheet {
         padding: 24px;
       }
-
       .section-card {
         padding: 28px 22px;
       }
-
       .section-step-nav {
         top: 0;
         overflow-x: auto;
         flex-wrap: nowrap;
       }
     }
-
-    /* Remove redundant in-page section title/TOC now that the header card + sidebar carry navigation context */
     body.section-active .section-head,
     body.section-active .section-step-nav {
       display: none !important;
     }
-
     body.section-active .section-card {
       padding-top: 16px;
     }
-
     body.section-active .step:first-of-type {
       margin-top: 0 !important;
     }
 
     @media print {
-
-      /* Always print the complete guide, regardless of current interactive state */
       @page {
         size: A4;
         margin: 20mm 12mm 18mm;
@@ -1478,548 +1271,137 @@
         padding: 4mm !important;
         border: 1px solid #BAE6FD !important;
         border-radius: 3mm !important;
+        font-size: 8.5pt !important;
+        color: #0F172A !important;
         background: #F8FCFF !important;
-        color: #0F172A !important;
-        font-size: 9pt !important;
-      }
-
-      /* Stronger PDF section separation + prevent Section A from being hidden under the fixed header */
-      .guide-grid {
-        padding-top: 5mm !important;
-      }
-
-      .section-card {
-        position: relative !important;
-        margin: 0 0 14mm !important;
-        padding: 5mm 5mm 3mm !important;
-        border: 1.2px solid #BAE6FD !important;
-        border-left: 4mm solid var(--accent) !important;
-        border-radius: 4mm !important;
-        background: linear-gradient(180deg, #ffffff 0%, #F8FCFF 100%) !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-
-      .section-card:first-child {
-        margin-top: 5mm !important;
-      }
-
-      .section-head {
-        display: flex !important;
-        align-items: center !important;
-        gap: 9px !important;
-        margin: 0 0 6mm !important;
-        padding: 0 0 3.5mm !important;
-        border-bottom: 2px solid #BAE6FD !important;
-        background: transparent !important;
-        page-break-after: avoid !important;
-        break-after: avoid !important;
-      }
-
-      .section-head .letter,
-      .letter {
-        display: inline-grid !important;
-        place-items: center !important;
-        width: 9mm !important;
-        height: 9mm !important;
-        min-width: 9mm !important;
-        border-radius: 3mm !important;
-        background: var(--accent) !important;
-        color: #ffffff !important;
-        font-size: 12pt !important;
-        font-weight: 900 !important;
-        box-shadow: none !important;
-        print-color-adjust: exact;
-        -webkit-print-color-adjust: exact;
-      }
-
-      .section-head h2 {
-        font-size: 21pt !important;
-        line-height: 1.1 !important;
-        letter-spacing: -.04em !important;
-        font-weight: 900 !important;
-        color: #0F172A !important;
-      }
-
-      .step {
-        margin: 0 0 7mm !important;
-        padding: 0 0 1mm !important;
-        background: transparent !important;
-      }
-
-      .step h3 {
-        font-size: 13pt !important;
-        border-bottom: 1px solid #BAE6FD !important;
-      }
-    }
-
-    @media print {
-
-      /* Table-based running header/footer: thead/tfoot repeat AND reserve space on every page */
-      @page {
-        size: A4;
-        margin: 12mm;
-      }
-
-      /* Disable the old fixed-position header/footer that overlapped content */
-      body::before,
-      body::after {
-        content: none !important;
-        display: none !important;
-      }
-
-      body {
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      }
-
-      .print-wrap {
-        width: 100% !important;
-        border-collapse: collapse !important;
-      }
-
-      /* thead repeats as the running header on every printed page */
-      .print-wrap thead {
-        display: table-header-group !important;
-      }
-
-      /* tfoot repeats as the running footer on every printed page */
-      .print-wrap tfoot {
-        display: table-footer-group !important;
-      }
-
-      .print-wrap>tbody>tr>td,
-      .print-wrap>thead>tr>td,
-      .print-wrap>tfoot>tr>td {
-        padding: 0 !important;
-        border: 0 !important;
-        vertical-align: top !important;
-      }
-
-      .print-head {
-        margin: 0 0 6mm !important;
-        padding: 0 0 3mm !important;
-        border-bottom: 1px solid #BAE6FD !important;
-        color: var(--accent) !important;
-        font-family: var(--font-heading) !important;
-        font-size: 9pt !important;
-        font-weight: 900 !important;
-        letter-spacing: .08em !important;
-        text-transform: uppercase !important;
-        background: #ffffff !important;
-      }
-
-      .print-foot {
-        margin: 6mm 0 0 !important;
-        padding: 3mm 0 0 !important;
-        border-top: 1px solid #BAE6FD !important;
-        color: #64748B !important;
-        font-family: var(--font-body) !important;
-        font-size: 8.5pt !important;
-        font-weight: 700 !important;
-        background: #ffffff !important;
-      }
-
-      .section-card {
-        scroll-margin-top: 0 !important;
-      }
-
-      .section-head,
-      .step h3 {
-        scroll-margin-top: 0 !important;
-        page-break-after: avoid;
-        break-after: avoid;
-      }
-    }
-
-    @media print {
-
-      /* Clean, compact cover for PDF: no oversized empty box, tighter hierarchy */
-      body.cover-active .hero,
-      body.section-active .hero,
-      body.applicant-guide.cover-active .hero,
-      .hero {
-        min-height: calc(100vh - 70mm) !important;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        margin: 0 !important;
-        padding: 0 6mm !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-        background: #ffffff !important;
-        box-shadow: none !important;
-        text-align: center !important;
-        page-break-after: always !important;
-        break-after: page !important;
-      }
-
-      body.cover-active .hero .hero-logo,
-      body.applicant-guide .hero .hero-logo,
-      .hero .hero-logo {
-        width: 32mm !important;
-        margin: 0 auto 4mm !important;
-      }
-
-      body.cover-active .hero .eyebrow,
-      .hero .eyebrow {
-        display: inline-block !important;
-        margin: 0 auto 4mm !important;
-        padding: 0 !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        color: var(--accent) !important;
-        font-size: 8.5pt !important;
-        letter-spacing: .1em !important;
-      }
-
-      body.cover-active .hero h1,
-      .hero h1 {
-        max-width: 100% !important;
-        margin: 0 auto !important;
-        font-size: 26pt !important;
-        line-height: 1.08 !important;
-        letter-spacing: -.035em !important;
-      }
-
-      body.cover-active .hero .subtitle,
-      .hero .subtitle {
-        max-width: 100% !important;
-        margin: 4mm auto 0 !important;
-        font-size: 10pt !important;
-        line-height: 1.5 !important;
-      }
-
-      body.cover-active .hero .notice,
-      body.cover-active .hero .quick-note,
-      .hero .notice,
-      .hero .quick-note {
-        max-width: 100% !important;
-        margin: 5mm auto 0 !important;
-        border-radius: 3mm !important;
-        box-shadow: none !important;
-        text-align: left !important;
-      }
-    }
-
-    @media print {
-
-      /* Let long content flow across pages instead of jumping to a near-blank page */
-      .section-card {
-        page-break-inside: auto !important;
-        break-inside: auto !important;
-      }
-
-      .step {
-        page-break-inside: auto !important;
-        break-inside: auto !important;
-      }
-
-      .step h3 {
-        page-break-after: avoid !important;
-        break-after: avoid !important;
-      }
-
-      .status-table {
-        page-break-inside: auto !important;
-        break-inside: auto !important;
-      }
-
-      .status-table thead {
-        display: table-header-group !important;
-      }
-
-      .status-table tr {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
     }
   </style>
 </head>
-
-<body class="applicant-guide">
-  <style>
-    body.applicant-guide.cover-active .hero {
-      padding: 56px 48px;
-    }
-  </style>
+<body class="cover-active">
   <main class="sheet">
-    <div class="print-actions">
-      <button class="print-button" type="button" onclick="window.print()">Print / Save as PDF</button>
-    </div>
+    <div class="print-actions"><button class="print-button" type="button" onclick="window.print()">Print / Save as PDF</button></div>
 
-    <header class="hero">
-      <img class="hero-logo" src="./agap_logo.png" alt="AGAP logo">
-      <div class="eyebrow">AGAP Portal · Applicant Guide</div>
-      <h1>Applicant Quick Guide</h1>
-      <p class="subtitle">
-        A simplified guide for applicants covering registration, profile creation,
-        vacancy review, application submission, status tracking, assessments, and final results.
-      </p>
-      <div class="quick-note">
-        <strong>Important:</strong> Keep your profile complete, upload clear documents,
-        check every vacancy carefully, and submit your application before the deadline.
+    <header class="hero" id="cover">
+      <div class="hero-logos">
+        <img class="hero-logo logo-insighted" src="../insighted_logo_vertical.png" alt="InsightED Logo">
+        <img class="hero-logo logo-module" src="./esf7logo.png" alt="InsightED eSF7 Logo">
       </div>
+      <div class="eyebrow">InsightED eSF7 · School Head Portal</div>
+      <h1>User Input Guide for Completing eSF7 on InsightED</h1>
+      <p class="subtitle">A section-by-section operating guide for signing in, encoding school personnel data, building classes and workloads, validating records, and generating official reports.</p>
+      <div class="notice"><strong>Operating rule:</strong> Use the left sidebar in the app as your sequence. Start with school identity, then personnel, then classes, then workload, then validation. Do not submit until the Validation Center shows no critical errors.</div>
     </header>
 
     <section class="guide-grid">
       <article class="section-card">
-        <div class="section-head">
-          <div class="letter">A</div>
-          <h2>Create your account</h2>
-        </div>
-
-        <div class="section-video">
-          <video class="tab-video" controls playsinline preload="metadata">
-            <source src="agap_a.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-        </div>
-
-        <div class="step">
-          <h3>Step 1: Open the AGAP Portal</h3>
-          <ul>
-            <li>Go to the AGAP Portal.</li>
-            <li>Select Login or Create Account.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 2: Register your account</h3>
-          <ul>
-            <li>Enter your required personal information.</li>
-            <li>Provide an active email address.</li>
-            <li>Create and confirm a secure password.</li>
-            <li>Submit the registration form.</li>
-          </ul>
-        </div>
+        <div class="section-head"><div class="letter">A</div><h2>Sign in and understand the workspace</h2></div>
+        <div class="step"><h3>Step 1: Open the portal</h3><ol><li>Open the InsightED eSF7 web app in a browser.</li><li>Wait for the login screen to finish loading.</li><li>If the app remembers a previous school account, confirm that the remembered school is the one you need to update.</li></ol></div>
+        <div class="step"><h3>Step 2: Sign in with passcode or password</h3><ol><li>Enter the 6-digit School ID in <strong>School Identifier</strong>.</li><li>Use the 6-digit passcode boxes if you are in passcode mode.</li><li>Select <strong>Use Password Instead</strong> only when your account was issued a password login.</li><li>Click <strong>SIGN IN →</strong>.</li></ol><div class="callout"><strong>Data stored after login:</strong> the app keeps the token, remembered user, and school ID in local browser storage so the session can restore quickly.</div></div>
+        <div class="step"><h3>Step 3: Use the sidebar sequence</h3><p>The app sections are grouped as <strong>ESF7</strong>, <strong>Teaching Overload</strong>, <strong>Others</strong>, then the bottom <strong>Validation Center</strong>.</p><div class="tag-row"><span class="tag">Dashboard</span><span class="tag">School Profile</span><span class="tag">Personnel Roster</span><span class="tag">Personnel Profiling</span><span class="tag">Designations</span><span class="tag">Organized Classes</span><span class="tag">Workload</span><span class="tag">Room QR Portal</span><span class="tag">Requests</span><span class="tag">Overload</span><span class="tag">Allowances</span><span class="tag green">Validation Center</span></div></div>
       </article>
 
       <article class="section-card">
-        <div class="section-head">
-          <div class="letter">B</div>
-          <h2>Create your profile</h2>
-        </div>
-
-        <div class="section-video">
-          <video class="tab-video" controls playsinline preload="metadata">
-            <source src="agap_b.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-        </div>
-
-        <div class="step">
-          <h3>Step 1: Open your application profile</h3>
-          <ul>
-            <li>After logging in, go to My Profile.</li>
-            <li>Start completing your applicant details.</li>
-            <li>Make sure your information is accurate, complete, and consistent with your documents.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 2: Complete your records</h3>
-          <ul>
-            <li>Personal and contact information</li>
-            <li>Educational background</li>
-            <li>Eligibility, license, or certification</li>
-            <li>Work experience</li>
-            <li>Training and learning development records</li>
-            <li>Performance rating and other credentials, if required</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Upload profile documents</h3>
-          <div class="doc-grid">
-            <div class="doc-card">Personal Data Sheet or equivalent profile document</div>
-            <div class="doc-card">Work Experience Sheet or equivalent document</div>
-            <div class="doc-card">Transcript of Records or education documents</div>
-            <div class="doc-card">Diploma or certificate of graduation</div>
-            <div class="doc-card">Eligibility, license, or certification proof</div>
-            <div class="doc-card">Training certificates</div>
-            <div class="doc-card">Performance rating documents</div>
-            <div class="doc-card">Other required position documents</div>
-          </div>
-        </div>
-
-        <div class="step">
-          <h3>Step 4: Save and review your profile</h3>
-          <ul>
-            <li>Save your profile.</li>
-            <li>Review every section.</li>
-            <li>Correct incomplete or inaccurate information.</li>
-            <li>Update your profile whenever your credentials change.</li>
-          </ul>
-        </div>
+        <div class="section-head"><div class="letter">B</div><h2>Dashboard and automatic eSF7 file harvester</h2></div>
+        <div class="step"><h3>Step 1: Review dashboard counts</h3><p>The Dashboard summarizes total personnel, teaching personnel, related-teaching personnel, non-teaching personnel, workload distribution, and compliance checks.</p></div>
+        <div class="step"><h3>Step 2: Upload an existing eSF7 file</h3><ol><li>Click <strong>Upload eSF7 File (.xlsb)</strong>.</li><li>Drag an official DepEd eSF7 spreadsheet into the modal or click the upload zone.</li><li>Accepted formats are <strong>.xlsb</strong> and <strong>.xlsx</strong>.</li><li>Wait for the browser harvester to parse personnel and workload slots.</li></ol><div class="warning"><strong>Important:</strong> harvested data loads into a local draft first. Review names, positions, workloads, and timetable times before final submission.</div></div>
+        <div class="step"><h3>Step 3: Select records to import</h3><ol><li>In the extracted personnel table, keep only the records you want to import checked.</li><li>Use <strong>Select All</strong> or <strong>Deselect All</strong> if needed.</li><li>Click <strong>Auto-Populate Personnel (Local Draft)</strong>.</li></ol></div>
+        <div class="step"><h3>Step 4: Resolve harvested data warnings</h3><p>The app may flag harvested timetables for start/end time verification. Visit the Workload section and inspect rows before submitting.</p></div>
       </article>
 
       <article class="section-card">
-        <div class="section-head">
-          <div class="letter">C</div>
-          <h2>Find open positions</h2>
-        </div>
-
-        <div class="section-video">
-          <video class="tab-video" controls playsinline preload="metadata">
-            <source src="agap_c.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-        </div>
-
-        <div class="step">
-          <h3>Step 1: Open the list of positions</h3>
-          <ul>
-            <li>Go to Job Portal.</li>
-            <li>Review the list of published positions.</li>
-            <li>Use filters if available.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 2: Review each position carefully</h3>
-          <ul>
-            <li>Position title, office or unit, salary grade, employment type, and place of assignment</li>
-            <li>CSC-approved Qualification Standards</li>
-            <li>Required education, experience, training, and eligibility</li>
-            <li>Job Description and hiring purpose</li>
-            <li>List of requirements and application deadline</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Check if you qualify</h3>
-          <ul>
-            <li>Compare your profile against the required education, experience, training, eligibility, and documents.
-            </li>
-            <li>Review your supporting records carefully before submitting.</li>
-            <li>Confirm the deadline and submit before it closes.</li>
-          </ul>
-        </div>
+        <div class="section-head"><div class="letter">C</div><h2>School Profile</h2></div>
+        <div class="step"><h3>Step 1: Check official school identity</h3><p>The School Profile page is primarily read-only and should match the Unit 1 Schools Identity Registry.</p><div class="field-grid"><div class="field-card"><strong>School ID</strong><span>Official DepEd school identifier.</span></div><div class="field-card"><strong>School Name</strong><span>Registered school name.</span></div><div class="field-card"><strong>Region / Division / District</strong><span>Administrative location fields.</span></div><div class="field-card"><strong>School Year</strong><span>Active school year for encoded records.</span></div><div class="field-card"><strong>Number of Shifts</strong><span>Used for validation and workload context.</span></div></div></div>
+        <div class="step"><h3>Step 2: Confirm curricular offerings</h3><p>Check which program cards are active: <strong>Elementary</strong>, <strong>Junior High School</strong>, and <strong>Senior High School</strong>. These offerings affect available grade levels and workload subjects.</p></div>
+        <div class="step"><h3>Step 3: Do not force-edit registry fields</h3><div class="warning">If school identity looks wrong, treat it as a registry issue. Do not submit final eSF7 data until the correct school profile is loaded.</div></div>
       </article>
 
       <article class="section-card">
-        <div class="section-head">
-          <div class="letter">D</div>
-          <h2>Apply to a position</h2>
-        </div>
-
-        <div class="section-video">
-          <video class="tab-video" controls playsinline preload="metadata">
-            <source src="agap_d.mp4" type="video/mp4">
-            Your browser does not support embedded video.
-          </video>
-        </div>
-
-        <div class="step">
-          <h3>Step 1: Select the position</h3>
-          <ul>
-            <li>Open the position you want to apply for.</li>
-            <li>Review the full details again.</li>
-            <li>Select Apply.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 2: Confirm your profile and documents</h3>
-          <ul>
-            <li>Review the profile information that will be used for the application.</li>
-            <li>Confirm that education, experience, training, eligibility, and documents are complete.</li>
-            <li>Update your profile first if important information is missing.</li>
-            <li>Confirm if the attached documents are up to date, and click the Update button to replace them with your latest documents if necessary.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Submit the application</h3>
-          <ul>
-            <li>If all documents and information are already confirmed, click Submit Application.</li>
-            <li>Once you click Submit Application, the system will prompt you to upload the Letter of Intent.</li>
-            <li>Click Upload and the Next button for a new modal for CAV (Certification, Authentication, and Verification) to appear.</li>
-            <li>Download the template and accomplish the CAV Form, have it subscribed and sworn to before a Notary Public or any public officer authorized to administer oaths, and upload the duly accomplished form as one (1) of the required application documents.</li>
-            <li>After uploading and verifying your documents, click Submit Application to finalize the process.</li>
-            <li style="margin-top: 10px; font-style: italic; color: #d97706; font-weight: 600; list-style-type: none; margin-left: -20px;"><strong>Note:</strong> You are allowed to submit as many applications as you want, but make sure to check and verify the region and division of the position before submitting.</li>
-          </ul>
-        </div>
+        <div class="section-head"><div class="letter">D</div><h2>Personnel Roster</h2></div>
+        <div class="step"><h3>Step 1: Filter and search the roster</h3><ol><li>Use the category tabs: <strong>All</strong>, <strong>Teaching</strong>, <strong>Teaching-related</strong>, and <strong>Non-teaching</strong>.</li><li>Use the search box for names, DepEd email, category, or position.</li><li>Click column headers to sort by designation, names, email, category, position, or school-head status.</li></ol></div>
+        <div class="step"><h3>Step 2: Add personnel manually</h3><ol><li>Click <strong>+ Add personnel</strong>.</li><li>Enter designation, first name, middle name, last name, extension name, DepEd email local part, position category, and position.</li><li>Click <strong>Add Personnel</strong>.</li><li>The app opens Personnel Profiling so you can complete the rest of the record.</li></ol></div>
+        <div class="step"><h3>Step 3: Assign the school head</h3><p>Use the School Head toggle on the roster. The app prevents more than one Principal, OIC, or TIC from being assigned at the same time.</p></div>
+        <div class="step"><h3>Step 4: Open related work areas</h3><p>Use <strong>Profile</strong> to edit the complete personnel record. Use <strong>Work</strong> to jump directly to workload encoding for that person. Use <strong>✕</strong> only after confirming the record should be deleted.</p></div>
       </article>
 
       <article class="section-card">
-        <div class="section-head">
-          <div class="letter">E</div>
-          <h2>Track your status</h2>
-        </div>
-
-        <div class="step">
-          <h3>Step 1: Open My Applications</h3>
-          <ul>
-            <li>Go to My Applications.</li>
-            <li>Review each submitted application.</li>
-            <li>Check the position, date submitted, and current status.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 2: Understand common results</h3>
-          <table class="status-table">
-            <thead>
-              <tr>
-                <th>Stage or result</th>
-                <th>Meaning</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><span class="tag blue">Application Submitted</span></td>
-                <td>Your application has been submitted and received by the portal.</td>
-              </tr>
-              <tr>
-                <td><span class="tag orange">Pending Document Review</span></td>
-                <td>Your application is waiting for review of mandatory requirements.</td>
-              </tr>
-              <tr>
-                <td><span class="tag blue">Pending QS Review</span></td>
-                <td>Your application is waiting for review against the Qualification Standards.</td>
-              </tr>
-              <tr>
-                <td><span class="tag green">Qualified</span></td>
-                <td>You met the minimum Qualification Standards for the position.</td>
-              </tr>
-              <tr>
-                <td><span class="tag red">Disqualified</span></td>
-                <td>You did not meet one or more minimum Qualification Standards for the position.</td>
-              </tr>
-              <tr>
-                <td><span class="tag orange">Excluded</span></td>
-                <td>Your submitted documents are incomplete, so the application cannot proceed.</td>
-              </tr>
-              <tr>
-                <td><span class="tag blue">Assessment Not Started</span></td>
-                <td>The assessment stage has not started yet.</td>
-              </tr>
-              <tr>
-                <td><span class="tag blue">Assessment Started</span></td>
-                <td>The assessment stage has started or is currently in progress.</td>
-              </tr>
-              <tr>
-                <td><span class="tag green">Assessment Completed</span></td>
-                <td>The required assessment stage has been completed and is ready for review.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <div class="section-head"><div class="letter">E</div><h2>Personnel Profiling</h2></div>
+        <div class="step"><h3>Step 1: Select the correct personnel record</h3><p>Use the left personnel list, search, category filter, and position filter to select the correct staff member before editing fields.</p></div>
+        <div class="step"><h3>Step 2: Complete identity and demographics</h3><div class="field-grid"><div class="field-card"><strong>Names</strong><span>First, middle, last, extension, salutation.</span></div><div class="field-card"><strong>Sex at birth / civil status</strong><span>Required for validation.</span></div><div class="field-card"><strong>Religion / ethnic group</strong><span>Use the dropdown values when possible.</span></div><div class="field-card"><strong>Birthdate</strong><span>Use the date picker; age validation runs automatically.</span></div><div class="field-card"><strong>TIN / No TIN</strong><span>TIN must use the 123-456-789 format unless No TIN applies.</span></div><div class="field-card"><strong>DepEd email</strong><span>Must use the @deped.gov.ph domain.</span></div></div></div>
+        <div class="step"><h3>Step 3: Complete employment fields</h3><ol><li>Select position and category.</li><li>Choose fund source, nature of appointment, hiring arrangement, and deployment status.</li><li>For clustered, reassigned, borrowed, or detailed deployment, select the assigned receiving school.</li><li>Enter service and movement dates: first service, last promotion, last lateral movement, and first day in current station.</li></ol></div>
+        <div class="step"><h3>Step 4: Complete qualifications</h3><p>Enter college degree, major, minor, post-graduate degree, discipline, eligibility, and PRC specialization when required. LET or PBET eligibility requires PRC specialization.</p></div>
+        <div class="step"><h3>Step 5: Add trainings and learning areas</h3><ol><li>Add at least one professional development / training record.</li><li>For each training, enter title, start date, end date, number of days, hours per day, and total hours.</li><li>Use the Learning Area Matrix to mark subjects taught by school year.</li></ol></div>
+        <div class="step"><h3>Step 6: Save or validate</h3><p>Use <strong>Save Changes</strong> to persist edits. Use <strong>Save & Validate</strong> when the profile is complete and ready for final checks.</p></div>
       </article>
 
+      <article class="section-card">
+        <div class="section-head"><div class="letter">F</div><h2>Designations</h2></div>
+        <div class="step"><h3>Step 1: Search the designation list</h3><p>Use the search box to find roles such as Department Head, ICT Coordinator, Guidance Coordinator, BAC Chair / Member, SDRRM Coordinator, Reading Coordinator, or Property Custodian.</p></div>
+        <div class="step"><h3>Step 2: Assign personnel</h3><ol><li>Open the dropdown under the designation card.</li><li>Select an active personnel record.</li><li>Confirm the assigned badge appears on the card.</li></ol></div>
+        <div class="step"><h3>Step 3: Remove or replace assignments</h3><p>Use <strong>Remove</strong> to unassign the current personnel, or select another person in the dropdown to replace the assignment.</p></div>
+      </article>
 
+      <article class="section-card">
+        <div class="section-head"><div class="letter">G</div><h2>Organized Classes</h2></div>
+        <div class="step"><h3>Step 1: Add a class section</h3><ol><li>Click the section add button in Organized Classes.</li><li>Select the grade level allowed by the school's curricular offerings.</li><li>Enter the section name in uppercase.</li><li>Enter number of learners.</li><li>Select a section adviser.</li><li>Click <strong>Add Section</strong>.</li></ol></div>
+        <div class="step"><h3>Step 2: Create multigrade sections carefully</h3><ol><li>Check <strong>This is a multigrade section</strong>.</li><li>Select 2 to 6 grade levels.</li><li>Avoid grade levels already assigned to another multigrade combination.</li></ol></div>
+        <div class="step"><h3>Step 3: Configure subjects taught</h3><ol><li>Choose the grade band: Elementary, Junior High School, or Senior High School.</li><li>Filter by grade level or SHS category.</li><li>Enable or disable subjects for the school.</li><li>Add custom subjects only when they are valid for the school context.</li></ol><div class="warning">Restricted items such as Advisory, HGP, and Mother Tongue are controlled by the system and should not be added as custom subjects.</div></div>
+      </article>
 
+      <article class="section-card">
+        <div class="section-head"><div class="letter">H</div><h2>Workload</h2></div>
+        <div class="step"><h3>Step 1: Choose the teacher</h3><p>Select a teacher from the Workload screen before adding or editing workload rows. The app calculates weekly load, daily average load, and overload indicators from the encoded schedule.</p></div>
+        <div class="step"><h3>Step 2: Add teaching workload rows</h3><ol><li>Click <strong>+ Add Workload Row</strong>.</li><li>Select the class section first.</li><li>Select the subject from the grade-appropriate list.</li><li>Tick the meeting days: M, T, W, TH, F.</li><li>Enter start time and end time.</li></ol></div>
+        <div class="step"><h3>Step 3: Respect schedule limits</h3><table class="status-table"><thead><tr><th>Rule</th><th>Expected behavior</th></tr></thead><tbody><tr><td>Elementary / JHS subject period</td><td>Single period should not exceed 60 minutes.</td></tr><tr><td>SHS subject block</td><td>May use longer blocks, capped by the app at 6 hours.</td></tr><tr><td>Advisory</td><td>Locked at 60 minutes per day, Monday to Friday.</td></tr><tr><td>HGP</td><td>Tracked separately and does not add extra teaching load minutes.</td></tr><tr><td>Overlapping schedules</td><td>The app alerts when two rows conflict on the same day and time.</td></tr></tbody></table></div>
+        <div class="step"><h3>Step 4: Encode teaching-related and administrative rows</h3><p>Use the workload panels for teaching-related duties, administrative tasks, coaching, mentoring, and other non-classroom assignments where applicable.</p></div>
+        <div class="step"><h3>Step 5: Use work immersion calendar for SHS</h3><p>For SHS work immersion supervision, select monthly dates and save start/end times. These schedules integrate into overload pay computation.</p></div>
+      </article>
 
+      <article class="section-card">
+        <div class="section-head"><div class="letter">I</div><h2>Room QR Portal</h2></div>
+        <div class="step"><h3>Step 1: Generate a room QR poster</h3><ol><li>Enter the assigned room name.</li><li>Confirm the generated room link and QR code.</li><li>Use <strong>Copy Link</strong> or print/place the QR poster for teachers.</li></ol></div>
+        <div class="step"><h3>Step 2: Distribute teacher passcodes</h3><p>Use the Teacher Passcodes table to copy or regenerate each teacher's 6-character profiling code. Teachers need the code to open their own profiling form.</p></div>
+        <div class="step"><h3>Step 3: Scan teacher submissions</h3><ol><li>Use <strong>Scan with Webcam</strong> to scan a QR code directly.</li><li>Or upload a QR screenshot image.</li><li>Review detected differences in the modal.</li><li>Click <strong>Approve & Commit Changes</strong> only after checking the submitted values.</li></ol><div class="success">The QR exchange is browser-local: the teacher profile data is reviewed before it is committed back into the central app state.</div></div>
+      </article>
+
+      <article class="section-card">
+        <div class="section-head"><div class="letter">J</div><h2>Requests</h2></div>
+        <div class="step"><h3>Step 1: Review incoming requests</h3><p>Incoming requests include clustered personnel sharing and school integration / merger requests. Use <strong>Approve</strong> or <strong>Reject</strong>.</p></div>
+        <div class="step"><h3>Step 2: Review outgoing requests</h3><p>The Outgoing tab shows requests your school has sent and their current status: pending, approved, or rejected.</p></div>
+        <div class="step"><h3>Step 3: Initiate integration or merger</h3><ol><li>Open <strong>Initiate Integration/Merger</strong>.</li><li>Select the target host school within the district.</li><li>Click <strong>Send Merger Request</strong>.</li></ol><div class="warning">Approval may permanently transfer personnel into the host school. Confirm the target school before sending.</div></div>
+      </article>
+
+      <article class="section-card">
+        <div class="section-head"><div class="letter">K</div><h2>Teaching Overload Center</h2></div>
+        <div class="step"><h3>Step 1: Log tardiness</h3><ol><li>Open <strong>Step 1 · Tardiness Log</strong>.</li><li>Select the teacher and month.</li><li>Click workdays to toggle tardiness / late entries.</li><li>Remove incorrect entries from the log history.</li></ol></div>
+        <div class="step"><h3>Step 2: Log absences and leave</h3><ol><li>Open <strong>Step 2 · Absences & Leave</strong>.</li><li>Select the leave type, teacher, and month.</li><li>Click start and end dates to set the leave range.</li><li>Avoid duplicate entries for the same teacher and date.</li></ol></div>
+        <div class="step"><h3>Step 3: Transfer workloads</h3><ol><li>Open <strong>Step 3 · Workload Transfers</strong>.</li><li>Select the absent teacher and date range.</li><li>Assign substitute teachers for the affected workload slots.</li><li>Resolve conflict alerts before saving the transfer.</li></ol></div>
+        <div class="step"><h3>Step 4: Record work immersion</h3><p>Open <strong>Step 4 · Work Immersion</strong>, choose a teacher and month, then enter daily start/end times for immersion supervision.</p></div>
+        <div class="step"><h3>Step 5: Compute and print overload pay</h3><ol><li>Open <strong>Step 5 · Teaching Overload</strong>.</li><li>Select month and term.</li><li>Search teachers if needed.</li><li>Add at least one reason for each teacher with overload.</li><li>Click <strong>Generate Report (PDF)</strong>.</li></ol><div class="callout"><strong>Eligibility filter:</strong> the app excludes school heads, non-teaching personnel, teaching-related personnel, principals, TIC/OIC, administrative roles, and similar non-eligible roles from overload pay computation.</div></div>
+      </article>
+
+      <article class="section-card">
+        <div class="section-head"><div class="letter">L</div><h2>Allowances & Incentives</h2></div>
+        <div class="step"><h3>Step 1: Review active personnel</h3><p>The table lists non-draft, non-shared active personnel in a frozen left column.</p></div>
+        <div class="step"><h3>Step 2: Tick applicable allowances</h3><table class="status-table"><thead><tr><th>Column</th><th>Meaning</th></tr></thead><tbody><tr><td>PERA</td><td>Personal Economic Relief Allowance.</td></tr><tr><td>Uniform</td><td>Clothing and uniform allowance.</td></tr><tr><td>Teaching Supplies</td><td>Cash allowance for teaching supplies.</td></tr><tr><td>Medical</td><td>Fixed medical allowance.</td></tr><tr><td>Special Hardship</td><td>Special hardship allowance.</td></tr><tr><td>Overload Pay</td><td>Teaching overload pay authorization.</td></tr></tbody></table></div>
+        <div class="step"><h3>Step 3: Confirm saved status</h3><p>Each checkbox change sends an update. Wait for the success toast before moving quickly through many personnel.</p><div class="warning">The Validation Center blocks final submission when no allowances or incentives are checked for any active personnel.</div></div>
+      </article>
+
+      <article class="section-card">
+        <div class="section-head"><div class="letter">M</div><h2>Validation Center and official reports</h2></div>
+        <div class="step"><h3>Step 1: Review validation KPIs</h3><p>The Validation Center summarizes errors, warnings, duplicate flags, and ready records. Click issue rows to jump to the profile or module that needs fixing.</p></div>
+        <div class="step"><h3>Step 2: Fix all critical errors</h3><table class="status-table"><thead><tr><th>Issue area</th><th>Typical fix</th></tr></thead><tbody><tr><td>School Head</td><td>Assign only one Principal, OIC, or TIC.</td></tr><tr><td>Identity</td><td>Complete names, TIN/No TIN, birthdate, and duplicate checks.</td></tr><tr><td>Employment</td><td>Complete position, fund source, appointment, hiring arrangement, deployment status, and assigned schools.</td></tr><tr><td>Qualifications</td><td>Complete college degree, eligibility, and PRC specialization when LET/PBET applies.</td></tr><tr><td>Workload</td><td>Add teaching workload rows and fix invalid durations or conflicts.</td></tr><tr><td>Allowances</td><td>Tick at least one allowance or incentive.</td></tr></tbody></table></div>
+        <div class="step"><h3>Step 3: Preview teacher class programs</h3><p>Open the <strong>Teacher Class Programs (VIEW Sheet Preview)</strong> tab to inspect schedules by teacher. Expand teacher rows to confirm subjects, sections, days, times, and weekly minutes.</p></div>
+        <div class="step"><h3>Step 4: Print or save report PDF</h3><p>Click <strong>Print / Save PDF Report</strong> to open the printable report modal. Use browser print settings to save a PDF copy.</p></div>
+        <div class="step"><h3>Step 5: Certify and submit</h3><ol><li>Confirm there are no critical errors.</li><li>Tick the certification checkbox.</li><li>Confirm the school head / principal name.</li><li>Add or verify the e-signature by drawing or uploading an image.</li><li>Click <strong>Submit Certified eSF7 to Queue</strong>.</li><li>Wait for queue status to complete before closing the page.</li></ol><div class="success">After successful submission, the app clears drafts and reloads from the official database state.</div></div>
+      </article>
     </section>
 
-    <div class="footer-note">
-      Applicant rule: Complete your profile first, review each position carefully,
-      upload valid documents, and submit every application before the deadline.
-    </div>
+    <div class="footer-note">Final rule: complete school profile → roster → personnel profile → classes → workload → allowances → validation before submitting certified eSF7 data.</div>
   </main>
+
   <script>
     (function () {
       var hero = document.querySelector('.hero');
@@ -2028,15 +1410,15 @@
 
       document.body.classList.add('has-side-nav');
 
-      var guideLabel = (hero.querySelector('.eyebrow') || {}).textContent || 'AGAP Portal Guide';
+      var guideLabel = (hero.querySelector('.eyebrow') || {}).textContent || 'InsightED eSF7 Guide';
       var guideTitle = (hero.querySelector('h1') || {}).textContent || document.title;
 
       var guideHeader = document.createElement('div');
       guideHeader.className = 'guide-header';
       guideHeader.innerHTML =
         '<div>' +
-        '<div class="guide-kicker"></div>' +
-        '<div class="guide-title"></div>' +
+          '<div class="guide-kicker"></div>' +
+          '<div class="guide-title"></div>' +
         '</div>';
       guideHeader.querySelector('.guide-kicker').textContent = guideLabel;
       guideHeader.querySelector('.guide-title').textContent = guideTitle;
@@ -2065,6 +1447,25 @@
 
       var links = [];
       var currentCard = null;
+
+      function resetSectionVideos() {
+        Array.prototype.slice.call(document.querySelectorAll('.section-video video')).forEach(function (v) {
+          try { v.pause(); v.currentTime = 0; } catch (e) {}
+        });
+      }
+
+      function playSectionVideo(card) {
+        if (!card) return;
+        var video = card.querySelector('.section-video video');
+        if (!video) return;
+        try {
+          video.currentTime = 0;
+          var attempt = video.play();
+          if (attempt && typeof attempt.catch === 'function') {
+            attempt.catch(function () {});
+          }
+        } catch (e) {}
+      }
 
       function showSidebar() {
         clearTimeout(nav._hideTimer);
@@ -2147,8 +1548,6 @@
         card._navLink = link;
       });
 
-      initSectionProgress();
-
       var spacer = document.createElement('div');
       spacer.className = 'side-spacer';
       nav.appendChild(spacer);
@@ -2223,17 +1622,24 @@
         links.forEach(function (l) { l.classList.toggle('active', l === activeLink); });
       }
 
-      function initSectionProgress() {
+      function updateProgressForActiveCard(activeCard) {
         cards.forEach(function (card, i) {
-          if (card._navLink && card._navLink._sideLetter) {
-            var percent = Math.round(((i + 1) / cards.length) * 100);
-            card._navLink._sideLetter.style.setProperty('--progress', String(percent));
+          if (!card._navLink || !card._navLink._sideLetter) return;
+          if (card === activeCard) {
+            var stepPct = Math.round(((i + 1) / cards.length) * 100);
+            card._navLink._sideLetter.style.setProperty('--progress', String(stepPct));
+          } else {
+            card._navLink._sideLetter.style.setProperty('--progress', '0');
           }
         });
       }
 
       function resetProgress() {
-        initSectionProgress();
+        cards.forEach(function (card) {
+          if (card._navLink && card._navLink._sideLetter) {
+            card._navLink._sideLetter.style.setProperty('--progress', '0');
+          }
+        });
       }
 
       function updateActiveStep(card, index) {
@@ -2248,7 +1654,7 @@
           button.classList.toggle('active', i === clamped);
         });
 
-        initSectionProgress();
+        updateProgressForActiveCard(card);
       }
 
       function showCover() {
@@ -2256,6 +1662,7 @@
         document.body.classList.add('cover-active');
         document.body.classList.remove('section-active');
         cards.forEach(function (c) { c.classList.remove('is-active'); });
+        resetSectionVideos();
         guideHeader.querySelector('.guide-kicker').textContent = guideLabel;
         guideHeader.querySelector('.guide-title').textContent = guideTitle;
         resetProgress();
@@ -2275,6 +1682,9 @@
 
         var activeCard = cards[index];
         currentCard = activeCard;
+
+        resetSectionVideos();
+        playSectionVideo(activeCard);
 
         var sectionTitle = activeCard.querySelector('.section-head h2');
         var titleText = sectionTitle ? sectionTitle.textContent : ('Section ' + (index + 1));
@@ -2309,7 +1719,6 @@
       showCover();
       showSidebarBriefly();
 
-      // Print-only table frame so the header/footer repeat AND reserve space on every PDF page
       function stripQuotes(value) {
         return String(value || '').trim().replace(/^["']+|["']+$/g, '');
       }
@@ -2393,5 +1802,4 @@
     })();
   </script>
 </body>
-
 </html>
