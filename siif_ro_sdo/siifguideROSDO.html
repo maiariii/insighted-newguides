@@ -1,0 +1,2170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InsightED RO & SDO · SIIF Monitoring User Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #ffffff;
+      --canvas: #f0f9ff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #bae6fd;
+      --accent: #075985;
+      --accent-soft: #e0f2fe;
+      --brand-blue: #0284c7;
+      --brand-navy: #08315f;
+      --brand-gold: #fbbf24;
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --warn: #d97706;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --radius: 18px;
+      --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --print-header: "InsightED RO & SDO · SIIF Monitoring Hub User Guide";
+      --print-footer: "SIIF Monitoring Hub Regional & Division Guide";
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(14, 165, 233, .16), transparent 32%),
+        radial-gradient(circle at 90% 100%, rgba(2, 132, 199, .10), transparent 36%),
+        linear-gradient(180deg, #f0f9ff 0%, #f8fbff 50%, #eef7ff 100%);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.55;
+      padding-left: 96px;
+      transition: padding-left .2s ease-out;
+    }
+
+    body.nav-expanded {
+      padding-left: 310px;
+    }
+
+    .sheet {
+      width: min(1180px, calc(100% - 36px));
+      min-height: calc(100vh - 48px);
+      margin: 24px auto;
+      padding: 30px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(8, 49, 95, .08);
+    }
+
+    /* Print action bar on top */
+    .print-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .print-button {
+      appearance: none;
+      border: 1px solid var(--brand-navy);
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent) 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(8, 49, 95, .20);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .print-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(8, 49, 95, .30);
+    }
+
+    /* Hero / Cover Section */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 48px 30px;
+      margin-bottom: 24px;
+      border-radius: 24px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(251, 191, 36, .18), transparent 28%),
+        radial-gradient(circle at 10% 85%, rgba(56, 189, 248, .30), transparent 32%),
+        linear-gradient(135deg, #08315f 0%, #075985 54%, #0284c7 100%);
+      box-shadow: 0 16px 40px rgba(8, 49, 95, .22);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -120px auto;
+      width: 320px;
+      height: 320px;
+      border: 36px solid rgba(255, 255, 255, .08);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .28);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 4.5vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -.04em;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 14px auto 0;
+      color: rgba(255, 255, 255, .88);
+      font-size: 16.5px;
+      line-height: 1.5;
+    }
+
+    .quick-note {
+      max-width: 840px;
+      margin: 20px auto 0;
+      padding: 13px 18px;
+      border: 1px solid rgba(186, 230, 253, .45);
+      border-left: 6px solid var(--brand-gold);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(10px);
+      text-align: left;
+      font-size: 14px;
+      color: #f0f9ff;
+    }
+
+    /* Video Player Container */
+    .section-video {
+      margin: 0 0 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000000;
+      box-shadow: 0 10px 28px rgba(8, 49, 95, .10);
+      position: relative;
+    }
+
+    .section-video video {
+      display: block;
+      width: 100%;
+      max-height: 420px;
+      aspect-ratio: 16 / 9;
+      background: #091326;
+      object-fit: cover;
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(8, 49, 95, .85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, .2);
+      z-index: 2;
+    }
+
+    /* Sticky Section Header Bar */
+    .guide-header {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-left: 8px solid var(--accent);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 96% 0%, rgba(251, 191, 36, .18), transparent 24%),
+        linear-gradient(135deg, #ffffff 0%, var(--accent-soft) 100%);
+      box-shadow: 0 12px 32px rgba(8, 49, 95, .06);
+    }
+
+    .guide-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .guide-header .guide-kicker {
+      margin-bottom: 2px;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .guide-header .guide-title {
+      color: var(--ink);
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 2.8vw, 30px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .guide-header .guide-section {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    /* Section Cards */
+    .guide-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .section-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      background: var(--paper);
+      box-shadow: 0 6px 24px rgba(8, 49, 95, .04);
+    }
+
+    /* Chunked Navigation Display Modes */
+    body.cover-active .guide-header,
+    body.cover-active .guide-grid,
+    body.cover-active .footer-note {
+      display: none;
+    }
+
+    body.cover-active .sheet {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    body.cover-active .hero {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    body.section-active .hero,
+    body.section-active .footer-note {
+      display: none;
+    }
+
+    body.section-active .guide-header {
+      display: flex;
+    }
+
+    body.section-active .section-card {
+      display: none;
+    }
+
+    body.section-active .section-card.is-active {
+      display: block;
+      animation: fadeIn .18s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .letter {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent) 100%);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 900;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 12px rgba(7, 89, 133, .20);
+    }
+
+    .section-head h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.2;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .section-intro {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.5;
+    }
+
+    /* Micro-Step Chips Pill Bar */
+    .section-step-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: var(--canvas);
+      border: 1px solid var(--line);
+    }
+
+    .step-chip {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--accent);
+      padding: 5px 12px;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .step-chip:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .step-chip.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 3px 8px rgba(7, 89, 133, .25);
+    }
+
+    /* Steps within Card */
+    .step {
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .step:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .step.is-current {
+      border-color: var(--brand-blue);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, .12);
+    }
+
+    .step h3 {
+      font-family: var(--font-heading);
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-size: 16.5px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    ol,
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    /* Card Highlights & Callouts */
+    .callout {
+      margin: 12px 0 0;
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: #0c4a6e;
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .callout.warning {
+      border-left-color: var(--warn);
+      background: var(--warn-soft);
+      color: #92400e;
+    }
+
+    .callout.success {
+      border-left-color: var(--good);
+      background: var(--good-soft);
+      color: #14532d;
+    }
+
+    /* Simple Tables */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13.5px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .status-table th,
+    .status-table td {
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .status-table th {
+      background: #f0f9ff;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    /* Status Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      font-family: var(--font-heading);
+    }
+
+    .tag.blue {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .tag.green {
+      background: var(--good-soft);
+      color: var(--good);
+    }
+
+    .tag.orange {
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .tag.red {
+      background: var(--bad-soft);
+      color: var(--bad);
+    }
+
+    /* Interactive Checklists */
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: #fafafa;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .check-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .check-item input {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .check-item:has(input:checked) {
+      border-color: var(--good);
+      background: var(--good-soft);
+      color: #14532d;
+    }
+
+    .check-item:has(input:checked) span {
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(22, 163, 74, .6);
+    }
+
+    .mini-flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .flow-card {
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: #f0f9ff;
+      border: 1px solid var(--line);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent) 100%);
+      color: #e0f2fe;
+      text-align: center;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+
+    /* Fixed Modern Sidebar */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 96px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 16px 10px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: linear-gradient(180deg, #08315F 0%, #075985 58%, #0284C7 100%);
+      color: #fff;
+      box-shadow: 14px 0 40px rgba(8, 49, 95, .18);
+      transition: width .16s ease-out, padding .16s ease-out;
+    }
+
+    .side-nav:not(.is-expanded) {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .side-nav:not(.is-expanded)::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    .side-nav.is-expanded {
+      width: 310px;
+      padding: 18px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+    }
+
+    .side-nav.is-expanded::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .side-nav.is-expanded::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+    }
+
+    .side-nav .side-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      padding: 4px 4px 10px;
+      border-bottom: 1px solid rgba(224, 242, 254, .22);
+    }
+
+    .side-nav .side-brand {
+      padding: 0 6px;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      white-space: nowrap;
+      display: none;
+    }
+
+    .side-nav.is-expanded .side-brand {
+      display: block;
+    }
+
+    .side-toggle {
+      appearance: none;
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      font-size: 15px;
+      transition: background .15s ease;
+      margin: 0 auto;
+    }
+
+    .side-nav.is-expanded .side-toggle {
+      margin: 0;
+    }
+
+    .side-toggle:hover {
+      background: rgba(255, 255, 255, .22);
+    }
+
+    .side-nav .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1 1 auto;
+    }
+
+    .side-nav a,
+    .side-nav .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-height: 40px;
+      padding: 7px 10px;
+      border-radius: 13px;
+      border: 1px solid transparent;
+      color: #e0f2fe;
+      background: transparent;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1.3;
+      cursor: pointer;
+      text-align: left;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      width: 100%;
+    }
+
+    .side-nav .nav-item:hover {
+      background: rgba(255, 255, 255, .12);
+      color: #ffffff;
+    }
+
+    .side-nav .nav-item.is-active {
+      background: rgba(255, 255, 255, .20);
+      border-color: rgba(251, 191, 36, .45);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+    }
+
+    /* Sub-items in sidebar */
+    .side-nav .nav-item.is-sub {
+      margin-left: 10px;
+      width: calc(100% - 10px);
+      min-height: 36px;
+      padding: 5px 8px;
+      font-size: 12px;
+      border-left: 2px solid rgba(251, 191, 36, .35);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .side-nav .nav-item.is-sub .side-badge {
+      width: 24px;
+      height: 24px;
+      font-size: 11px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .side-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .16);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 12.5px;
+      font-weight: 900;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, .22);
+    }
+
+    .side-nav .nav-item.is-active .side-badge {
+      background: var(--brand-gold);
+      color: #08315f;
+      border-color: var(--brand-gold);
+      font-weight: 900;
+    }
+
+    .side-label {
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
+      line-height: 1.3;
+      display: none;
+      flex: 1 1 auto;
+    }
+
+    .side-nav.is-expanded .side-label {
+      display: block;
+    }
+
+    .side-footer {
+      margin-top: auto;
+      display: grid;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(224, 242, 254, .22);
+    }
+
+    .side-print-btn {
+      appearance: none;
+      width: 100%;
+      padding: 9px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      background: rgba(255, 255, 255, .10);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .15s ease;
+    }
+
+    .side-print-btn:hover {
+      background: rgba(255, 255, 255, .20);
+    }
+
+    .side-print-btn span {
+      display: none;
+    }
+
+    .side-nav.is-expanded .side-print-btn span {
+      display: inline;
+    }
+
+    /* Mobile Adaptations */
+    @media (max-width: 900px) {
+      body {
+        padding-left: 0 !important;
+        padding-top: 60px;
+      }
+
+      .side-nav {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100% !important;
+        height: 56px;
+        flex-direction: row;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 0;
+      }
+
+      .side-nav .side-top {
+        margin-bottom: 0;
+        padding: 0;
+        border-bottom: 0;
+      }
+
+      .side-nav .side-brand {
+        display: none !important;
+      }
+
+      .side-nav .nav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0 6px;
+      }
+
+      .side-nav a,
+      .side-nav .nav-item {
+        min-height: 36px;
+        padding: 4px 8px;
+        width: auto;
+      }
+
+      .side-nav .nav-item.is-sub {
+        margin-left: 0;
+        width: auto;
+        border-left: 0;
+      }
+
+      .side-label {
+        display: none !important;
+      }
+
+      .side-footer {
+        display: none !important;
+      }
+
+      .sheet {
+        width: min(100% - 16px, 1140px);
+        padding: 16px;
+        margin: 10px auto;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 30px 16px;
+      }
+
+      .section-card {
+        padding: 16px;
+      }
+
+      .mini-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* High-Fidelity Print Engine */
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
+      .side-nav,
+      .guide-header,
+      .print-actions,
+      .section-step-nav,
+      .section-video {
+        display: none !important;
+      }
+
+      body {
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10pt;
+        line-height: 1.4;
+      }
+
+      .sheet {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .hero {
+        min-height: auto !important;
+        padding: 14mm 8mm !important;
+        margin-bottom: 6mm !important;
+        background: #08315f !important;
+        color: #ffffff !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .guide-grid,
+      .footer-note,
+      .section-card {
+        display: block !important;
+      }
+
+      .section-card {
+        margin: 0 0 8mm !important;
+        padding: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .section-head {
+        display: flex !important;
+        border-bottom: 1px solid #bae6fd !important;
+        break-after: avoid;
+        page-break-after: avoid;
+      }
+
+      .section-head h2 {
+        font-size: 15pt !important;
+      }
+
+      .step {
+        break-inside: avoid;
+        page-break-inside: avoid;
+        border: 1px solid #e2e8f0 !important;
+        margin-bottom: 5mm !important;
+      }
+
+      .step h3 {
+        font-size: 11.5pt !important;
+      }
+
+      .tag,
+      .check-item,
+      .callout,
+      .hero,
+      .letter,
+      .flow-card {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .print-wrap {
+        width: 100% !important;
+        border-collapse: collapse !important;
+      }
+
+      .print-wrap thead {
+        display: table-header-group !important;
+      }
+
+      .print-wrap tfoot {
+        display: table-footer-group !important;
+      }
+
+      .print-wrap td {
+        padding: 0 !important;
+        border: 0 !important;
+      }
+
+      .print-head {
+        margin: 0 0 4mm;
+        padding: 0 0 2mm;
+        border-bottom: 1px solid var(--line);
+        color: var(--accent);
+        font-family: var(--font-heading);
+        font-size: 8.5pt;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+
+      .print-foot {
+        margin: 4mm 0 0;
+        padding: 2mm 0 0;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 8pt;
+        font-weight: 700;
+      }
+    }
+  </style>
+</head>
+
+<body class="cover-active">
+  <main class="sheet">
+    <div class="print-actions">
+      <button class="print-button" type="button" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <path d="M6 14h12v8H6z" />
+        </svg>
+        Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- Title / Cover Hero -->
+    <header class="hero" id="cover">
+      <div class="hero-inner">
+        <div class="eyebrow">InsightED RO & SDO · SIIF Monitoring Hub</div>
+        <h1>SIIF User Guide for Regional & Division Offices</h1>
+        <p class="subtitle">An operational guide for Regional Office (RO) and Schools Division Office (SDO) personnel
+          on monitoring, evaluating, approving, and tracking the School Innovation
+          and Improvement Fund (SIIF) across beneficiary schools.</p>
+      </div>
+    </header>
+
+    <!-- Sticky Guide Section Header -->
+    <div class="guide-header">
+      <div class="guide-header-left">
+        <div class="letter" id="headerLetter">A</div>
+        <div>
+          <div class="guide-kicker">SIIF Regional & Division Manual</div>
+          <div class="guide-title" id="headerTitle">Section Title</div>
+          <div class="guide-section" id="headerSub">Follow the operational steps below.</div>
+        </div>
+      </div>
+      <div class="guide-print">
+        <button class="print-button" type="button" onclick="window.print()">Print</button>
+      </div>
+    </div>
+
+    <!-- Chunked Guide Sections Grid -->
+    <section class="guide-grid">
+
+      <!-- SECTION A: NAVIGATING INSIGHTED -->
+      <article class="section-card" data-letter="A">
+        <div class="section-head">
+          <div class="letter">A</div>
+          <h2>Navigating InsightED</h2>
+        </div>
+        <p class="section-intro">Access the official InsightED portal gateway and open the SIIF Monitoring Hub module.
+        </p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · INSIGHTED Access</div>
+          <video controls playsinline preload="metadata">
+            <source src="navig.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Access the SIIF Module via InsightED Platform</h3>
+          <ol>
+            <li>Go to the official portal link: <a href="https://stride.deped.gov.ph/insighted/" target="_blank"
+                rel="noopener noreferrer"><strong>https://stride.deped.gov.ph/insighted/</strong></a></li>
+            <li>Click the <strong>ENTER INSIGHTED</strong> button.</li>
+            <li>Select <strong>HROD Portals</strong> from the available portal cards.</li>
+            <li>Click <strong>Continue as RO/SDO Personnel</strong>.</li>
+            <li>Click the <strong>SIIF Monitoring Hub</strong> card to launch the module.</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- SECTION B: LOGIN AND REGISTRATION -->
+      <article class="section-card" data-letter="B">
+        <div class="section-head">
+          <div class="letter">B</div>
+          <h2>Login and Registration</h2>
+        </div>
+        <p class="section-intro">Sign into your official RO/SDO account and complete account registration.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Account Sign In & Registration</div>
+          <video controls playsinline preload="metadata">
+            <source src="login.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Sign in with Official Account Credentials (Login)</h3>
+          <ol>
+            <li>Enter your registered official <strong>DepEd Email</strong> address.</li>
+            <li>Enter your authorized <strong>Password</strong>. If logging in via <strong>Passcode</strong>, toggle to
+              the passcode option and input your designated quick sign-in code.</li>
+            <li>Click the <strong>Sign In</strong> button to log into the platform.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Create a New Account (Registration)</h3>
+          <ol>
+            <li>Click the <strong>Create New Account</strong> button on the login screen.</li>
+            <li>Fill out all required fields, including your <strong>First Name</strong>, <strong>Last Name</strong>,
+              assigned <strong>Region / Division Scope</strong>, official <strong>Office Unit</strong> (SGOD, HRMO, or
+              FTAD), and designated <strong>Role / Position</strong> (including <strong>Regional SBM
+                Coordinator</strong> or <strong>Division SBM Coordinator</strong>).</li>
+            <li>Submit your registration.</li>
+          </ol>
+          <div class="callout warning">
+            <strong>Mandatory Access Restriction:</strong> Access to the SIIF Monitoring Hub is strictly authorized for
+            personnel assigned to the <strong>School Governance and Operations Division (SGOD)</strong>, <strong>Human
+              Resources and Management Office (HRMO)</strong>, or <strong>Field Technical Assistance Division
+              (FTAD)</strong>, as well as personnel holding the official designation of <strong>Regional SBM
+              Coordinator</strong> or <strong>Division SBM Coordinator</strong>. Accounts outside these authorized
+            office and designations will receive an automatic <em>Access Restricted</em> security guard screen.
+          </div>
+        </div>
+      </article>
+
+      <!-- SECTION C: DIVISION OVERVIEW -->
+      <article class="section-card" data-letter="C" data-badge="C">
+        <div class="section-head">
+          <div class="letter">C</div>
+          <h2>Division Overview</h2>
+        </div>
+        <p class="section-intro">Understand the primary navigation tabs available in the Division Office view for
+          Division SBM Coordinators and SDO personnel.</p>
+
+        <div class="step">
+          <h3>Step 1: Navigation Tabs Breakdown</h3>
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>NAVIGATION ITEM</th>
+                <th>PRIMARY PURPOSE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Home Tab</strong></td>
+                <td>Check division summary metrics (Total Scope, Plan Accomplished, Pending Submission, Financial
+                  Allocation), view progress accomplishment charts and status donut graphs, filter schools by district
+                  or municipality, and download summary reports.</td>
+              </tr>
+              <tr>
+                <td><strong>Schools Tab</strong></td>
+                <td>Inspect submitted school plans, filter schools by status (Submitted, Reviewed, Pending,
+                  Overdue), check active review schedule dates, evaluate plans, confirm reviews with remarks, and
+                  message School Heads via chat for needed revisions.</td>
+              </tr>
+              <tr>
+                <td><strong>Utilization Tab</strong></td>
+                <td>Track financial spending across quarterly cover periods (July–Sept, Oct–Dec, Jan–March, Remaining
+                  Balance) and inspect detailed activity spending records submitted by schools.</td>
+              </tr>
+              <tr>
+                <td><strong>Settings Tab</strong></td>
+                <td>View your account profile, manage security settings (password and passcode), toggle Dark Mode, and
+                  access technical support guidelines.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- SECTION C.I: DIVISION HOME TAB -->
+      <article class="section-card" data-letter="C" data-badge="I" data-sub="true" data-parent="C">
+        <div class="section-head">
+          <div class="letter">I</div>
+          <h2>Division Home Tab</h2>
+        </div>
+        <p class="section-intro">Monitor division progress metrics, filter schools by district, view visual
+          accomplishment charts, and export summary reports.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Division Dashboard</div>
+          <video controls playsinline preload="metadata">
+            <source src="SDOhome.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Monitor Summary KPI Cards</h3>
+          <ul>
+            <li><strong>Total Scope:</strong> View total beneficiary schools expected to submit plans in your
+              division. <i>(Hover to see breakdown per district).</i></li>
+            <li><strong>Plan Accomplished:</strong> Track total submitted plans awaiting review or already reviewed.
+            </li>
+            <li><strong>Pending Submission:</strong> Identify schools that have not yet submitted their plan.</li>
+            <li><strong>Financial Allocation:</strong> View total DepEd budget allocated for your division.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Filter & Search Schools</h3>
+          <ul>
+            <li><strong>Cascading Dropdowns:</strong> Select <strong>Division</strong>, <strong>District</strong>, or
+              <strong>Municipality</strong> to filter records.
+            </li>
+            <li><strong>Status & Category:</strong> Filter by status (<span class="tag orange">Submitted</span>, <span
+                class="tag green">Reviewed</span>, <span class="tag blue">Pending</span>, <span
+                class="tag red">Overdue</span>) or school type.</li>
+            <li><strong>Search Bar:</strong> Type a School Name or 6-digit School ID. Click <strong>Reset</strong> to
+              clear.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Review Progress Charts & Export</h3>
+          <ul>
+            <li><strong>Accomplishment Gauge:</strong> Track review progress toward 100% completion.</li>
+            <li><strong>Status Donut Chart:</strong> Click any color segment to view matching schools.</li>
+            <li><strong>Export Report:</strong> Click <strong>Export Report</strong> to download a summary CSV
+              spreadsheet.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION C.II: DIVISION SCHOOLS TAB -->
+      <article class="section-card" data-letter="C" data-badge="II" data-sub="true" data-parent="C">
+        <div class="section-head">
+          <div class="letter">II</div>
+          <h2>Division Schools Tab</h2>
+        </div>
+        <p class="section-intro">Inspect submitted proposals, check review schedule dates, evaluate compliance, and
+          confirm reviews or request revisions.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Plan Evaluation & Review Action</div>
+          <video controls playsinline preload="metadata">
+            <source src="SDOschools.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Filter School Proposals</h3>
+          <ul>
+            <li>Click top status cards (<span class="tag blue">Total Scope</span>, <span
+                class="tag orange">Submitted</span>, <span class="tag green">Reviewed</span>, <span
+                class="tag blue">Pending</span>, <span class="tag red">Overdue</span>) to isolate school lists.</li>
+            <li>Toggle between <strong>Table View</strong> and <strong>Cards View</strong>.</li>
+          </ul>
+        </div>
+
+        <!-- Callout Note — Review Window Period -->
+        <div class="callout warning" style="margin: 0 0 16px; border-radius: 14px; padding: 14px 16px;">
+          <div
+            style="display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-weight: 800; font-size: 14px; color: #92400e; margin-bottom: 6px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            Important System Rule — Official Review Window Schedule
+          </div>
+          <div style="font-size: 13.5px; line-height: 1.5; color: #78350f;">
+            Evaluations and review confirmations are enabled only during the active <strong>Review Window</strong>
+            schedule shown on the system banner. Outside active dates, review action buttons are locked to enforce DepEd
+            schedule policy.
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Inspect Detailed Proposal</h3>
+          <ul>
+            <li>Click any school row to open the slide-up <strong>School Detailed Proposal Sheet</strong>.</li>
+            <li>Verify requested budget estimates against the official allocation ceiling bar.</li>
+            <li>Review Priority Improvement Areas, Interventions , Beneficiaries, and Activities.
+            </li>
+            <li>Click <strong>Printable Report Download</strong> if a hardcopy copy is needed.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Evaluate & Action Proposals (Decision Paths)</h3>
+          <ul>
+            <li><strong>Path A — Confirm Review (Approved):</strong> Click the green <strong>Confirm Review
+                (Check)</strong> button, enter optional evaluation remarks, and confirm status as <span
+                class="tag green">Reviewed</span>.</li>
+            <li><strong>Path B — Request Revision (Adjustments Needed):</strong> Click the <strong>Coordination
+                Chat</strong> icon to message the School Head detailing required corrections. Re-inspect and confirm
+              once resubmitted.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 4: Status Badge Lifecycle</h3>
+          <table class="status-table">
+            <tr>
+              <th>Status Badge</th>
+              <th>Meaning in Roster</th>
+              <th>Required Action</th>
+            </tr>
+            <tr>
+              <td><span class="tag blue">Pending / Draft</span></td>
+              <td>School Head is preparing or revising the proposal.</td>
+              <td>Monitor progress; remind if deadline approaches.</td>
+            </tr>
+            <tr>
+              <td><span class="tag orange">Submitted</span></td>
+              <td>Proposal submitted; ready for Division evaluation.</td>
+              <td>Inspect proposal, send chat for revisions, or confirm review.</td>
+            </tr>
+            <tr>
+              <td><span class="tag green">Reviewed</span></td>
+              <td>Proposal evaluated and reviewed by Division Office.</td>
+              <td>Baseline locked; school proceeds to quarterly tracking.</td>
+            </tr>
+            <tr>
+              <td><span class="tag red">Overdue</span></td>
+              <td>School missed expected submission deadline.</td>
+              <td>Issue advisory via chat or dispatch technical assistance.</td>
+            </tr>
+          </table>
+        </div>
+      </article>
+
+      <!-- SECTION C.III: DIVISION UTILIZATION TAB -->
+      <article class="section-card" data-letter="C" data-badge="III" data-sub="true" data-parent="C">
+        <div class="section-head">
+          <div class="letter">III</div>
+          <h2>Division Utilization Tab</h2>
+        </div>
+        <p class="section-intro">Monitor quarterly spending reports, verify activity implementation statuses, and
+          enforce fiscal allocation caps post-review.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Utilization Overview</div>
+          <video controls playsinline preload="metadata">
+            <source src="SDOutilization.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Check Division Fiscal Summaries</h3>
+          <ul>
+            <li>Monitor top metrics: <strong>Total Allocation</strong>, <strong>Utilized Amount</strong>, and
+              <strong>Remaining Balance</strong>.
+            </li>
+            <li><i>Note:</i> Quarterly reporting activates after baseline proposal reaches <span
+                class="tag green">Reviewed</span> status.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Monitor Reporting Cover Periods</h3>
+          <table class="status-table">
+            <tr>
+              <th>Reporting Cover Period</th>
+              <th>Period Covered</th>
+              <th>Monitoring Focus</th>
+            </tr>
+            <tr>
+              <td><strong>JULY–SEPT</strong> (Cover Period 1)</td>
+              <td>July, August, September</td>
+              <td>Initial fund mobilization and session supplies.</td>
+            </tr>
+            <tr>
+              <td><strong>OCT–DEC</strong> (Cover Period 2)</td>
+              <td>October, November, December</td>
+              <td>Mid-year implementation and learning materials.</td>
+            </tr>
+            <tr>
+              <td><strong>JAN–MARCH</strong> (Cover Period 3)</td>
+              <td>January, February, March</td>
+              <td>Final quarter utilization and liquidation reports.</td>
+            </tr>
+            <tr>
+              <td><strong>REMAINING</strong> (Balance)</td>
+              <td>Fiscal Year Unutilized Balance</td>
+              <td>Tracks unliquidated balance remaining against allocation ceiling.</td>
+            </tr>
+          </table>
+          <div class="callout warning" style="margin-top: 12px;">
+            Clicking any cover period card in the header opens a detailed <strong>Quarter Breakdown</strong> summary
+            window.
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Analyze Activity Spending & Justifications</h3>
+          <ul>
+            <li>Click a school row to expand detailed activity spending records.</li>
+            <li>Inspect activity status tags: <span class="tag blue">Pending</span>, <span
+                class="tag orange">Ongoing</span>, <span class="tag green">Completed</span>.</li>
+            <li>Review expenditure justifications for any budget variances. Enforce allocation ceiling caps.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION C.IV: DIVISION SETTINGS TAB -->
+      <article class="section-card" data-letter="C" data-badge="IV" data-sub="true" data-parent="C">
+        <div class="section-head">
+          <div class="letter">IV</div>
+          <h2>Division Settings Tab</h2>
+        </div>
+        <p class="section-intro">View account profile details, manage security credentials, and customize general
+          preferences.</p>
+
+        <div class="step">
+          <h3>Step 1: View Profile & Assigned Scope</h3>
+          <ul>
+            <li>Verify your <strong>Full Name</strong>, <strong>DepEd Email</strong>, <strong>Assigned Scope
+                (SDO)</strong>, and <strong>Office Unit</strong>.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Manage Account Security</h3>
+          <ul>
+            <li>Click <strong>Change Password</strong> to update password or <strong>Update Passcode</strong> to change
+              quick sign-in code.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: General System Preferences</h3>
+          <ul>
+            <li><strong>Dark Mode:</strong> Toggle theme display.</li>
+            <li><strong>Optimize App:</strong> Clear cache and repair platform files for smooth performance.</li>
+            <li><strong>Help & About:</strong> Access FAQs, user guides, and system version details.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION D: REGION OVERVIEW -->
+      <article class="section-card" data-letter="D" data-badge="D">
+        <div class="section-head">
+          <div class="letter">D</div>
+          <h2>Region Overview</h2>
+        </div>
+        <p class="section-intro">Understand the primary navigation tabs available in the Regional Office view for
+          Regional SBM Coordinators and RO personnel.</p>
+
+        <div class="step">
+          <h3>Step 1: Navigation Tabs Breakdown</h3>
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>NAVIGATION ITEM</th>
+                <th>PRIMARY PURPOSE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Home Tab</strong></td>
+                <td>Monitor region-wide summary cards (Total Scope, Plan Accomplished, Pending Submission, Financial
+                  Allocation), view accomplishment progress charts, and export regional analytics.</td>
+              </tr>
+              <tr>
+                <td><strong>Division View Tab</strong></td>
+                <td>Exclusive to Regional Office personnel: compare performance metrics across all Schools Division
+                  Offices (SDOs) in the region, monitor utilization rates %, and dispatch technical assistance teams.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Schools Tab</strong></td>
+                <td>Filter and inspect recipient school proposals across all divisions in the region to verify policy
+                  compliance and allocation ceiling alignment.</td>
+              </tr>
+              <tr>
+                <td><strong>Utilization Tab</strong></td>
+                <td>Track regional financial utilization velocity across reporting cover periods (July–Sept, Oct–Dec,
+                  Jan–March, Remaining Balance) and monitor regional fund usage.</td>
+              </tr>
+              <tr>
+                <td><strong>Settings Tab</strong></td>
+                <td>View user profile details, confirm assigned Region scope, manage security credentials, and customize
+                  system preferences.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- SECTION D.I: REGION HOME TAB -->
+      <article class="section-card" data-letter="D" data-badge="I" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">I</div>
+          <h2>Region Home Tab</h2>
+        </div>
+        <p class="section-intro">Monitor region-wide metrics across all divisions, view accomplishment charts, and
+          export regional analytics.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Regional Dashboard & Metrics</div>
+          <video controls playsinline preload="metadata">
+            <source src="ROhome.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Check Region KPI Summary Cards</h3>
+          <ul>
+            <li><strong>Total Scope:</strong> Total beneficiary schools across all divisions in your region. <i>(Hover
+                for division breakdown).</i></li>
+            <li><strong>Plan Accomplished:</strong> Region-wide submitted and reviewed school plans.</li>
+            <li><strong>Pending Submission:</strong> Schools across the region yet to submit.</li>
+            <li><strong>Financial Allocation:</strong> Total budget allocated for the entire region.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Track Progress & Analytics</h3>
+          <ul>
+            <li>Monitor the regional accomplishment progress bar toward 100%.</li>
+            <li>Click Status Donut Chart segments to view list of matching schools across divisions.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Filter & Export Regional Analytics</h3>
+          <ul>
+            <li>Use cascading dropdowns to filter by Division, District, or Municipality.</li>
+            <li>Click <strong>Export Report</strong> to download regional CSV spreadsheets.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION D.II: DIVISION VIEW TAB -->
+      <article class="section-card" data-letter="D" data-badge="II" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">II</div>
+          <h2>Division View Tab</h2>
+        </div>
+        <p class="section-intro">Exclusive to Regional Office personnel: compare performance metrics and utilization
+          rates across all Schools Division Offices (SDOs).</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Regional Analytics & Division Comparison</div>
+          <video controls playsinline preload="metadata">
+            <source src="ROdivision.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Compare Division Performance</h3>
+          <ul>
+            <li>Inspect SDO listing table showing school count, total allocation, and utilization rate %.</li>
+            <li>Sort divisions by spending velocity or school count.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Dispatch Technical Assistance</h3>
+          <ul>
+            <li>Identify lagging SDOs and provide technical assistance.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Drilldown into Division School Lists</h3>
+          <ul>
+            <li>Click <strong>View Division Schools</strong> on any division row to open its recipient school list.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION D.III: REGION SCHOOLS TAB -->
+      <article class="section-card" data-letter="D" data-badge="III" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">III</div>
+          <h2>Region Schools Tab</h2>
+        </div>
+        <p class="section-intro">Inspect recipient school proposals across all divisions to verify policy compliance and
+          allocation alignment.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Recipient Schools Roster Oversight</div>
+          <video controls playsinline preload="metadata">
+            <source src="ROschools.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Search & Filter Region-Wide Roster</h3>
+          <ul>
+            <li>Filter schools by status cards (<span class="tag orange">Submitted</span>, <span
+                class="tag green">Reviewed</span>, <span class="tag blue">Pending</span>, <span
+                class="tag red">Overdue</span>), Division, District, or Type.</li>
+            <li>Search by School Name or School ID.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Inspect Detailed School Submission</h3>
+          <ul>
+            <li>Click any school row to open the proposal detail modal and verify policy compliance and budget ceilings.
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION D.IV: REGION UTILIZATION TAB -->
+      <article class="section-card" data-letter="D" data-badge="IV" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">IV</div>
+          <h2>Region Utilization Tab</h2>
+        </div>
+        <p class="section-intro">Monitor financial spending velocity across cover periods and divisions to enforce
+          fiscal ceiling compliance.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Financial Utilization Oversight</div>
+          <video controls playsinline preload="metadata">
+            <source src="ROutilization.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Regional Fiscal Summaries</h3>
+          <ul>
+            <li>Track top regional metrics: Total Allocation, Utilized Amount, and Remaining Balance.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Monitor Reporting Cover Periods</h3>
+          <table class="status-table">
+            <tr>
+              <th>Reporting Cover Period</th>
+              <th>Period Covered</th>
+              <th>Monitoring Focus</th>
+            </tr>
+            <tr>
+              <td><strong>JULY–SEPT</strong> (Cover Period 1)</td>
+              <td>July, August, September</td>
+              <td>Initial fund mobilization and session supplies.</td>
+            </tr>
+            <tr>
+              <td><strong>OCT–DEC</strong> (Cover Period 2)</td>
+              <td>October, November, December</td>
+              <td>Mid-year implementation and learning materials.</td>
+            </tr>
+            <tr>
+              <td><strong>JAN–MARCH</strong> (Cover Period 3)</td>
+              <td>January, February, March</td>
+              <td>Final quarter utilization and liquidation reports.</td>
+            </tr>
+            <tr>
+              <td><strong>REMAINING</strong> (Balance)</td>
+              <td>Fiscal Year Unutilized Balance</td>
+              <td>Tracks unliquidated balance remaining against allocation ceiling.</td>
+            </tr>
+          </table>
+          <div class="callout warning" style="margin-top: 12px;">
+            Clicking any cover period card in the header opens a detailed <strong>Quarter Breakdown</strong> summary
+            window.
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Track Division Spending Velocity</h3>
+          <ul>
+            <li>Expand school rows to inspect activity status (<span class="tag blue">Pending</span>, <span
+                class="tag orange">Ongoing</span>, <span class="tag green">Completed</span>) and expenditure
+              justifications.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION D.V: REGION SETTINGS TAB -->
+      <article class="section-card" data-letter="D" data-badge="V" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">V</div>
+          <h2>Region Settings Tab</h2>
+        </div>
+        <p class="section-intro">View user profile details, manage security credentials, and customize general system
+          preferences.</p>
+
+        <div class="step">
+          <h3>Step 1: View Profile & Scope</h3>
+          <ul>
+            <li>Verify Regional Office scope assignment and user details.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Manage Account Security</h3>
+          <ul>
+            <li>Update password or quick sign-in passcode.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: System Preferences</h3>
+          <ul>
+            <li>Manage Dark Mode, app optimization cache, FAQs, and system info.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION E: TROUBLESHOOTING & SUPPORT -->
+      <article class="section-card" data-letter="E">
+        <div class="section-head">
+          <div class="letter">E</div>
+          <h2>Troubleshooting & Support Guidelines</h2>
+        </div>
+        <p class="section-intro">Quick solutions to common access restrictions, status sync issues, and operational
+          readiness checklists.</p>
+
+        <div class="step">
+          <h3>Step 1: Resolve Common Access & System Issues</h3>
+          <table class="status-table">
+            <tr>
+              <th>Issue / Error Message</th>
+              <th>Likely Cause</th>
+              <th>Corrective Action</th>
+            </tr>
+            <tr>
+              <td><strong>Access Restricted Screen</strong></td>
+              <td>User office or designation is not among authorized assignments (SGOD, HRMO, FTAD, Regional SBM
+                Coordinator, or Division SBM Coordinator).</td>
+              <td>Update user office assignment or designation in user profile or contact InsightEd Support Team.</td>
+            </tr>
+            <tr>
+              <td><strong>Confirm Review Button Disabled</strong></td>
+              <td>Review window is inactive (outside the designated review schedule period) or proposal is still in
+                Pending / Draft state.</td>
+              <td>Check active review period dates in the system banner on the Schools tab; remind School Head to submit
+                proposal.</td>
+            </tr>
+            <tr>
+              <td><strong>Status Update Failed Alert</strong></td>
+              <td>Network drop or system connection glitch during status update execution.</td>
+              <td>Check internet connectivity, refresh page, and retry.</td>
+            </tr>
+            <tr>
+              <td><strong>Allocation Ceilings Showing ₱0</strong></td>
+              <td>Master allocation table for division/school has not loaded into state.</td>
+              <td>Refresh data cache.</td>
+            </tr>
+            <tr>
+              <td><strong>Utilization Tab Locked / No Data</strong></td>
+              <td>School baseline proposal has not reached <span class="tag green">Reviewed</span> status.</td>
+              <td>Complete baseline plan review actions first before opening quarterly tracking.</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Use the RO/SDO Officer Monitoring Checklist</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox" /> <span>Logged in under authorized RO or SDO account
+                (SGOD, HRMO, FTAD, or Regional/Division SBM Coordinator).</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Assigned Division / Region scope verified on
+                topbar.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Review window start and deadline dates checked on
+                banner.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>All submitted school proposals inspected in School
+                Detail Modal.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Optional evaluation remarks provided in Review
+                Submission Modal.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Cumulative utilization checked against official
+                allocation caps.</span></label>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Technical Support Escalation Protocol</h3>
+          <ol>
+            <li>Document the exact error message, School ID, Division Name, and step where the issue occurred.</li>
+            <li>Take a full-screen screenshot showing the topbar header and browser console (if technical).</li>
+            <li>Contact InsightED system support focal person.</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- SECTION F: PRE-REVIEW AND POST-REVIEW CHECKLIST -->
+      <article class="section-card" data-letter="F">
+        <div class="section-head">
+          <div class="letter">F</div>
+          <h2>Pre-Review and Post-Review Operations Checklist</h2>
+        </div>
+        <p class="section-intro">Use this operational checklist before opening the review window or generating final
+          monitoring reports for regional leadership.</p>
+
+        <div class="step">
+          <h3>Step 1: Pre-Review Readiness Checklist</h3>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox" /> <span>Official school allocations loaded and verified on
+                Dashboard KPI cards.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Review window schedule (start &
+                deadline).</span></label>
+
+            <label class="check-item"><input type="checkbox" /> <span>School masterlist updated with latest active
+                school IDs.</span></label>
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Proposal Evaluation Quality Standards</h3>
+          <ol>
+            <li><strong>Logical Coherence:</strong> Priority improvement areas, interventions, beneficiaries,
+              activities, and budget estimates form one unified, logical intervention.</li>
+            <li><strong>No Empty / Zero Items:</strong> Reject proposals containing interventions with zero
+              beneficiaries, zero activities, or blank budget entries.</li>
+            <li><strong>ARAL Program Compliance:</strong> Verify subject-specific learner counts for remediation
+              activities under ARAL guidelines.</li>
+            <li><strong>Strict Ceiling Compliance:</strong> Reject any plan where total estimated budget exceeds
+              assigned school allocation.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Track Post-Review & Quarterly Operations</h3>
+          <ol>
+            <li>Verify that all submitted plans in the division have reached <span class="tag green">Reviewed</span>
+              status before the review deadline.</li>
+            <li>Export the finalized Division/Region Masterlist report for administrative archiving via the Export
+              Report button.</li>
+            <li>Transition to <strong>Utilization Tracking</strong> across cover periods (JULY-SEPT, OCT-DEC,
+              JAN-MARCH).</li>
+            <li>Monitor quarterly spending reports and provide technical assistance to lagging schools.</li>
+          </ol>
+          <div class="callout success">
+            <strong>Final Operating Rule:</strong> Maintain the complete SIIF cycle: Allocation verification ➔ Proposal
+            submission oversight ➔ Rigorous SDO review & confirmation ➔ Quarterly utilization tracking ➔ Regional
+            performance reporting.
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="footer-note">
+      InsightED SIIF RO/SDO Flow: Verify permissions & scope ➔ Monitor dashboard metrics ➔ Review submitted school
+      proposals ➔ Confirm review with remarks ➔ Track quarterly utilization by active cover period.
+    </div>
+  </main>
+
+  <!-- Script for Dynamic Navigation, Step Pills, Auto-Collapsible Sidebar & Print Framing -->
+  <script>
+    (function () {
+      var body = document.body;
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.section-card'));
+
+      // Create Modern Collapsible Sidebar
+      var aside = document.createElement('aside');
+      aside.className = 'side-nav';
+      aside.innerHTML = [
+        '<div class="side-top">',
+        '  <span class="side-brand">SIIF MON HUB GUIDE</span>',
+        '  <button class="side-toggle" type="button" title="Toggle Sidebar">☰</button>',
+        '</div>',
+        '<div class="nav-list"></div>',
+        '<div class="side-footer">',
+        '  <button class="side-print-btn" type="button" onclick="window.print()">',
+        '    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>',
+        '    <span>Print / PDF</span>',
+        '  </button>',
+        '</div>'
+      ].join('');
+      document.body.appendChild(aside);
+
+      var navList = aside.querySelector('.nav-list');
+      var headerLetter = document.getElementById('headerLetter');
+      var headerTitle = document.getElementById('headerTitle');
+      var headerSub = document.getElementById('headerSub');
+      var sideToggle = aside.querySelector('.side-toggle');
+
+      var navItemIndex = 0;
+
+      function makeNavButton(label, letter, navIdx, isSub, onClick) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'nav-item' + (isSub ? ' is-sub' : '');
+        btn.dataset.index = navIdx;
+        btn.title = label;
+        btn.innerHTML = '<span class="side-badge">' + letter + '</span><span class="side-label">' + label + '</span>';
+        btn.addEventListener('click', onClick);
+        navList.appendChild(btn);
+        return btn;
+      }
+
+      // 1. Cover / Title Page Navigation Item
+      makeNavButton('Title Page', '★', -1, false, function () {
+        showCover();
+      });
+
+      // 2. Sections Navigation Items
+      cards.forEach(function (card, cardIndex) {
+        var isSub = card.dataset.parent === 'forms' || card.dataset.sub === 'true';
+        var badge = card.dataset.badge || card.dataset.letter || card.querySelector('.letter').textContent.trim();
+        var title = card.querySelector('h2').textContent.trim();
+
+        var currentNavIdx = navItemIndex++;
+        makeNavButton(title, badge, currentNavIdx, isSub, function () {
+          showSection(cardIndex, null, currentNavIdx);
+        });
+      });
+
+      var navItems = Array.prototype.slice.call(aside.querySelectorAll('.nav-item'));
+
+      function setActiveNav(index) {
+        navItems.forEach(function (item) {
+          item.classList.toggle('is-active', Number(item.dataset.index) === index);
+        });
+      }
+
+      function buildStepNav(card) {
+        var old = card.querySelector('.section-step-nav');
+        if (old) old.remove();
+
+        var steps = Array.prototype.slice.call(card.querySelectorAll('.step'));
+        if (!steps.length) return;
+
+        var wrap = document.createElement('div');
+        wrap.className = 'section-step-nav';
+
+        steps.forEach(function (step, index) {
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'step-chip';
+
+          var h3 = step.querySelector('h3');
+          var text = h3 ? h3.textContent.trim() : '';
+          var romanMatch = text.match(/^(I|II|III|IV|V|VI|VII|VIII|IX|X)\./i);
+          if (romanMatch) {
+            chip.textContent = romanMatch[1].toUpperCase();
+          } else {
+            chip.textContent = 'Step ' + (index + 1);
+          }
+
+          chip.addEventListener('click', function () {
+            step.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            markStep(card, index);
+          });
+          wrap.appendChild(chip);
+        });
+
+        var firstStep = card.querySelector('.step');
+        if (firstStep) {
+          card.insertBefore(wrap, firstStep);
+        }
+        markStep(card, 0);
+      }
+
+      function markStep(card, index) {
+        var steps = Array.prototype.slice.call(card.querySelectorAll('.step'));
+        var chips = Array.prototype.slice.call(card.querySelectorAll('.step-chip'));
+
+        steps.forEach(function (step, i) {
+          step.classList.toggle('is-current', i === index);
+        });
+
+        chips.forEach(function (chip, i) {
+          chip.classList.toggle('is-active', i === index);
+        });
+      }
+
+      function showCover() {
+        body.classList.add('cover-active');
+        body.classList.remove('section-active');
+        cards.forEach(function (card) {
+          card.classList.remove('is-active');
+        });
+        setActiveNav(-1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function showSection(index, targetStep, navIdx) {
+        var card = cards[index];
+        if (!card) return;
+
+        body.classList.remove('cover-active');
+        body.classList.add('section-active');
+
+        cards.forEach(function (item, i) {
+          item.classList.toggle('is-active', i === index);
+        });
+
+        var letter = card.dataset.badge || card.dataset.letter || card.querySelector('.letter').textContent.trim();
+        var title = card.querySelector('h2').textContent.trim();
+
+        if (headerLetter) headerLetter.textContent = letter;
+        if (headerTitle) headerTitle.textContent = title;
+        if (headerSub) headerSub.textContent = 'Follow the operational steps below.';
+
+        if (typeof navIdx === 'number') {
+          setActiveNav(navIdx);
+        }
+
+        buildStepNav(card);
+
+        if (targetStep) {
+          setTimeout(function () {
+            targetStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 60);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      // Sidebar expand/collapse toggle
+      sideToggle.addEventListener('click', function () {
+        aside.classList.toggle('is-expanded');
+        body.classList.toggle('nav-expanded');
+      });
+
+      // Hover to auto-expand sidebar on desktop
+      aside.addEventListener('mouseenter', function () {
+        if (window.innerWidth > 900) {
+          aside.classList.add('is-expanded');
+          body.classList.add('nav-expanded');
+        }
+      });
+
+      aside.addEventListener('mouseleave', function () {
+        if (window.innerWidth > 900) {
+          aside.classList.remove('is-expanded');
+          body.classList.remove('nav-expanded');
+        }
+      });
+
+      // Intersection Observer for active step highlights
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var card = entry.target.closest('.section-card');
+            if (card && card.classList.contains('is-active')) {
+              var steps = Array.prototype.slice.call(card.querySelectorAll('.step'));
+              markStep(card, steps.indexOf(entry.target));
+            }
+          }
+        });
+      }, { rootMargin: '-20% 0px -60% 0px', threshold: 0.1 });
+
+      cards.forEach(function (card) {
+        Array.prototype.slice.call(card.querySelectorAll('.step')).forEach(function (step) {
+          observer.observe(step);
+        });
+      });
+
+      // Initial State: Cover active
+      setActiveNav(-1);
+
+      // Print Frame Construction for Multi-page PDF output
+      function buildPrintFrame() {
+        var main = document.querySelector('.sheet');
+        if (!main || main._printFramed) return;
+
+        var headerText = "InsightED RO & SDO · SIIF Monitoring User Guide";
+        var footerText = "SIIF Monitoring Regional & Division Guide";
+
+        var table = document.createElement('table');
+        table.className = 'print-wrap';
+
+        var thead = document.createElement('thead');
+        thead.innerHTML = '<tr><td><div class="print-head">' + headerText + '</div></td></tr>';
+
+        var tfoot = document.createElement('tfoot');
+        tfoot.innerHTML = '<tr><td><div class="print-foot">' + footerText + '</div></td></tr>';
+
+        var tbody = document.createElement('tbody');
+        var cell = document.createElement('td');
+        cell.className = 'print-body-cell';
+
+        while (main.firstChild) cell.appendChild(main.firstChild);
+
+        var row = document.createElement('tr');
+        row.appendChild(cell);
+        tbody.appendChild(row);
+
+        table.appendChild(thead);
+        table.appendChild(tfoot);
+        table.appendChild(tbody);
+
+        main.appendChild(table);
+        main._printFramed = true;
+        main._printTable = table;
+      }
+
+      function teardownPrintFrame() {
+        var main = document.querySelector('.sheet');
+        if (!main || !main._printFramed) return;
+
+        var table = main._printTable;
+        var cell = table && table.querySelector('.print-body-cell');
+
+        while (cell && cell.firstChild) main.insertBefore(cell.firstChild, table);
+        if (table && table.parentNode) table.parentNode.removeChild(table);
+
+        main._printFramed = false;
+        main._printTable = null;
+      }
+
+      window.addEventListener('beforeprint', buildPrintFrame);
+      window.addEventListener('afterprint', teardownPrintFrame);
+    })();
+  </script>
+</body>
+
+</html>
