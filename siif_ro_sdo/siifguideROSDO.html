@@ -356,6 +356,11 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .section-print-btn {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
     .letter {
       display: inline-grid;
       place-items: center;
@@ -944,6 +949,7 @@
       .side-nav,
       .guide-header,
       .print-actions,
+      .print-button,
       .section-step-nav,
       .section-video {
         display: none !important;
@@ -958,6 +964,7 @@
       }
 
       .sheet {
+        display: block !important;
         width: 100% !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -967,9 +974,10 @@
       }
 
       .hero {
+        display: block !important;
         min-height: auto !important;
         padding: 14mm 8mm !important;
-        margin-bottom: 6mm !important;
+        margin: 0 0 6mm !important;
         background: #08315f !important;
         color: #ffffff !important;
         break-inside: avoid;
@@ -987,15 +995,11 @@
         padding: 0 !important;
         border: 0 !important;
         box-shadow: none !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
       }
 
       .section-head {
         display: flex !important;
         border-bottom: 1px solid #bae6fd !important;
-        break-after: avoid;
-        page-break-after: avoid;
       }
 
       .section-head h2 {
@@ -1003,8 +1007,6 @@
       }
 
       .step {
-        break-inside: avoid;
-        page-break-inside: avoid;
         border: 1px solid #e2e8f0 !important;
         margin-bottom: 5mm !important;
       }
@@ -1067,17 +1069,6 @@
 
 <body class="cover-active">
   <main class="sheet">
-    <div class="print-actions">
-      <button class="print-button" type="button" onclick="window.print()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
-          <path d="M6 14h12v8H6z" />
-        </svg>
-        Print / Save as PDF
-      </button>
-    </div>
-
     <!-- Title / Cover Hero -->
     <header class="hero" id="cover">
       <div class="hero-inner">
@@ -1089,20 +1080,7 @@
       </div>
     </header>
 
-    <!-- Sticky Guide Section Header -->
-    <div class="guide-header">
-      <div class="guide-header-left">
-        <div class="letter" id="headerLetter">A</div>
-        <div>
-          <div class="guide-kicker">SIIF Regional & Division Manual</div>
-          <div class="guide-title" id="headerTitle">Section Title</div>
-          <div class="guide-section" id="headerSub">Follow the operational steps below.</div>
-        </div>
-      </div>
-      <div class="guide-print">
-        <button class="print-button" type="button" onclick="window.print()">Print</button>
-      </div>
-    </div>
+
 
     <!-- Chunked Guide Sections Grid -->
     <section class="guide-grid">
@@ -1911,6 +1889,19 @@
       var body = document.body;
       var cards = Array.prototype.slice.call(document.querySelectorAll('.section-card'));
 
+      // Add Print Button to each Section Header
+      cards.forEach(function (card) {
+        var head = card.querySelector('.section-head');
+        if (head && !head.querySelector('.section-print-btn')) {
+          var pBtn = document.createElement('button');
+          pBtn.className = 'print-button section-print-btn';
+          pBtn.type = 'button';
+          pBtn.onclick = function () { window.print(); };
+          pBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> Print / Save as PDF';
+          head.appendChild(pBtn);
+        }
+      });
+
       // Create Modern Collapsible Sidebar
       var aside = document.createElement('aside');
       aside.className = 'side-nav';
@@ -2110,59 +2101,6 @@
 
       // Initial State: Cover active
       setActiveNav(-1);
-
-      // Print Frame Construction for Multi-page PDF output
-      function buildPrintFrame() {
-        var main = document.querySelector('.sheet');
-        if (!main || main._printFramed) return;
-
-        var headerText = "InsightED RO & SDO · SIIF Monitoring User Guide";
-        var footerText = "SIIF Monitoring Regional & Division Guide";
-
-        var table = document.createElement('table');
-        table.className = 'print-wrap';
-
-        var thead = document.createElement('thead');
-        thead.innerHTML = '<tr><td><div class="print-head">' + headerText + '</div></td></tr>';
-
-        var tfoot = document.createElement('tfoot');
-        tfoot.innerHTML = '<tr><td><div class="print-foot">' + footerText + '</div></td></tr>';
-
-        var tbody = document.createElement('tbody');
-        var cell = document.createElement('td');
-        cell.className = 'print-body-cell';
-
-        while (main.firstChild) cell.appendChild(main.firstChild);
-
-        var row = document.createElement('tr');
-        row.appendChild(cell);
-        tbody.appendChild(row);
-
-        table.appendChild(thead);
-        table.appendChild(tfoot);
-        table.appendChild(tbody);
-
-        main.appendChild(table);
-        main._printFramed = true;
-        main._printTable = table;
-      }
-
-      function teardownPrintFrame() {
-        var main = document.querySelector('.sheet');
-        if (!main || !main._printFramed) return;
-
-        var table = main._printTable;
-        var cell = table && table.querySelector('.print-body-cell');
-
-        while (cell && cell.firstChild) main.insertBefore(cell.firstChild, table);
-        if (table && table.parentNode) table.parentNode.removeChild(table);
-
-        main._printFramed = false;
-        main._printTable = null;
-      }
-
-      window.addEventListener('beforeprint', buildPrintFrame);
-      window.addEventListener('afterprint', teardownPrintFrame);
     })();
   </script>
 </body>
