@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Records Management Module — Complete Text-Only User Guide</title>
+  <title>Third Level Officials — Records Management &amp; Profiling Complete User Guide</title>
 
   <!-- Web fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,8 +37,8 @@
       --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
 
       /* Print Header & Footer Labels */
-      --print-header: "Records Management User Guide · Third Level Personnel";
-      --print-footer: "Department of Education · Personnel Division";
+      --print-header: "InsightEd · Third Level Officials User Guide";
+      --print-footer: "Department of Education · Personnel Division · Third Level Officials";
     }
 
     /* --- Base Body & Layout --- */
@@ -49,6 +49,7 @@
       font-family: var(--font-body);
       font-size: 16px;
       line-height: 1.75;
+      transition: all 0.25s ease;
     }
 
     body.has-side-nav {
@@ -57,7 +58,7 @@
 
     /* --- Sidebar Navigation --- */
     .side-nav {
-      width: 290px;
+      width: 300px;
       background: #ffffff;
       padding: 24px 16px;
       border-right: 1px solid var(--line);
@@ -68,12 +69,34 @@
       height: 100vh;
       overflow-y: auto;
       flex-shrink: 0;
+      transition: width 0.25s ease, padding 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      z-index: 50;
+    }
+
+    body.rail-collapsed .side-nav {
+      width: 78px;
+      padding: 20px 10px;
     }
 
     .side-nav-brand {
-      padding: 0 12px 16px 12px;
+      padding: 0 10px 16px 10px;
       border-bottom: 1px solid var(--line);
       margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .side-nav-brand-text {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    body.rail-collapsed .side-nav-brand-text {
+      display: none;
     }
 
     .side-nav-brand h4 {
@@ -93,24 +116,53 @@
       font-weight: 500;
     }
 
+    .rail-toggle {
+      background: var(--canvas);
+      border: 1px solid var(--line);
+      color: var(--accent);
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      transition: all 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .rail-toggle:hover {
+      background: var(--accent-soft);
+    }
+
     .side-nav ul {
       list-style: none;
       padding: 0;
       margin: 0;
+      flex-grow: 1;
+      overflow-y: auto;
     }
 
     .side-nav li {
       cursor: pointer;
-      padding: 10px 14px;
-      margin-bottom: 6px;
+      padding: 9px 12px;
+      margin-bottom: 5px;
       border-radius: 10px;
       font-weight: 600;
       font-size: 13px;
       color: var(--ink);
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      gap: 10px;
       transition: all 0.2s ease;
+      position: relative;
+    }
+
+    body.rail-collapsed .side-nav li {
+      justify-content: center;
+      padding: 10px 4px;
     }
 
     .side-nav li:hover {
@@ -122,12 +174,45 @@
       background: var(--accent);
       color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 4px 12px rgba(7, 89, 133, 0.25);
+      box-shadow: 0 4px 12px rgba(7, 89, 133, 0.22);
+    }
+
+    .side-nav li.active .letter-ring {
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    .letter-ring {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      transition: all 0.2s ease;
+    }
+
+    .nav-label {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+    }
+
+    body.rail-collapsed .nav-label {
+      display: none;
     }
 
     .side-nav .print-button {
-      margin-top: 24px;
-      padding: 12px;
+      margin-top: 14px;
+      padding: 11px;
       background: var(--accent);
       color: #ffffff;
       border: none;
@@ -136,14 +221,128 @@
       width: 100%;
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 13px;
+      font-size: 12.5px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    body.rail-collapsed .side-nav .print-button span {
+      display: none;
     }
 
     .side-nav .print-button:hover {
       background: #034466;
+    }
+
+    /* --- Print Actions in Sheet (Template Rule 1 & 5) --- */
+    .print-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .print-actions .print-button {
+      padding: 9px 18px;
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.03em;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .print-actions .print-button:hover {
+      background: #034466;
+      box-shadow: 0 4px 12px rgba(7, 89, 133, 0.2);
+    }
+
+    /* --- Compact Section Mirror Header Card (Template Rule 4.3) --- */
+    .guide-header {
+      background: linear-gradient(135deg, #075985 0%, #034466 100%);
+      color: #ffffff;
+      padding: 16px 22px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 6px 20px rgba(7, 89, 133, 0.16);
+    }
+
+    .guide-header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .guide-header-badge {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .guide-header-kicker {
+      font-family: var(--font-heading);
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #BAE6FD;
+    }
+
+    .guide-header-title {
+      margin: 2px 0 0 0;
+      font-family: var(--font-heading);
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .guide-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .guide-nav-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .guide-nav-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
 
     /* --- Sheet Container --- */
@@ -157,6 +356,7 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
       box-sizing: border-box;
       flex-grow: 1;
+      min-width: 0;
     }
 
     .hero {
@@ -284,6 +484,14 @@
     @media (max-width: 768px) {
       .scene-box {
         grid-template-columns: 1fr;
+      }
+      .guide-video-wrap {
+        margin: 14px 0 18px 0;
+        border-radius: 10px;
+      }
+      .guide-video-label {
+        font-size: 10px;
+        padding: 6px 10px;
       }
     }
 
@@ -567,22 +775,77 @@
         page-break-after: avoid;
         break-after: avoid;
       }
+
+      .guide-video-wrap {
+        display: none !important;
+      }
+
+      .tag, .doc-card, .check-item, .field-badge, .eyebrow, .letter, .scene-block {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
     }
 
-    /* --- Video Embed --- */
+    /* --- Interactive Checklist (Template Rule 3.3) --- */
+    .checklist-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 14.5px;
+      color: var(--ink);
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .check-item:hover {
+      background: var(--accent-soft);
+      border-color: #7DD3FC;
+    }
+
+    .check-item input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: var(--accent);
+      width: 17px;
+      height: 17px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .check-item span {
+      line-height: 1.5;
+    }
+
+    /* --- Video Embed (Responsive) --- */
     .guide-video-wrap {
       margin: 20px 0 24px 0;
       border-radius: 14px;
       overflow: hidden;
       background: #000;
-      box-shadow: 0 4px 24px rgba(7,89,133,0.15);
+      box-shadow: 0 4px 24px rgba(7, 89, 133, 0.15);
       border: 2px solid var(--line);
       position: relative;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .guide-video-wrap video {
       display: block;
       width: 100%;
+      max-width: 100%;
+      height: auto;
       max-height: 480px;
       object-fit: contain;
       background: #000;
@@ -600,16 +863,14 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
+      word-break: break-word;
     }
 
     .guide-video-label::before {
       content: "▶";
       font-size: 10px;
       opacity: 0.85;
-    }
-
-    @media print {
-      .guide-video-wrap { display: none; }
+      flex-shrink: 0;
     }
   </style>
 </head>
@@ -617,28 +878,60 @@
 <body>
 
   <!-- Navigation Sidebar -->
-  <aside class="side-nav">
+  <aside class="side-nav" id="side-nav">
     <div class="side-nav-brand">
-      <h4>Records Management</h4>
-      <p>Third Level Personnel Guide</p>
+      <div class="side-nav-brand-text">
+        <h4>Third Level Officials</h4>
+        <p>Records Management &amp; Profiling Guide</p>
+      </div>
+      <button type="button" class="rail-toggle" id="rail-toggle" onclick="toggleRail()" title="Toggle Sidebar Navigation">‹</button>
     </div>
     <ul id="nav-list">
-      <li onclick="showCover()" class="active" id="nav-cover">Title & Overview</li>
+      <li onclick="showCover()" class="active" id="nav-cover">
+        <span class="letter-ring">★</span>
+        <span class="nav-label">Title &amp; Overview</span>
+      </li>
       <!-- Section items generated dynamically by JavaScript -->
     </ul>
-    <button class="print-button" type="button" onclick="window.print()">Print / Export PDF</button>
+    <button class="print-button" type="button" onclick="window.print()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+      <span>Print / Export PDF</span>
+    </button>
   </aside>
 
   <!-- Main Sheet Container -->
   <main class="sheet cover-active" id="main-sheet">
 
+    <!-- Print / Save as PDF Action Button (Template Rule 1) -->
+    <div class="print-actions">
+      <button class="print-button" type="button" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+        <span>Print / Save as PDF</span>
+      </button>
+    </div>
+
+    <!-- Section Active Compact Mirror Header (Template Rule 4.3) -->
+    <div class="guide-header" id="guide-header" style="display: none;">
+      <div class="guide-header-left">
+        <div class="guide-header-badge" id="guide-header-badge">A</div>
+        <div>
+          <div class="guide-header-kicker">Department of Education · Third Level Officials</div>
+          <h2 class="guide-header-title" id="guide-header-title">System Access &amp; Workspace Layout</h2>
+        </div>
+      </div>
+      <div class="guide-header-nav">
+        <button type="button" class="guide-nav-btn" onclick="navPrevSection()" title="Previous Section">← Prev</button>
+        <button type="button" class="guide-nav-btn" onclick="navNextSection()" title="Next Section">Next →</button>
+      </div>
+    </div>
+
     <!-- Hero / Title Page Cover -->
     <header class="hero">
       <div class="eyebrow">Department of Education · Personnel Division</div>
-      <h1>Records Management Module — Complete User Guide</h1>
-      <p class="subtitle">A detailed, step-by-step text guide for Third Level Personnel to complete, manage, verify, and export official records.</p>
+      <h1>Third Level Officials Module — Complete User Guide</h1>
+      <p class="subtitle">A comprehensive, step-by-step interactive and printable guide for Third Level Officials to access the system, manage professional records, upload credentials, and complete official executive profiling.</p>
       <div class="notice">
-        <strong>Notice for Senior Personnel & Applicants:</strong> This guide provides plain-language instructions for every screen, form field, dropdown option, document upload, and button in the Records Management System. Please follow each step carefully.
+        <strong>Notice for Senior Personnel &amp; Third Level Officials:</strong> This guide provides plain-language instructions for every screen, form field, dropdown option, document upload, and verification workflow in the Third Level Officials Module. Please follow each step carefully.
       </div>
     </header>
 
@@ -652,13 +945,13 @@
         </div>
 
         <div class="step">
-          <h3>Step 1 — Accessing the Records Management System</h3>
-          <p>To begin, log in to your account to open your Records Management Workspace.</p>
+          <h3>Step 1: Accessing via the InsightEd Nexus Gate</h3>
+          <p>To begin, navigate to the official portal to access the <strong>Third Level Officials</strong> workspace.</p>
 
           <!-- System Access Video Walkthrough -->
           <div class="guide-video-wrap">
             <div class="guide-video-label">System Access &amp; Workspace Layout — Video Walkthrough</div>
-            <video controls preload="metadata">
+            <video controls preload="metadata" playsinline>
               <source src="tlo_guide_video/System Access.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
@@ -666,24 +959,25 @@
 
           <div class="scene-box">
             <div class="scene-block scene-see">
-              <div class="scene-block-title">What You See</div>
-              <p>The <strong>Sign In</strong> page displaying input fields for <strong>Email Address</strong> and <strong>Password</strong>, alongside a button for <strong>Passcode Login (PIN)</strong>.</p>
+              <div class="scene-block-title">What You See on the Landing Screen</div>
+              <p>The <strong>InsightEd Nexus Gate</strong> featuring system cards. Card 1 is labeled <strong>Third Level Officials</strong> with an amber badge marked <em>"FOR THIRD LEVEL PERSONNEL"</em>, detailing access to update professional and personnel records, upload supporting documents, and review official profiling.</p>
             </div>
             <div class="scene-block scene-do">
               <div class="scene-block-title">What To Do</div>
               <ul>
-                <li>Enter your official registered <strong>DepEd Email Address</strong> in the email field.</li>
-                <li>Enter your password, or click <strong>Passcode Login</strong> to use your 6-digit Security PIN.</li>
+                <li>Click <strong>Card 1: Third Level Officials</strong> (or click <strong>CONTINUE →</strong>) to proceed to the secure authentication gate.</li>
+                <li>On the Sign In page, enter your registered <strong>DepEd Email Address</strong> and password.</li>
+                <li>Alternatively, click <strong>Passcode Login (PIN)</strong> to authenticate quickly with your official 6-digit Security PIN.</li>
                 <li>Click the <strong>Sign In</strong> button.</li>
               </ul>
             </div>
             <div class="scene-block scene-look">
               <div class="scene-block-title">What You Should See Next</div>
-              <p>The system will authenticate your account and automatically open the <strong>Records Management Workspace</strong>.</p>
+              <p>The system validates your credentials and opens your personalized <strong>Third Level Officials Records Management &amp; Profiling Workspace</strong>.</p>
             </div>
             <div class="scene-block scene-note">
-              <div class="scene-block-title">Important Note</div>
-              <p>If you are a first-time applicant whose profile has not yet been initialized, the screen will display a message stating <em>"Record Not Found"</em> along with an <strong>Initialize My Profile</strong> button. Click <strong>Initialize My Profile</strong> to create your official record structure.</p>
+              <div class="scene-block-title">First-Time Profile Initialization</div>
+              <p>If you are an official or applicant accessing the platform for the first time, you may see a prompt reading <em>"Record Not Found"</em>. Click <strong>Initialize My Profile</strong> to generate your unique masterlist identification (<code>TLOid</code>) and active profiling structure.</p>
             </div>
           </div>
         </div>
@@ -1356,56 +1650,108 @@
         </div>
 
         <div class="step">
-          <h3>Field-by-Field Document Upload Instructions</h3>
+          <h3>Step 1: Document Upload Specifications</h3>
 
           <!-- Video Walkthrough -->
           <div class="guide-video-wrap">
             <div class="guide-video-label">Tab 8 — Documents — Video Walkthrough</div>
-            <video controls preload="metadata">
+            <video controls preload="metadata" playsinline>
               <source src="tlo_guide_video/Documents.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
-          <p>Click <strong>8. Documents</strong> on the navigation menu. Upload mandatory supporting personnel documents to complete your official record file.</p>
+          <p>Click <strong>8. Documents</strong> on the navigation menu. Upload mandatory supporting personnel documents to complete your official Third Level Officials record file.</p>
 
           <table class="guide-table">
             <thead>
               <tr>
-                <th>Document Title</th>
+                <th>Document Type</th>
                 <th>Accepted Formats</th>
-                <th>File Requirements</th>
+                <th>File Requirements &amp; Description</th>
                 <th>Available Actions</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>Personal Data Sheet (PDS)</strong></td>
-                <td>`.pdf`, `.doc`, `.docx`</td>
-                <td>Must be a complete, signed, and notarized copy of CSC Form 212.</td>
+                <td><code>.pdf</code>, <code>.doc</code>, <code>.docx</code></td>
+                <td>Complete, signed, and notarized copy of CSC Form 212 (Revised 2017).</td>
                 <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
               </tr>
               <tr>
                 <td><strong>Service Records</strong></td>
-                <td>`.pdf`</td>
-                <td>Certified true copy of official service record document.</td>
+                <td><code>.pdf</code></td>
+                <td>Official certified true copy of updated government service record.</td>
                 <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
               </tr>
               <tr>
-                <td><strong>2x2 ID Picture</strong></td>
-                <td>`image/*` (`.png`, `.jpg`)</td>
-                <td>Passport-size photo with white background, name tag & signature. Auto-compressed.</td>
+                <td><strong>2x2 Official ID Picture</strong></td>
+                <td><code>.png</code>, <code>.jpg</code>, <code>.jpeg</code></td>
+                <td>Passport-style photo with white background, name tag &amp; signature. Auto-converted to WebP.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Curriculum Vitae / Profile</strong></td>
+                <td><code>.docx</code>, <code>.doc</code></td>
+                <td>Comprehensive career CV or leadership profile in Word document format.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Executive Presentation Profile</strong></td>
+                <td><code>.pptx</code>, <code>.ppt</code></td>
+                <td>Standardized leadership briefing deck in PowerPoint presentation format.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Sandiganbayan Clearance</strong></td>
+                <td><code>.pdf</code></td>
+                <td>Valid official integrity clearance issued by the Sandiganbayan.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>NBI Clearance</strong></td>
+                <td><code>.pdf</code></td>
+                <td>Valid official National Bureau of Investigation clearance.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>CSC Clearance</strong></td>
+                <td><code>.pdf</code></td>
+                <td>Valid Civil Service Commission certificate of no pending administrative case.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Ombudsman Clearance</strong></td>
+                <td><code>.pdf</code></td>
+                <td>Valid certificate of no pending case issued by the Office of the Ombudsman.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Executive Summary</strong></td>
+                <td><code>.pdf</code></td>
+                <td>One-page executive brief summarizing major contributions and milestones.</td>
+                <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
+              </tr>
+              <tr>
+                <td><strong>Reassignment / Special Order</strong></td>
+                <td><code>.pdf</code></td>
+                <td>Official DepEd Special Order for plantilla assignment or reassignment.</td>
                 <td><strong>Upload Document</strong>, <strong>View</strong>, <strong>Download</strong></td>
               </tr>
             </tbody>
           </table>
 
-          <div class="step">
-            <h3>Complete Upload, View, and Download Procedure</h3>
+          <div class="callout callout-tip">
+            <strong>Automated Optimization &amp; Storage Architecture:</strong> Uploaded documents are automatically deduplicated via cryptographic SHA-256 hashing, optimized (WebP image compression / 96 DPI PDF compression), and securely stored in enterprise Azure Blob Storage with direct binary persistence in the <code>unified_binaries</code> database.
+          </div>
+
+          <div class="step" style="margin-top: 24px;">
+            <h3>Step 2: Upload, View, and Replace Procedure</h3>
             <ol>
-              <li><strong>To Upload a File:</strong> Click the dashed <strong>Upload Document</strong> button inside the document box. In the file window that opens on your computer, locate and select your document file, then click <strong>Open</strong>. Wait a few seconds while the system displays <em>"Processing..."</em>. Once saved, a green checkmark notice appears stating <em>"Saved ✓"</em>.</li>
-              <li><strong>To View an Uploaded Document:</strong> Click the <strong>View</strong> button. The document will open in a new browser tab for your inspection.</li>
-              <li><strong>To Download a Copy:</strong> Click the <strong>Download</strong> button. The system will download a copy directly to your computer with an official filename (e.g., `JUAN_DELA_CRUZ_pds.pdf`).</li>
-              <li><strong>To Replace a File:</strong> If you uploaded the wrong document, simply click <strong>Upload Document</strong> again and select the correct file. The system will automatically overwrite the old file.</li>
+              <li><strong>To Upload a File:</strong> Click the dashed <strong>Upload Document</strong> button inside the document card. Select the file from your computer and click <strong>Open</strong>. Wait while the progress indicator shows <em>"Processing..."</em> until the green confirmation badge displays <em>"Saved ✓"</em>.</li>
+              <li><strong>To View an Uploaded Document:</strong> Click the <strong>View</strong> button. The document opens in a new browser tab or preview modal for verification.</li>
+              <li><strong>To Download a Copy:</strong> Click the <strong>Download</strong> button to retrieve the file directly with its standardized official nomenclature (e.g., <code>JUAN_DELA_CRUZ_pds.pdf</code>).</li>
+              <li><strong>To Replace or Update:</strong> Click <strong>Upload Document</strong> on an existing card to upload a revised version. The system automatically deduplicates and updates the active binary reference.</li>
             </ol>
           </div>
         </div>
@@ -1637,48 +1983,46 @@
       <article class="section-card" id="section-checklist">
         <div class="section-head">
           <div class="letter">M</div>
-          <h2>Final Verification & Signing Out</h2>
+          <h2>Final Verification &amp; Signing Out</h2>
         </div>
 
         <div class="step">
-          <h3>Step 1 — Pre-Submission Checklist</h3>
-          <p>Before completing your session, review this final verification checklist:</p>
+          <h3>Step 1: Pre-Submission Interactive Checklist</h3>
+          <p>Before completing your official profiling session, confirm all requirements using this interactive checklist (you can tick each item directly):</p>
 
-          <div class="callout callout-tip">
-            <strong>Before You Finish Checklist:</strong>
-            <ul>
-              <li>[ ] 2x2 Photo uploaded with name tag and signature in Tab 1.</li>
-              <li>[ ] Personal details (Full Name, Birth Date, Civil Status, Address) verified.</li>
-              <li>[ ] Plantilla Position Title and OIC Designation accurately entered in Tab 1.</li>
-              <li>[ ] CES Rank status and EMT examination status updated in Tab 2.</li>
-              <li>[ ] Previous managerial positions entered with valid date ranges in Tab 3.</li>
-              <li>[ ] Academic degrees entered in chronological order in Tab 4.</li>
-              <li>[ ] OPCRF performance ratings & periods updated in Tab 5.</li>
-              <li>[ ] Seminars and total training hours verified in Tab 6.</li>
-              <li>[ ] Mandatory documents (PDS, Service Records) uploaded and inspected via <strong>View</strong> in Tab 8.</li>
-              <li>[ ] Legal questionnaire completed in Tab 9.</li>
-              <li>[ ] Both Data Privacy consent boxes checked and profile submitted in Tab 10.</li>
-              <li>[ ] Profile completeness score reads <strong>100%</strong> in the top banner.</li>
-            </ul>
+          <div class="checklist-grid">
+            <label class="check-item"><input type="checkbox" /> <span>2x2 Photo uploaded with name tag and signature in Tab 1 (Personal Info).</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Personal details (Full Name, Birth Date, Civil Status, Residential Address) verified.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Plantilla Position Title and OIC Designation accurately entered in Tab 1.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>CES Rank status and Executive Management Test (EMT) examination updated in Tab 2.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Previous managerial positions entered with valid chronological date ranges in Tab 3.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Academic degrees (Bachelor's, Master's, Doctorate) entered in chronological order in Tab 4.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>OPCRF performance ratings &amp; rating periods entered in Tab 5.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Professional development seminars and total executive training hours verified in Tab 6.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Notable achievements, leadership innovations, and publications listed in Tab 7.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Mandatory documents (PDS, Service Records, Photo, Clearances) uploaded and inspected via <strong>View</strong> in Tab 8.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Legal disclosure questionnaire completed truthfully in Tab 9.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Data Privacy consent affirmed and official profile certified in Tab 10.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Profile completeness score reads <strong>100%</strong> in the top status bar.</span></label>
           </div>
         </div>
 
         <div class="step">
-          <h3>Step 2 — Signing Out Safely</h3>
-          <p>After verifying all entries and saving your profile, click the <strong>Sign Out</strong> button located in the top right corner of the header banner to safely close your session.</p>
+          <h3>Step 2: Signing Out Safely</h3>
+          <p>After verifying all entries and saving your profile, click the <strong>Sign Out</strong> button located in the top right corner of the header banner to safely terminate your session.</p>
 
           <div class="scene-box">
             <div class="scene-block scene-see">
               <div class="scene-block-title">What You See</div>
-              <p>The <strong>Sign Out</strong> link with a lock icon in the top right corner of the blue header banner.</p>
+              <p>The <strong>Sign Out</strong> button with a lock icon in the top right corner of the blue header banner.</p>
             </div>
             <div class="scene-block scene-do">
               <div class="scene-block-title">What To Do</div>
-              <p>Click <strong>Sign Out</strong>.</p>
+              <p>Click <strong>Sign Out</strong> to securely end your active session.</p>
             </div>
             <div class="scene-block scene-look">
               <div class="scene-block-title">What You Should See Next</div>
-              <p>The system will end your secure session and return to the main Sign In page.</p>
+              <p>The system concludes your authenticated session and safely returns to the <strong>Sign In</strong> gate.</p>
             </div>
           </div>
         </div>
@@ -1688,46 +2032,161 @@
 
     <!-- Footer Note -->
     <div class="footer-note" style="margin-top: 40px; text-align: center; color: var(--muted); font-size: 14px; padding-top: 20px; border-top: 1px solid var(--line);">
-      Department of Education · Personnel Division Records Management System
+      Department of Education · Personnel Division · Third Level Officials Records Management &amp; Executive Profiling System
     </div>
 
   </main>
 
-  <!-- Dynamic Navigation & Table-Based Print Script -->
+  <!-- Dynamic Navigation, Video Autoplay & Table-Based Print Script -->
   <script>
-    // --- Dynamic Sidebar Navigation Builder ---
     document.body.classList.add('has-side-nav');
-    const sections = document.querySelectorAll('.section-card');
-    const navList = document.getElementById('nav-list');
+    var sections = Array.prototype.slice.call(document.querySelectorAll('.section-card'));
+    var navList = document.getElementById('nav-list');
+    var mainSheet = document.getElementById('main-sheet');
+    var guideHeader = document.getElementById('guide-header');
+    var guideHeaderBadge = document.getElementById('guide-header-badge');
+    var guideHeaderTitle = document.getElementById('guide-header-title');
+    var currentSectionIndex = -1;
 
-    sections.forEach((sec, index) => {
-        const title = sec.querySelector('h2').innerText;
-        const li = document.createElement('li');
-        li.innerText = title;
-        li.onclick = () => showSection(index, li);
-        navList.appendChild(li);
+    // --- Rail Toggle Functionality ---
+    function toggleRail() {
+      document.body.classList.toggle('rail-collapsed');
+      var btn = document.getElementById('rail-toggle');
+      if (btn) {
+        btn.textContent = document.body.classList.contains('rail-collapsed') ? '›' : '‹';
+      }
+    }
+
+    // --- Video Autoplay & Reset Helpers (Template Rule 4.6) ---
+    function resetSectionVideos() {
+      var videos = document.querySelectorAll('video');
+      for (var i = 0; i < videos.length; i++) {
+        try {
+          videos[i].pause();
+          videos[i].currentTime = 0;
+        } catch (e) {}
+      }
+    }
+
+    function playSectionVideo(card) {
+      if (!card) return;
+      var video = card.querySelector('video');
+      if (!video) return;
+      try {
+        video.currentTime = 0;
+        var attempt = video.play();
+        if (attempt && typeof attempt.catch === 'function') {
+          attempt.catch(function () {
+            video.muted = true;
+            var retry = video.play();
+            if (retry && typeof retry.catch === 'function') { retry.catch(function () {}); }
+          });
+        }
+      } catch (e) {}
+    }
+
+    // --- Build Dynamic Sidebar Navigation (Template Rule 4.1) ---
+    sections.forEach(function (sec, index) {
+      var letterEl = sec.querySelector('.letter');
+      var h2El = sec.querySelector('h2');
+      var letter = letterEl ? letterEl.textContent.trim() : String.fromCharCode(65 + index);
+      var title = h2El ? h2El.textContent.trim() : 'Section ' + letter;
+
+      var li = document.createElement('li');
+      li.setAttribute('data-index', index);
+      li.innerHTML = '<span class="letter-ring" data-letter="' + letter + '">' + letter + '</span>' +
+                     '<span class="nav-label">' + title + '</span>';
+      li.onclick = function () { showSection(index); };
+      navList.appendChild(li);
     });
 
+    // --- Section Paging & Mirror Header (Template Rule 4.2 & 4.3) ---
     function showCover() {
-        document.getElementById('main-sheet').className = 'sheet cover-active';
-        sections.forEach(s => s.classList.remove('is-active'));
-        document.querySelectorAll('.side-nav li').forEach(li => li.classList.remove('active'));
-        document.getElementById('nav-cover').classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      currentSectionIndex = -1;
+      mainSheet.className = 'sheet cover-active';
+      if (guideHeader) guideHeader.style.display = 'none';
+      
+      sections.forEach(function (s) { s.classList.remove('is-active'); });
+      document.querySelectorAll('.side-nav li').forEach(function (li) { li.classList.remove('active'); });
+      var coverLi = document.getElementById('nav-cover');
+      if (coverLi) coverLi.classList.add('active');
+
+      resetSectionVideos();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function showSection(index, listItem) {
-        document.getElementById('main-sheet').className = 'sheet section-active';
-        sections.forEach((s, i) => {
-            if (i === index) s.classList.add('is-active');
-            else s.classList.remove('is-active');
+    function showSection(index) {
+      if (index < 0 || index >= sections.length) return;
+      currentSectionIndex = index;
+      mainSheet.className = 'sheet section-active';
+      
+      var activeCard = sections[index];
+      sections.forEach(function (s, i) {
+        if (i === index) s.classList.add('is-active');
+        else s.classList.remove('is-active');
+      });
+
+      var lis = navList.querySelectorAll('li');
+      lis.forEach(function (li) { li.classList.remove('active'); });
+      var activeLi = navList.querySelector('li[data-index="' + index + '"]');
+      if (activeLi) activeLi.classList.add('active');
+
+      // Mirror into compact guide header
+      if (guideHeader && activeCard) {
+        guideHeader.style.display = 'flex';
+        var letterEl = activeCard.querySelector('.letter');
+        var h2El = activeCard.querySelector('h2');
+        if (guideHeaderBadge && letterEl) guideHeaderBadge.textContent = letterEl.textContent.trim();
+        if (guideHeaderTitle && h2El) guideHeaderTitle.textContent = h2El.textContent.trim();
+      }
+
+      // Autoplay section walkthrough video from 0:00
+      resetSectionVideos();
+      playSectionVideo(activeCard);
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function navPrevSection() {
+      if (currentSectionIndex <= 0) showCover();
+      else showSection(currentSectionIndex - 1);
+    }
+
+    function navNextSection() {
+      if (currentSectionIndex === -1) showSection(0);
+      else if (currentSectionIndex < sections.length - 1) showSection(currentSectionIndex + 1);
+    }
+
+    // --- Step Scroll-Spy & Progress Ring (Template Rule 4.5) ---
+    if ('IntersectionObserver' in window) {
+      var stepObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && currentSectionIndex >= 0) {
+            var activeCard = sections[currentSectionIndex];
+            if (activeCard && activeCard.contains(entry.target)) {
+              var steps = Array.prototype.slice.call(activeCard.querySelectorAll('.step'));
+              var stepIdx = steps.indexOf(entry.target);
+              if (stepIdx >= 0) {
+                var pct = Math.round(((stepIdx + 1) / steps.length) * 100);
+                var activeLi = navList.querySelector('li[data-index="' + currentSectionIndex + '"]');
+                if (activeLi) {
+                  var ring = activeLi.querySelector('.letter-ring');
+                  if (ring) {
+                    ring.style.background = 'conic-gradient(#075985 ' + pct + '%, #E0F2FE 0)';
+                  }
+                }
+              }
+            }
+          }
         });
-        document.querySelectorAll('.side-nav li').forEach(li => li.classList.remove('active'));
-        listItem.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, { rootMargin: '-20% 0px -60% 0px', threshold: 0.1 });
+
+      document.querySelectorAll('.step').forEach(function (step) {
+        stepObserver.observe(step);
+      });
     }
 
-    // --- Table-Based Print Frame Script for Perfect PDF Export ---
+    // --- Table-Based Print Frame Script for Perfect PDF Export (Template Section 5.2) ---
     function stripQuotes(v) { return String(v || '').trim().replace(/^["']+|["']+$/g, ''); }
 
     function buildPrintFrame() {
