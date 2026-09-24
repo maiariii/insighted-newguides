@@ -1,0 +1,1814 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InsightED SDO · SDO Size classification Study User Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:wght@600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --paper: #ffffff;
+      --canvas: #f0f9ff;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #bae6fd;
+      --accent: #075985;
+      --accent-soft: #e0f2fe;
+      --brand-blue: #0284c7;
+      --brand-navy: #08315f;
+      --brand-gold: #fbbf24;
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --warn: #d97706;
+      --warn-soft: #fef3c7;
+      --bad: #b91c1c;
+      --bad-soft: #fee2e2;
+      --radius: 18px;
+      --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --print-header: "InsightED SDO · SDO Size Classification Study User Guide";
+      --print-footer: "SDO Size Classification Study Operations Guide";
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(14, 165, 233, .16), transparent 32%),
+        radial-gradient(circle at 90% 100%, rgba(2, 132, 199, .10), transparent 36%),
+        linear-gradient(180deg, #f0f9ff 0%, #f8fbff 50%, #eef7ff 100%);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      line-height: 1.55;
+      padding-left: 96px;
+      transition: padding-left .2s ease-out;
+    }
+
+    body.nav-expanded {
+      padding-left: 310px;
+    }
+
+    .sheet {
+      width: min(1180px, calc(100% - 36px));
+      min-height: calc(100vh - 48px);
+      margin: 24px auto;
+      padding: 30px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: 0 20px 60px rgba(8, 49, 95, .08);
+    }
+
+    /* Print action bar on top */
+    .print-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .print-button {
+      appearance: none;
+      border: 1px solid var(--brand-navy);
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent) 100%);
+      color: #ffffff;
+      border-radius: 12px;
+      padding: 10px 18px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(8, 49, 95, .20);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .print-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(8, 49, 95, .30);
+    }
+
+    /* Hero / Cover Section */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 380px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 48px 30px;
+      margin-bottom: 24px;
+      border-radius: 24px;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(251, 191, 36, .18), transparent 28%),
+        radial-gradient(circle at 10% 85%, rgba(56, 189, 248, .30), transparent 32%),
+        linear-gradient(135deg, #08315f 0%, #075985 54%, #0284c7 100%);
+      box-shadow: 0 16px 40px rgba(8, 49, 95, .22);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -90px -120px auto;
+      width: 320px;
+      height: 320px;
+      border: 36px solid rgba(255, 255, 255, .08);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .15);
+      border: 1px solid rgba(255, 255, 255, .28);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 4.5vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -.04em;
+      font-weight: 900;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      max-width: 780px;
+      margin: 14px auto 0;
+      color: rgba(255, 255, 255, .88);
+      font-size: 16.5px;
+      line-height: 1.5;
+    }
+
+    .quick-note {
+      max-width: 840px;
+      margin: 20px auto 0;
+      padding: 13px 18px;
+      border: 1px solid rgba(186, 230, 253, .45);
+      border-left: 6px solid var(--brand-gold);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, .12);
+      backdrop-filter: blur(10px);
+      text-align: left;
+      font-size: 14px;
+      color: #f0f9ff;
+    }
+
+    .quick-note strong {
+      color: #fef08a;
+    }
+
+    /* Video Player Container */
+    .section-video {
+      margin: 0 0 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: #000000;
+      box-shadow: 0 10px 28px rgba(8, 49, 95, .10);
+      position: relative;
+    }
+
+    .section-video video {
+      display: block;
+      width: 100%;
+      max-height: 420px;
+      aspect-ratio: 16 / 9;
+      background: #091326;
+      object-fit: cover;
+    }
+
+    .video-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(8, 49, 95, .85);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      border: 1px solid rgba(255, 255, 255, .2);
+      z-index: 2;
+    }
+
+    /* Sticky Section Header Bar */
+    .guide-header {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      padding: 16px 20px;
+      border: 1px solid var(--line);
+      border-left: 8px solid var(--accent);
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 96% 0%, rgba(251, 191, 36, .18), transparent 24%),
+        linear-gradient(135deg, #ffffff 0%, var(--accent-soft) 100%);
+      box-shadow: 0 12px 32px rgba(8, 49, 95, .06);
+    }
+
+    .guide-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .guide-header .guide-kicker {
+      margin-bottom: 2px;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .guide-header .guide-title {
+      color: var(--ink);
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 2.8vw, 30px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -.03em;
+    }
+
+    .guide-header .guide-section {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    /* Section Cards */
+    .guide-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .section-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      background: var(--paper);
+      box-shadow: 0 6px 24px rgba(8, 49, 95, .04);
+    }
+
+    /* Chunked Navigation Display Modes */
+    body.cover-active .guide-header,
+    body.cover-active .guide-grid,
+    body.cover-active .footer-note {
+      display: none;
+    }
+
+    body.cover-active .sheet {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    body.cover-active .hero {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+
+    body.section-active .hero,
+    body.section-active .footer-note {
+      display: none;
+    }
+
+    body.section-active .guide-header {
+      display: flex;
+    }
+
+    body.section-active .section-card {
+      display: none;
+    }
+
+    body.section-active .section-card.is-active {
+      display: block;
+      animation: fadeIn .18s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-print-btn {
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .letter {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent) 100%);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 17px;
+      font-weight: 900;
+      flex: 0 0 auto;
+      box-shadow: 0 4px 12px rgba(7, 89, 133, .20);
+    }
+
+    .section-head h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(20px, 3vw, 28px);
+      line-height: 1.2;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .section-intro {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.5;
+    }
+
+    /* Micro-Step Chips Pill Bar */
+    .section-step-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 18px;
+      padding: 8px 12px;
+      border-radius: 14px;
+      background: var(--canvas);
+      border: 1px solid var(--line);
+    }
+
+    .step-chip {
+      appearance: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--accent);
+      padding: 5px 12px;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .step-chip:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+
+    .step-chip.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: 0 3px 8px rgba(7, 89, 133, .25);
+    }
+
+    /* Steps within Card */
+    .step {
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+
+    .step:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .step.is-current {
+      border-color: var(--brand-blue);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, .12);
+    }
+
+    .step h3 {
+      font-family: var(--font-heading);
+      color: var(--accent);
+      margin-bottom: 8px;
+      font-size: 16.5px;
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
+    ol,
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin: 5px 0;
+    }
+
+    /* Card Highlights & Callouts */
+    .callout {
+      margin: 14px 0 16px;
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: #0c4a6e;
+      font-size: 13.5px;
+      line-height: 1.45;
+    }
+
+    .callout.warning {
+      border-left-color: var(--warn);
+      background: var(--warn-soft);
+      color: #92400e;
+    }
+
+    .callout.success {
+      border-left-color: var(--good);
+      background: var(--good-soft);
+      color: #14532d;
+    }
+
+    .callout.info {
+      border-left-color: var(--brand-blue);
+      background: var(--accent-soft);
+      color: #075985;
+    }
+
+    /* Auth Code Box */
+    .code-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #08315f;
+      color: #fef08a;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 7px 14px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 14.5px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      margin: 6px 0;
+    }
+
+    .copy-btn {
+      appearance: none;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      border-radius: 6px;
+      padding: 2px 8px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      transition: background .15s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.32);
+    }
+
+    /* Simple Tables */
+    .status-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 13.5px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .status-table th,
+    .status-table td {
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .status-table th {
+      background: #f0f9ff;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    /* Status Tags */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 800;
+      font-family: var(--font-heading);
+    }
+
+    .tag.blue {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .tag.green {
+      background: var(--good-soft);
+      color: var(--good);
+    }
+
+    .tag.orange {
+      background: var(--warn-soft);
+      color: var(--warn);
+    }
+
+    .tag.red {
+      background: var(--bad-soft);
+      color: var(--bad);
+    }
+
+    .tag.purple {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+
+    /* Interactive Checklists */
+    .checklist {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 14px;
+      background: #fafafa;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all .15s ease;
+    }
+
+    .check-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+
+    .check-item input {
+      width: 17px;
+      height: 17px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+      cursor: pointer;
+      flex: 0 0 auto;
+    }
+
+    .check-item:has(input:checked) {
+      border-color: var(--good);
+      background: var(--good-soft);
+      color: #14532d;
+    }
+
+    .check-item:has(input:checked) span {
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+      text-decoration-color: rgba(22, 163, 74, .6);
+    }
+
+    .mini-flow {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .flow-card {
+      padding: 10px 8px;
+      border-radius: 12px;
+      background: #f0f9ff;
+      border: 1px solid var(--line);
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    .footer-note {
+      margin-top: 20px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--brand-navy) 0%, var(--accent) 100%);
+      color: #e0f2fe;
+      text-align: center;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+
+    /* Fixed Modern Sidebar */
+    .side-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 96px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding: 16px 10px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      background: linear-gradient(180deg, #08315F 0%, #075985 58%, #0284C7 100%);
+      color: #fff;
+      box-shadow: 14px 0 40px rgba(8, 49, 95, .18);
+      transition: width .16s ease-out, padding .16s ease-out;
+    }
+
+    .side-nav:not(.is-expanded) {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .side-nav:not(.is-expanded)::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
+    }
+
+    .side-nav.is-expanded {
+      width: 310px;
+      padding: 18px 14px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+    }
+
+    .side-nav.is-expanded::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .side-nav.is-expanded::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 999px;
+    }
+
+    .side-nav .side-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+      padding: 4px 4px 10px;
+      border-bottom: 1px solid rgba(224, 242, 254, .22);
+    }
+
+    .side-nav .side-brand {
+      padding: 0 6px;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      white-space: nowrap;
+      display: none;
+    }
+
+    .side-nav.is-expanded .side-brand {
+      display: block;
+    }
+
+    .side-toggle {
+      appearance: none;
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 900;
+      font-size: 15px;
+      transition: background .15s ease;
+      margin: 0 auto;
+    }
+
+    .side-nav.is-expanded .side-toggle {
+      margin: 0;
+    }
+
+    .side-toggle:hover {
+      background: rgba(255, 255, 255, .22);
+    }
+
+    .side-nav .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1 1 auto;
+    }
+
+    .side-nav a,
+    .side-nav .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-height: 40px;
+      padding: 7px 10px;
+      border-radius: 13px;
+      border: 1px solid transparent;
+      color: #e0f2fe;
+      background: transparent;
+      text-decoration: none;
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 1.3;
+      cursor: pointer;
+      text-align: left;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+      width: 100%;
+    }
+
+    .side-nav .nav-item:hover {
+      background: rgba(255, 255, 255, .12);
+      color: #ffffff;
+    }
+
+    .side-nav .nav-item.is-active {
+      background: rgba(255, 255, 255, .20);
+      border-color: rgba(251, 191, 36, .45);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+    }
+
+    /* Sub-items in sidebar */
+    .side-nav .nav-item.is-sub {
+      margin-left: 10px;
+      width: calc(100% - 10px);
+      min-height: 36px;
+      padding: 5px 8px;
+      font-size: 12px;
+      border-left: 2px solid rgba(251, 191, 36, .35);
+      border-radius: 0 10px 10px 0;
+    }
+
+    .side-nav .nav-item.is-sub .side-badge {
+      width: 24px;
+      height: 24px;
+      font-size: 11px;
+      border-radius: 7px;
+      background: rgba(255, 255, 255, .12);
+    }
+
+    .side-badge {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, .16);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 12.5px;
+      font-weight: 900;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, .22);
+    }
+
+    .side-nav .nav-item.is-active .side-badge {
+      background: var(--brand-gold);
+      color: #08315f;
+      border-color: var(--brand-gold);
+      font-weight: 900;
+    }
+
+    .side-label {
+      white-space: normal;
+      word-break: normal;
+      overflow-wrap: break-word;
+      line-height: 1.3;
+      display: none;
+      flex: 1 1 auto;
+    }
+
+    .side-nav.is-expanded .side-label {
+      display: block;
+    }
+
+    .side-footer {
+      margin-top: auto;
+      display: grid;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(224, 242, 254, .22);
+    }
+
+    .side-print-btn {
+      appearance: none;
+      width: 100%;
+      padding: 9px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .24);
+      background: rgba(255, 255, 255, .10);
+      color: #ffffff;
+      font-family: var(--font-heading);
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background .15s ease;
+    }
+
+    .side-print-btn:hover {
+      background: rgba(255, 255, 255, .20);
+    }
+
+    .side-print-btn span {
+      display: none;
+    }
+
+    .side-nav.is-expanded .side-print-btn span {
+      display: inline;
+    }
+
+    /* Mobile Adaptations */
+    @media (max-width: 900px) {
+      body {
+        padding-left: 0 !important;
+        padding-top: 60px;
+      }
+
+      .side-nav {
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: auto;
+        width: 100% !important;
+        height: 56px;
+        flex-direction: row;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 0;
+      }
+
+      .side-nav .side-top {
+        margin-bottom: 0;
+        padding: 0;
+        border-bottom: 0;
+      }
+
+      .side-nav .side-brand {
+        display: none !important;
+      }
+
+      .side-nav .nav-list {
+        flex-direction: row;
+        overflow-x: auto;
+        padding: 0 6px;
+      }
+
+      .side-nav a,
+      .side-nav .nav-item {
+        min-height: 36px;
+        padding: 4px 8px;
+        width: auto;
+      }
+
+      .side-nav .nav-item.is-sub {
+        margin-left: 0;
+        width: auto;
+        border-left: 0;
+      }
+
+      .side-label {
+        display: none !important;
+      }
+
+      .side-footer {
+        display: none !important;
+      }
+
+      .sheet {
+        width: min(100% - 16px, 1140px);
+        padding: 16px;
+        margin: 10px auto;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 30px 16px;
+      }
+
+      .section-card {
+        padding: 16px;
+      }
+
+      .mini-flow {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* High-Fidelity Print Engine */
+    @media print {
+      @page {
+        size: A4;
+        margin: 12mm;
+      }
+
+      .side-nav,
+      .guide-header,
+      .print-actions,
+      .print-button,
+      .section-step-nav,
+      .section-video,
+      .copy-btn {
+        display: none !important;
+      }
+
+      body {
+        padding: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 10pt;
+        line-height: 1.4;
+      }
+
+      .sheet {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+
+      .hero {
+        display: block !important;
+        min-height: auto !important;
+        padding: 14mm 8mm !important;
+        margin: 0 0 6mm !important;
+        background: #08315f !important;
+        color: #ffffff !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .hero h1 {
+        font-size: 20pt !important;
+        color: #ffffff !important;
+      }
+
+      .hero .subtitle {
+        font-size: 10pt !important;
+      }
+
+      .guide-grid,
+      .footer-note,
+      .section-card {
+        display: block !important;
+      }
+
+      .section-card {
+        margin: 0 0 8mm !important;
+        padding: 0 !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .section-head {
+        display: flex !important;
+        border-bottom: 1px solid #bae6fd !important;
+      }
+
+      .section-head h2 {
+        font-size: 15pt !important;
+      }
+
+      .step {
+        border: 1px solid #e2e8f0 !important;
+        margin-bottom: 5mm !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .step h3 {
+        font-size: 11.5pt !important;
+      }
+
+      .tag,
+      .check-item,
+      .callout,
+      .hero,
+      .letter,
+      .flow-card,
+      .code-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+
+<body class="cover-active">
+  <main class="sheet">
+
+    <!-- Top Action Bar (Print / PDF) -->
+    <div class="print-actions">
+      <button class="print-button" type="button" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <path d="M6 14h12v8H6z" />
+        </svg> Print / Save as PDF
+      </button>
+    </div>
+
+    <!-- Title / Cover Hero -->
+    <header class="hero" id="cover">
+      <div class="hero-inner">
+        <div class="eyebrow">InsightED SDO · Size Classification Study</div>
+        <h1>SDO Size Classification Study User Guide</h1>
+        <p class="subtitle">A step-by-step guide for SDO personnel to complete, validate, and submit critical division
+          profiling data—from school and teacher counts to geographic reach—for DepEd SDO size assessment and
+          reclassification.</p>
+        <div class="quick-note">
+          <strong>Already have an InsightED SDO Account?</strong> If you already use InsightED (e.g., for SIIF, user
+          lookup, or monitoring), you do <strong>not</strong> need a new account! Simply use your existing email and
+          password to sign in.
+        </div>
+      </div>
+    </header>
+
+    <!-- Sticky Section Header Bar -->
+    <header class="guide-header" id="guideHeader">
+      <div class="guide-header-left">
+        <div class="letter" id="headerLetter">A</div>
+        <div>
+          <div class="guide-kicker">SDO SIZE CLASSIFICATION STUDY · USER MANUAL</div>
+          <div class="guide-title" id="headerTitle">Section Title</div>
+          <div class="guide-section" id="headerSub">Follow the operational steps below.</div>
+        </div>
+      </div>
+      <button class="print-button" type="button" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+          <path d="M6 14h12v8H6z" />
+        </svg> Print / Save as PDF
+      </button>
+    </header>
+
+    <!-- Chunked Guide Sections Grid -->
+    <section class="guide-grid">
+
+      <!-- SECTION A: OPENING THE SDO RECLASSIFICATION SURVEY -->
+      <article class="section-card" data-letter="A">
+        <div class="section-head">
+          <div class="letter">A</div>
+          <h2>Opening the SDO Reclassification Survey</h2>
+        </div>
+        <p class="section-intro">Locate and open the SDO Size Classification Study module card from The Nexus dashboard.
+        </p>
+
+        <div class="step">
+          <h3>Step 1: Locate Module Card on The Nexus</h3>
+          <ol>
+            <li><strong>Locate the SDO Size Classification Study module:</strong> On <strong>The Nexus</strong> , look
+              through the available module cards for the purple/indigo icon with a target
+              symbol and the subtitle <span class="tag purple">Division Survey</span>.</li>
+            <li>Click on the card. You will immediately be taken to the <strong>Login page</strong>.</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- SECTION B: HOW TO LOG IN & ACCESS YOUR ACCOUNT -->
+      <article class="section-card" data-letter="B">
+        <div class="section-head">
+          <div class="letter">B</div>
+          <h2>How to Log In &amp; Access Your Account</h2>
+        </div>
+        <p class="section-intro">Access your existing InsightED SDO account or register a new account with your
+          division's official authorization code.</p>
+
+        <div class="callout success">
+          <strong>Already have an InsightED SDO Account?</strong> If you already use InsightED (e.g., for SIIF, user
+          lookup, or esf7), you do not need a new account! Simply use your existing email and password.
+        </div>
+
+        <div class="step">
+          <h3>Step 1: Logging In with an Existing Account</h3>
+          <ol>
+            <li>Type in your official <strong>DepEd Email</strong> and <strong>Password</strong>.</li>
+            <li>Click <strong>Sign In</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: First-Time Registration (If you don't have an account yet)</h3>
+          <ol>
+            <li>Click <strong>Register</strong> on the login screen.</li>
+            <li>Enter your full name, official DepEd email, and create a password.</li>
+            <li>Select your assigned <strong>Region</strong> and <strong>Division</strong> (e.g., <em>Region V –
+                Division of Camarines Sur</em>).</li>
+            <li>Select your role as <strong>School Division Office</strong>.</li>
+            <li>When asked for the <strong>Authorization Code</strong>, coordinate with the <strong>STRIDE Team</strong>
+              and email them at <a href="mailto:support.stride@deped.gov.ph"
+                style="color: var(--accent); font-weight: 700; text-decoration: underline;">support.stride@deped.gov.ph</a>.
+            </li>
+            <li>Input the authorization code provided by the STRIDE Team, complete registration, and sign in.</li>
+          </ol>
+          <div class="callout warning">
+            <strong>Access Protection:</strong> Ensure the Authorization Code is only requested and entered by
+            designated SDO
+            personnel responsible for division classification submissions.
+          </div>
+        </div>
+      </article>
+
+      <!-- SECTION C: UNDERSTANDING THE SCREEN LAYOUT -->
+      <article class="section-card" data-letter="C" data-badge="C">
+        <div class="section-head">
+          <div class="letter">C</div>
+          <h2>Understanding the Screen Layout</h2>
+        </div>
+        <p class="section-intro">The survey interface is designed to make filling out the form easy and stress-free.</p>
+
+        <div class="step">
+          <h3>Step 1: Top Navigation Bar</h3>
+          <ul>
+            <li><strong>Back Arrow (&lt;):</strong> Click this anytime to return to the Nexus dashboard.</li>
+            <li><strong>Theme Button (Sun / Moon):</strong> Toggle between light mode and dark mode to suit your screen
+              preference.</li>
+            <li><strong>Progress Bar:</strong> A colored bar at the top that tracks your completion percentage as you
+              finish each step.</li>
+          </ul>
+          <div class="callout info">
+            <strong>Check your Division Name:</strong> At the very top left of the screen, make sure your division name
+            is displayed correctly (e.g., <em>Division of Camarines Sur</em>). All data you enter is automatically tied
+            to your specific division.
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Step Tabs (Steps 1 to 7)</h3>
+          <ul>
+            <li>Shows where you currently are in the survey.</li>
+            <li>Once you've completed a step, you can click on its tab to quickly jump back and review your answers.
+            </li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Bottom Navigation Buttons</h3>
+          <ul>
+            <li><strong>"Previous Step"</strong> and <strong>"Next Step":</strong> Move between pages safely without
+              losing your work.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SECTION D: SURVEY WIZARD OVERVIEW -->
+      <article class="section-card" data-letter="D" data-badge="D">
+        <div class="section-head">
+          <div class="letter">D</div>
+          <h2>Filling Out the Survey (Step-by-Step)</h2>
+        </div>
+        <p class="section-intro">The survey is broken down into 7 simple steps. Select each step below from the sidebar
+          or click through the wizard tabs.</p>
+
+        <div class="step">
+          <h3>Step 1: Overview of the 7 Survey Steps</h3>
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>STEP NUMBER</th>
+                <th>STEP TITLE</th>
+                <th>CORE DATA CAPTURED</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Step 1</strong></td>
+                <td>Current Classification</td>
+                <td>Select Small, Medium, Large, or Very Large Division.</td>
+              </tr>
+              <tr>
+                <td><strong>Step 2</strong></td>
+                <td>Total School Count</td>
+                <td>Operational schools with ID, without ID, To date.</td>
+              </tr>
+              <tr>
+                <td><strong>Step 3</strong></td>
+                <td>Authorized Teachers</td>
+                <td>Total Authorized Teachers, Elementary &amp; Secondary balance rule.</td>
+              </tr>
+              <tr>
+                <td><strong>Step 4</strong></td>
+                <td>School Districts</td>
+                <td>Total public School Districts in the division.</td>
+              </tr>
+              <tr>
+                <td><strong>Step 5</strong></td>
+                <td>Authorized PSDS Count</td>
+                <td>Total authorized PSDS positions.</td>
+              </tr>
+              <tr>
+                <td><strong>Step 6</strong></td>
+                <td>Geography &amp; Access</td>
+                <td>Part A: 5 Farthest Schools &amp; Terrain %; Part B: Island schools.</td>
+              </tr>
+              <tr>
+                <td><strong>Step 7</strong></td>
+                <td>Review &amp; Final Submission</td>
+                <td>Validation check, summary cards, and confirmation modal.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.I: STEP 1: CURRENT CLASSIFICATION -->
+      <article class="section-card" data-letter="D" data-badge="I" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">I</div>
+          <h2>Step 1: Current Classification</h2>
+        </div>
+        <p class="section-intro">Select your division's current official DepEd size classification.</p>
+
+        <div class="step">
+          <h3>Step 1: Choose Current Division Size</h3>
+          <p>Click on the radio option that applies to your division:</p>
+          <ul>
+            <li><span class="tag blue">Small Division</span></li>
+            <li><span class="tag blue">Medium Division</span></li>
+            <li><span class="tag purple">Large Division</span></li>
+            <li><span class="tag orange">Very Large Division</span></li>
+          </ul>
+          <p style="margin-top: 10px;">Click <strong>Next Step</strong> to proceed.</p>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.II: STEP 2: TOTAL SCHOOL COUNT -->
+      <article class="section-card" data-letter="D" data-badge="II" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">II</div>
+          <h2>Step 2: Total School Count</h2>
+        </div>
+        <p class="section-intro">Record the active schools under your division's jurisdiction.</p>
+
+        <div class="step">
+          <h3>Step 1: Enter School Figures</h3>
+          <ul>
+            <li><strong>Operational Schools with School ID:</strong> Enter the number of schools that have an official
+              6-digit DepEd School ID.</li>
+            <li><strong>Operational Schools without School ID:</strong> Enter newly established, annexed, or operating
+              schools that do not have a permanent ID yet. <em>(Enter 0 if you don't have any).</em></li>
+            <li><strong>Total School Count:</strong> You do not need to compute this! The system will automatically add
+              the two numbers together for you.</li>
+            <li><strong>As of Date:</strong> Select the cutoff date of your records (defaults to today's date).</li>
+          </ul>
+          <p style="margin-top: 10px;">Click <strong>Next Step</strong>.</p>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.III: STEP 3: AUTHORIZED TEACHERS -->
+      <article class="section-card" data-letter="D" data-badge="III" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">III</div>
+          <h2>Step 3: Authorized Teachers</h2>
+        </div>
+        <p class="section-intro">Record your division's total plantilla/authorized teacher positions.</p>
+
+        <div class="step">
+          <h3>Step 1: Enter Teacher Plantilla Counts</h3>
+          <ul>
+            <li><strong>Total Authorized Teachers:</strong> The overall total number of authorized teacher items in your
+              division.</li>
+            <li><strong>Elementary Teacher Count:</strong> Number of authorized teachers assigned to Elementary schools.
+            </li>
+            <li><strong>Secondary Teacher Count:</strong> Number of authorized teachers assigned to Junior and Senior
+              High schools.</li>
+          </ul>
+
+          <div class="callout warning">
+            <strong>The Balance Rule:</strong> Elementary Teachers + Secondary Teachers <strong>MUST</strong> equal the
+            Total Authorized Teachers! A live balance indicator on your screen will show a green checkmark when your
+            numbers match perfectly. If they do not match, the system will not
+            allow you to proceed to the next step.
+          </div>
+          <p style="margin-top: 10px;">Click <strong>Next Step</strong>.</p>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.IV: STEP 4: SCHOOL DISTRICTS -->
+      <article class="section-card" data-letter="D" data-badge="IV" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">IV</div>
+          <h2>Step 4: School Districts</h2>
+        </div>
+        <p class="section-intro">Record the total number of established School Districts in your division.</p>
+
+        <div class="step">
+          <h3>Step 1: Enter Public School District Count</h3>
+          <ul>
+            <li>Type in the total number of established Public School Districts in your division (e.g.,
+              <code>24</code>).
+            </li>
+          </ul>
+          <p style="margin-top: 10px;">Click <strong>Next Step</strong>.</p>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.V: STEP 5: AUTHORIZED PSDS COUNT -->
+      <article class="section-card" data-letter="D" data-badge="V" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">V</div>
+          <h2>Step 5: Authorized PSDS Count</h2>
+        </div>
+        <p class="section-intro">Record the total number of authorized PSDS positions in your division.</p>
+
+        <div class="step">
+          <h3>Step 1: Enter PSDS Position Count</h3>
+          <ul>
+            <li>Enter the total number of authorized Public Schools District Supervisors (PSDS) positions in your
+              division (e.g., <code>24</code>).</li>
+          </ul>
+          <p style="margin-top: 10px;">Click <strong>Next Step</strong>.</p>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.VI: STEP 6: GEOGRAPHY, TERRAIN & ACCESS -->
+      <article class="section-card" data-letter="D" data-badge="VI" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">VI</div>
+          <h2>Step 6: Geography, Terrain &amp; Access</h2>
+        </div>
+        <p class="section-intro">This step captures the logistical realities of your division across two parts.</p>
+
+        <div class="step">
+          <h3>Part A: Select 5 Farthest Schools</h3>
+          <p>You must identify exactly 5 of the farthest or most difficult-to-reach schools from your SDO.</p>
+          <ol>
+            <li><strong>Search &amp; Select:</strong> Click the search box in the dropdown. Type the name, School ID, or
+              municipality of the school. Click on the school to add it. Repeat until you have added 5 schools.</li>
+            <li>For each of the 5 schools, fill in:
+              <ul>
+                <li><strong>Distance (in km):</strong> One-way distance in kilometers from your SDO (e.g.,
+                  <code>72.5</code>).
+                </li>
+                <li><strong>Travel Time:</strong> Enter estimated travel time in hours and minutes for each mode:
+                  <ul>
+                    <li>By Land (vehicle, motorcycle, etc.)</li>
+                    <li>By Water (boat, motorized banca)</li>
+                    <li>By Walking / Hiking <em>.</em></li>
+                  </ul>
+                </li>
+                <li><strong>Primary Mode of Transport:</strong> Select how people usually reach the school (e.g.,
+                  Habal-habal/Motorcycle, Public Van/Bus, Boat/Banca, Walking).</li>
+                <li><strong>Terrain Breakdown (%):</strong> Estimate the percentage breakdown of the travel route:
+                  <ul>
+                    <li>Hilly / Rugged %</li>
+                    <li>Flat Land %</li>
+                    <li>Mountainous / Water %</li>
+                  </ul>
+                  <div class="callout warning">
+                    <strong>100% Rule:</strong> These three terrain percentages must add up to exactly 100% (e.g., 50 +
+                    30 + 20).
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Part B: Island Municipalities &amp; Schools (Optional)</h3>
+          <ul>
+            <li>If your division covers island municipalities, select them from the list.</li>
+            <li>Tag any specific island schools that require sea crossing.</li>
+            <li>If your division is purely landlocked, you can leave this section blank.</li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- SUB-SECTION D.VII: STEP 7: REVIEW & FINAL SUBMISSION -->
+      <article class="section-card" data-letter="D" data-badge="VII" data-sub="true" data-parent="D">
+        <div class="section-head">
+          <div class="letter">VII</div>
+          <h2>Step 7: Review &amp; Final Submission</h2>
+        </div>
+        <p class="section-intro">This is your final check before submitting.</p>
+
+        <div class="step">
+          <h3>Step 1: Review Your Data &amp; Check Warnings</h3>
+          <ul>
+            <li><strong>Review Your Data:</strong> Look over all the cards summarizing your answers from Steps 1 through
+              6.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Submit Your Survey</h3>
+          <ol>
+            <li>When everything is complete and green, click the <strong>Next Step</strong> button.
+            </li>
+            <li>A summary will appear.</li>
+            <li>Give it one final look, then click <strong>Submit Survey Response button</strong>.</li>
+            <li>Click confirm & submit</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- SECTION E: WHAT HAPPENS AFTER SUBMITTING -->
+      <article class="section-card" data-letter="E">
+        <div class="section-head">
+          <div class="letter">E</div>
+          <h2>What Happens After Submitting?</h2>
+        </div>
+        <p class="section-intro">Understand confirmation notifications, protected mode, and making corrections.</p>
+
+        <div class="step">
+          <h3>Step 1: Submission Confirmation &amp; Synchronization</h3>
+          <ul>
+            <li>A green notification will confirm: <span class="tag green">SDO Reclassification Survey response
+                submitted successfully!</span></li>
+            <li>The survey enters a <strong>Protected Submitted Mode</strong> to prevent accidental edits.</li>
+            <li>Your submitted data is securely synchronized to the central office databases.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Making Corrections (Editing a Submitted Survey)</h3>
+          <p>If you realize you made a typo or your division records are updated:</p>
+          <ol>
+            <li>Re-open the <strong>SDO Size Classification Study</strong> card.</li>
+            <li>Click the <strong>Edit/Update Response</strong> button at the top right.</li>
+            <li>Make your desired changes on any step.</li>
+            <li>Go to Step 7 and click <strong>Submit Survey Response button.</strong>.</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- SECTION F: QUICK TROUBLESHOOTING & FAQ -->
+      <article class="section-card" data-letter="F">
+        <div class="section-head">
+          <div class="letter">F</div>
+          <h2>Quick Troubleshooting &amp; FAQ</h2>
+        </div>
+        <p class="section-intro">Quick solutions to common validation issues and account questions.</p>
+
+        <div class="step">
+          <h3>Step 1: Problem &amp; Solution Matrix</h3>
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>PROBLEM</th>
+                <th>SIMPLE SOLUTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>"Elementary and Secondary teachers do not match Total"</strong></td>
+                <td>Check your numbers in Step 3. Elementary + Secondary must equal the exact number you typed in Total
+                  Authorized Teachers.</td>
+              </tr>
+              <tr>
+                <td><strong>"Select exactly 5 farthest schools"</strong></td>
+                <td>In Step 6, make sure you have added 5 different schools and filled in their travel time and terrain
+                  percentages.</td>
+              </tr>
+              <tr>
+                <td><strong>"Terrain percentages must equal 100%"</strong></td>
+                <td>In Step 6, check the 3 terrain boxes (Hilly, Flat, Mountainous). Their sum must be exactly 100
+                  (e.g., 50 + 30 + 20).</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Need Help? Technical Support Escalation</h3>
+          <p>If you need technical assistance or need your division assignment adjusted, please contact the
+            <strong>STRIDE Team and email them at <a href="mailto:support.stride@deped.gov.ph" style="color: var(--accent); font-weight: 700; text-decoration: underline;">support.stride@deped.gov.ph</a>.</strong>
+          </p>
+        </div>
+      </article>
+
+    </section>
+
+    <div class="footer-note">
+      InsightED SDO Flow: Access module ➔ Sign in &amp; verify division ➔ Fill Steps 1 to 6 ➔ Balance teacher numbers ➔ Review &amp; submit response.
+    </div>
+
+  </main>
+
+  <!-- Script for Dynamic Navigation, Step Pills, Auto-Collapsible Sidebar & Print Framing -->
+  <script>
+    (function () {
+      var body = document.body;
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.section-card'));
+
+      // Add Print Button to each Section Header
+      cards.forEach(function (card) {
+        var head = card.querySelector('.section-head');
+        if (head && !head.querySelector('.section-print-btn')) {
+          var pBtn = document.createElement('button');
+          pBtn.className = 'print-button section-print-btn';
+          pBtn.type = 'button';
+          pBtn.onclick = function () { window.print(); };
+          pBtn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg> Print / Save as PDF';
+          head.appendChild(pBtn);
+        }
+      });
+
+      // Create Modern Collapsible Sidebar
+      var aside = document.createElement('aside');
+      aside.className = 'side-nav';
+      aside.innerHTML = [
+        '<div class="side-top">',
+        '  <span class="side-brand">SDO SIZE SURVEY GUIDE</span>',
+        '  <button class="side-toggle" type="button" title="Toggle Sidebar">☰</button>',
+        '</div>',
+        '<div class="nav-list"></div>',
+        '<div class="side-footer">',
+        '  <button class="side-print-btn" type="button" onclick="window.print()">',
+        '    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>',
+        '    <span>Print / PDF</span>',
+        '  </button>',
+        '</div>'
+      ].join('');
+      document.body.appendChild(aside);
+
+      var navList = aside.querySelector('.nav-list');
+      var headerLetter = document.getElementById('headerLetter');
+      var headerTitle = document.getElementById('headerTitle');
+      var headerSub = document.getElementById('headerSub');
+      var sideToggle = aside.querySelector('.side-toggle');
+
+      var navItemIndex = 0;
+
+      function makeNavButton(label, letter, navIdx, isSub, onClick) {
+        var btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'nav-item' + (isSub ? ' is-sub' : '');
+        btn.dataset.index = navIdx;
+        btn.title = label;
+        btn.innerHTML = '<span class="side-badge">' + letter + '</span><span class="side-label">' + label + '</span>';
+        btn.addEventListener('click', onClick);
+        navList.appendChild(btn);
+        return btn;
+      }
+
+      // 1. Cover / Title Page Navigation Item
+      makeNavButton('Title Page', '★', -1, false, function () {
+        showCover();
+      });
+
+      // 2. Sections Navigation Items
+      cards.forEach(function (card, cardIndex) {
+        var isSub = card.dataset.parent === 'forms' || card.dataset.sub === 'true' || card.dataset.parent === 'D';
+        var badge = card.dataset.badge || card.dataset.letter || card.querySelector('.letter').textContent.trim();
+        var title = card.querySelector('h2').textContent.trim();
+
+        var currentNavIdx = navItemIndex++;
+        makeNavButton(title, badge, currentNavIdx, isSub, function () {
+          showSection(cardIndex, null, currentNavIdx);
+        });
+      });
+
+      var navItems = Array.prototype.slice.call(aside.querySelectorAll('.nav-item'));
+
+      function setActiveNav(index) {
+        navItems.forEach(function (item) {
+          item.classList.toggle('is-active', Number(item.dataset.index) === index);
+        });
+      }
+
+      function buildStepNav(card) {
+        var old = card.querySelector('.section-step-nav');
+        if (old) old.remove();
+
+        var steps = Array.prototype.slice.call(card.querySelectorAll('.step'));
+        if (!steps.length) return;
+
+        var wrap = document.createElement('div');
+        wrap.className = 'section-step-nav';
+
+        steps.forEach(function (step, index) {
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'step-chip';
+
+          var h3 = step.querySelector('h3');
+          var text = h3 ? h3.textContent.trim() : '';
+          var romanMatch = text.match(/^(I|II|III|IV|V|VI|VII|VIII|IX|X)\./i);
+          var partMatch = text.match(/^(Part [A-Z])/i);
+          if (romanMatch) {
+            chip.textContent = romanMatch[1].toUpperCase();
+          } else if (partMatch) {
+            chip.textContent = partMatch[1];
+          } else {
+            chip.textContent = 'Step ' + (index + 1);
+          }
+
+          chip.addEventListener('click', function () {
+            step.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            markStep(card, index);
+          });
+          wrap.appendChild(chip);
+        });
+
+        var firstStep = card.querySelector('.step');
+        if (firstStep) {
+          card.insertBefore(wrap, firstStep);
+        }
+        markStep(card, 0);
+      }
+
+      function markStep(card, index) {
+        var steps = Array.prototype.slice.call(card.querySelectorAll('.step'));
+        var chips = Array.prototype.slice.call(card.querySelectorAll('.step-chip'));
+
+        steps.forEach(function (step, i) {
+          step.classList.toggle('is-current', i === index);
+        });
+
+        chips.forEach(function (chip, i) {
+          chip.classList.toggle('is-active', i === index);
+        });
+      }
+
+      function showCover() {
+        body.classList.add('cover-active');
+        body.classList.remove('section-active');
+        cards.forEach(function (card) {
+          card.classList.remove('is-active');
+        });
+        setActiveNav(-1);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function showSection(index, targetStep, navIdx) {
+        var card = cards[index];
+        if (!card) return;
+
+        body.classList.remove('cover-active');
+        body.classList.add('section-active');
+
+        cards.forEach(function (item, i) {
+          item.classList.toggle('is-active', i === index);
+        });
+
+        var letter = card.dataset.badge || card.dataset.letter || card.querySelector('.letter').textContent.trim();
+        var title = card.querySelector('h2').textContent.trim();
+
+        if (headerLetter) headerLetter.textContent = letter;
+        if (headerTitle) headerTitle.textContent = title;
+        if (headerSub) headerSub.textContent = 'Follow the operational steps below.';
+
+        if (typeof navIdx === 'number') {
+          setActiveNav(navIdx);
+        }
+
+        buildStepNav(card);
+
+        if (targetStep) {
+          setTimeout(function () {
+            targetStep.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 60);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+
+      // Sidebar expand/collapse toggle
+      sideToggle.addEventListener('click', function () {
+        aside.classList.toggle('is-expanded');
+        body.classList.toggle('nav-expanded');
+      });
+
+      // Hover to auto-expand sidebar on desktop
+      aside.addEventListener('mouseenter', function () {
+        if (window.innerWidth > 900) {
+          aside.classList.add('is-expanded');
+          body.classList.add('nav-expanded');
+        }
+      });
+
+      aside.addEventListener('mouseleave', function () {
+        if (window.innerWidth > 900) {
+          aside.classList.remove('is-expanded');
+          body.classList.remove('nav-expanded');
+        }
+      });
+
+      // Intersection Observer for active step highlights
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var card = entry.target.closest('.section-card');
+            if (card && card.classList.contains('is-active')) {
+              var steps = Array.prototype.slice.call(card.querySelectorAll('.step'));
+              markStep(card, steps.indexOf(entry.target));
+            }
+          }
+        });
+      }, { rootMargin: '-20% 0px -60% 0px', threshold: 0.1 });
+
+      cards.forEach(function (card) {
+        Array.prototype.slice.call(card.querySelectorAll('.step')).forEach(function (step) {
+          observer.observe(step);
+        });
+      });
+
+      // Initial State: Cover active
+      setActiveNav(-1);
+    })();
+  </script>
+</body>
+
+</html>
