@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>InsightED · User Guides Hub</title>
+  <meta name="description"
+    content="Central portal for DepEd InsightED operations manuals, video guides, and user documentation across all systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --brand-navy: #08315f;
+      --brand-blue: #0284c7;
+      --brand-light-blue: #38bdf8;
+      --brand-gold: #fbbf24;
+      --brand-amber: #f59e0b;
+      --accent: #075985;
+      --accent-soft: #e0f2fe;
+      --ink: #0f172a;
+      --muted: #64748b;
+      --line: #e2e8f0;
+      --card-bg: #ffffff;
+      --canvas: #f8fafc;
+      --good: #16a34a;
+      --good-soft: #dcfce7;
+      --purple: #7c3aed;
+      --purple-soft: #f3e8ff;
+      --font-heading: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-body: "DM Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(14, 165, 233, .12), transparent 28%),
+        radial-gradient(circle at 90% 100%, rgba(2, 132, 199, .10), transparent 32%),
+        linear-gradient(180deg, #f0f9ff 0%, #f8fbff 40%, #eef7ff 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Container */
+    .container {
+      width: min(1260px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Header Nav */
+    .site-nav {
+      padding: 20px 0;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(186, 230, 253, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .brand-divider {
+      height: 28px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .brand-tag {
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 5px 12px;
+      border-radius: 999px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 50px 0 30px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: #ffffff;
+      border: 1px solid rgba(2, 132, 199, 0.25);
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-size: 12.5px;
+      font-weight: 800;
+      color: var(--brand-navy);
+      box-shadow: 0 4px 16px rgba(8, 49, 95, .06);
+      margin-bottom: 18px;
+    }
+
+    .hero-badge .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--good);
+      box-shadow: 0 0 0 4px var(--good-soft);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.4);
+      }
+
+      70% {
+        box-shadow: 0 0 0 8px rgba(22, 163, 74, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+      }
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: clamp(30px, 4.5vw, 48px);
+      font-weight: 900;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      color: var(--brand-navy);
+      margin-bottom: 14px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(135deg, var(--brand-blue) 0%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 16.5px;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 32px;
+    }
+
+    /* Controls Bar: Search & Category Pills */
+    .controls-wrap {
+      max-width: 860px;
+      margin: 0 auto 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .search-box {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 16px 20px 16px 50px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      font-family: var(--font-body);
+      font-size: 15.5px;
+      color: var(--ink);
+      box-shadow: 0 8px 30px rgba(8, 49, 95, .06);
+      transition: all .2s ease;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--brand-blue);
+      box-shadow: 0 8px 30px rgba(2, 132, 199, .15), 0 0 0 4px var(--accent-soft);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* Category Filter Pills */
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .pill-btn {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .16s ease;
+      box-shadow: 0 2px 8px rgba(8, 49, 95, .03);
+    }
+
+    .pill-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--brand-blue);
+      color: var(--accent);
+    }
+
+    .pill-btn.is-active {
+      background: var(--brand-navy);
+      border-color: var(--brand-navy);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(8, 49, 95, .20);
+    }
+
+    /* Guides Grid */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    /* Guide Card */
+    .guide-card {
+      position: relative;
+      background: var(--card-bg);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(8, 49, 95, .04);
+      transition: transform .22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .22s ease, border-color .22s ease;
+      text-decoration: none;
+      color: inherit;
+      overflow: hidden;
+    }
+
+    .guide-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(8, 49, 95, .12);
+      border-color: var(--brand-blue);
+    }
+
+    .guide-card.featured {
+      border: 2px solid #bae6fd;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(2, 132, 199, .09), transparent 40%),
+        #ffffff;
+    }
+
+    .guide-card.featured:hover {
+      border-color: var(--brand-blue);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .10);
+    }
+
+    .icon-indigo {
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    }
+
+    .icon-blue {
+      background: linear-gradient(135deg, #0284c7 0%, #075985 100%);
+    }
+
+    .icon-navy {
+      background: linear-gradient(135deg, #08315f 0%, #0f172a 100%);
+    }
+
+    .icon-emerald {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    }
+
+    .icon-amber {
+      background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+    }
+
+    .icon-violet {
+      background: linear-gradient(135deg, #9333ea 0%, #6b21a8 100%);
+    }
+
+    .card-badges {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .badge-pill.new {
+      background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(239, 68, 68, .25);
+    }
+
+    .badge-pill.blue {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .badge-pill.navy {
+      background: #e2e8f0;
+      color: var(--brand-navy);
+    }
+
+    .badge-pill.emerald {
+      background: var(--good-soft);
+      color: var(--good);
+    }
+
+    .badge-pill.purple {
+      background: var(--purple-soft);
+      color: var(--purple);
+    }
+
+    .card-body {
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-kicker {
+      font-family: var(--font-heading);
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--brand-blue);
+      margin-bottom: 6px;
+    }
+
+    .card-title {
+      font-family: var(--font-heading);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 20px;
+      flex: 1 1 auto;
+    }
+
+    /* Meta feature tags */
+    .card-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    .feat-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 9px;
+      background: #f1f5f9;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    /* Card CTA footer */
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .cta-text {
+      font-family: var(--font-heading);
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--brand-blue);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap .18s ease;
+    }
+
+    .guide-card:hover .cta-text {
+      gap: 10px;
+      color: var(--accent);
+    }
+
+    .cta-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .guide-card:hover .cta-icon {
+      background: var(--brand-blue);
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    /* Empty state for search */
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 60px 20px;
+      background: #ffffff;
+      border-radius: var(--radius-lg);
+      border: 1px dashed var(--line);
+      display: none;
+    }
+
+    .no-results h3 {
+      font-family: var(--font-heading);
+      font-size: 18px;
+      color: var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .no-results p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .site-footer {
+      margin-top: auto;
+      padding: 30px 0;
+      background: var(--brand-navy);
+      color: #94a3b8;
+      font-size: 13.5px;
+      text-align: center;
+    }
+
+    .site-footer a {
+      color: var(--brand-light-blue);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .guides-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-divider,
+      .brand-tag {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Sticky Top Navigation -->
+  <header class="site-nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand-wrap">
+        <img src="insighted_logo_horizontal.png" alt="DepEd InsightED" class="brand-logo" />
+        <span class="brand-divider"></span>
+        <span class="brand-tag">User Guides Hub</span>
+      </a>
+      <span style="font-size: 13px; color: var(--muted); font-weight: 600;">
+        Official Operations &amp; Platform Guides
+      </span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+
+    <!-- Hero Introduction -->
+    <section class="hero-section">
+      <div class="hero-badge">
+        <span class="pulse"></span>
+        <span>InsightED Platform Documentation</span>
+      </div>
+      <h1 class="hero-title">
+        Operations &amp; System <span>User Guides</span>
+      </h1>
+      <p class="hero-desc">
+        Select a module below to open interactive user guides featuring step-by-step instructions, video
+        walkthroughs, input requirements, and printable manuals.
+      </p>
+
+      <!-- Controls: Real-time search & Category filters -->
+      <div class="controls-wrap">
+        <div class="search-box">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" class="search-input"
+            placeholder="Search guides by title, role, or keywords (e.g. SDO, survey, teachers, SIIF, eSF7)..." />
+        </div>
+
+        <div class="filter-pills" id="filterPills">
+          <button class="pill-btn is-active" data-filter="all">All Guides</button>
+          <button class="pill-btn" data-filter="sdo">SDO &amp; RO</button>
+          <button class="pill-btn" data-filter="school">School Heads</button>
+          <button class="pill-btn" data-filter="hrmo">HRMO &amp; Applicants</button>
+          <button class="pill-btn" data-filter="executive">Executives</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Grid -->
+    <section class="guides-grid" id="guidesGrid">
+
+      <!-- CARD 1: SDO Size Classification Study (NEW & FEATURED) -->
+      <a href="sdo_size_survey/sdo_size_survey_guide.html" class="guide-card featured" data-category="sdo"
+        data-keywords="sdo size classification study survey reclassification schools teachers plantilla psds geography terrain">
+        <div class="card-top">
+          <div class="card-icon icon-indigo">
+            <!-- Target / Survey Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <path d="m4.93 4.93 4.24 4.24" />
+              <path d="m14.83 9.17 4.24-4.24" />
+              <path d="m14.83 14.83 4.24 4.24" />
+              <path d="m9.17 14.83-4.24 4.24" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="12" cy="12" r="1" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill new">★ NEW GUIDE</span>
+            <span class="badge-pill blue">SDO Survey</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">Division Profiling</div>
+          <h2 class="card-title">SDO Size Classification Study</h2>
+          <p class="card-text">
+            Comprehensive step-by-step guide for SDO personnel to complete, validate, and submit critical division
+            profiling data including school counts, authorized teachers balance, PSDS count, and geography.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg> Steps 1–7 Videos
+            </span>
+            <span class="feat-tag">⚖️ Teacher Balance Rule</span>
+            <span class="feat-tag">🖨️ PDF / Print Mode</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 2: SIIF Hub (School Head) -->
+      <a href="siif/siifguide.html" class="guide-card" data-category="school"
+        data-keywords="siif school innovation improvement fund hub school head budget activities beneficiaries utilization">
+        <div class="card-top">
+          <div class="card-icon icon-blue">
+            <!-- Fund / Bag Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill emerald">School Head</span>
+            <span class="badge-pill blue">SIIF</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">School Innovation Fund</div>
+          <h2 class="card-title">SIIF Hub User Guide</h2>
+          <p class="card-text">
+            Guide for School Heads to manage proposals, priority improvement areas (PIA), beneficiaries, activity
+            milestones, itemized budgets, and fund utilization tracking.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg> Full Video Demos
+            </span>
+            <span class="feat-tag">📋 Step Checklist</span>
+            <span class="feat-tag">💼 Budget Tracking</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 3: SIIF Monitoring (RO & SDO) -->
+      <a href="siif_ro_sdo/siifguideROSDO.html" class="guide-card" data-category="sdo"
+        data-keywords="siif ro sdo monitoring regional division oversight review revision utilization approval">
+        <div class="card-top">
+          <div class="card-icon icon-navy">
+            <!-- Monitoring / Chart Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+              <path d="M6 9l3 3 3-2 3 3" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill navy">RO &amp; SDO</span>
+            <span class="badge-pill blue">SIIF Oversight</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">Regional &amp; Division Oversight</div>
+          <h2 class="card-title">SIIF Monitoring Guide (RO &amp; SDO)</h2>
+          <p class="card-text">
+            Operational guide for Regional and Division focal persons to review school submissions, request
+            revisions, track school liquidation, and oversee fund allocation status.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg> Multi-Role Videos
+            </span>
+            <span class="feat-tag">🔄 Revision Workflow</span>
+            <span class="feat-tag">📊 Division Dashboards</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 4: eSF7 Monitoring (RO & SDO) -->
+      <a href="esf7_guide/eSF7 User Guide (ROSDO).html" class="guide-card" data-category="sdo"
+        data-keywords="esf7 school form 7 ro sdo monitoring division compliance plantilla teachers assignment">
+        <div class="card-top">
+          <div class="card-icon icon-emerald">
+            <!-- Users / Form 7 Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill navy">RO &amp; SDO</span>
+            <span class="badge-pill emerald">eSF7</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">Staffing &amp; Plantilla</div>
+          <h2 class="card-title">eSF7 Monitoring (RO &amp; SDO)</h2>
+          <p class="card-text">
+            Division and Regional monitoring guide for tracking electronic School Form 7 compliance, teacher
+            assignments, vacant plantilla items, and school submission progress.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">🏢 Division Tracking</span>
+            <span class="feat-tag">📑 School Form 7</span>
+            <span class="feat-tag">🖨️ Print Layout Ready</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 5: eSF7 User Input Guide (School Head) -->
+      <a href="esf7_guide/eSF7 User Guide (School Head).html" class="guide-card" data-category="school"
+        data-keywords="esf7 school form 7 school head input personnel teacher assignment workload profiling">
+        <div class="card-top">
+          <div class="card-icon icon-emerald">
+            <!-- Edit / Input Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill emerald">School Head</span>
+            <span class="badge-pill emerald">eSF7 Input</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">School Staff Profiling</div>
+          <h2 class="card-title">eSF7 School Head Input Guide</h2>
+          <p class="card-text">
+            Step-by-step instructions for School Heads to assign teaching and non-teaching personnel, record subject
+            assignments, log teaching loads, and submit verified School Form 7 data.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">👩‍🏫 Teacher Assignment</span>
+            <span class="feat-tag">⚖️ Workload Hours</span>
+            <span class="feat-tag">🔒 Final Validation</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 6: AGAP Portal (Applicant Guide) -->
+      <a href="agap_guides/agap-applicant.html" class="guide-card" data-category="hrmo"
+        data-keywords="agap applicant hiring recruitment application job opening vacancies deped careers">
+        <div class="card-top">
+          <div class="card-icon icon-amber">
+            <!-- User Check Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="8.5" cy="7" r="4" />
+              <polyline points="17 11 19 13 23 9" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill blue">Applicant</span>
+            <span class="badge-pill purple">AGAP</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">Hiring &amp; Careers</div>
+          <h2 class="card-title">AGAP Portal Applicant Guide</h2>
+          <p class="card-text">
+            Complete manual for teaching and non-teaching candidates to search vacancies, upload qualification
+            documents, apply for DepEd positions, and track recruitment progress.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg> Video Guides
+            </span>
+            <span class="feat-tag">📄 Document Upload</span>
+            <span class="feat-tag">🎯 Application Status</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 7: AGAP Portal (HRMO Guide) -->
+      <a href="agap_guides/agap-hrmo.html" class="guide-card" data-category="hrmo"
+        data-keywords="agap hrmo human resource recruitment assessment appointment merit selection plan division">
+        <div class="card-top">
+          <div class="card-icon icon-amber">
+            <!-- Briefcase / HR Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill navy">HRMO</span>
+            <span class="badge-pill purple">AGAP Admin</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">Human Resource Management</div>
+          <h2 class="card-title">AGAP Portal HRMO Guide</h2>
+          <p class="card-text">
+            Operational guide for Human Resource Management Officers to post vacancies, evaluate applicant criteria,
+            generate comparative assessments, and facilitate appointment approvals.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg> HRMO Walkthroughs
+            </span>
+            <span class="feat-tag">📊 Comparative Assessment</span>
+            <span class="feat-tag">📜 Appointment Issuance</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- CARD 8: Third Level Officials (TLO Guide) -->
+      <a href="tlo_guide/guide-template.html" class="guide-card" data-category="executive"
+        data-keywords="tlo third level officials executives records management profiling certification credentials">
+        <div class="card-top">
+          <div class="card-icon icon-violet">
+            <!-- Award / Executive Icon -->
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="7" />
+              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+            </svg>
+          </div>
+          <div class="card-badges">
+            <span class="badge-pill purple">Executive</span>
+            <span class="badge-pill navy">TLO Portal</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-kicker">Executive Governance</div>
+          <h2 class="card-title">Third Level Officials (TLO) Guide</h2>
+          <p class="card-text">
+            Comprehensive guide for Third Level Officials managing executive profile records, eligibility credentials,
+            service history, achievements, and formal digital certifications.
+          </p>
+          <div class="card-features">
+            <span class="feat-tag">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3" />
+              </svg> Step Video Guides
+            </span>
+            <span class="feat-tag">🎖️ Credentials Management</span>
+            <span class="feat-tag">✍️ Digital Certification</span>
+          </div>
+        </div>
+        <div class="card-footer">
+          <span class="cta-text">Open User Guide</span>
+          <span class="cta-icon">➔</span>
+        </div>
+      </a>
+
+      <!-- Empty Search Fallback State -->
+      <div class="no-results" id="noResults">
+        <h3>No matching guides found</h3>
+        <p>Try searching with a different keyword like <em>SDO</em>, <em>teachers</em>, <em>survey</em>, <em>SIIF</em>,
+          or <em>eSF7</em>.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p style="margin-bottom: 6px;">
+        <strong>InsightED Operations &amp; User Guides Platform</strong> &middot; Department of Education
+      </p>
+      <p style="font-size: 12.5px; opacity: 0.8;">
+        For technical assistance, please coordinate with the <a href="mailto:support.stride@deped.gov.ph">STRIDE
+          Support Team</a>.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Script for Search & Category Filter Interactivity -->
+  <script>
+    (function () {
+      var searchInput = document.getElementById('searchInput');
+      var filterPills = document.querySelectorAll('.pill-btn');
+      var cards = document.querySelectorAll('.guide-card');
+      var noResults = document.getElementById('noResults');
+
+      var currentFilter = 'all';
+      var currentSearch = '';
+
+      function filterCards() {
+        var visibleCount = 0;
+        var query = currentSearch.toLowerCase().trim();
+
+        cards.forEach(function (card) {
+          var category = card.dataset.category || '';
+          var keywords = card.dataset.keywords || '';
+          var title = card.querySelector('.card-title').textContent.toLowerCase();
+          var desc = card.querySelector('.card-text').textContent.toLowerCase();
+
+          var matchesCategory = (currentFilter === 'all') || (category === currentFilter);
+          var matchesSearch = !query ||
+            title.indexOf(query) !== -1 ||
+            desc.indexOf(query) !== -1 ||
+            keywords.indexOf(query) !== -1;
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (visibleCount === 0) {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+        }
+      }
+
+      // Filter Pill Click
+      filterPills.forEach(function (pill) {
+        pill.addEventListener('click', function () {
+          filterPills.forEach(function (p) { p.classList.remove('is-active'); });
+          pill.classList.add('is-active');
+          currentFilter = pill.dataset.filter;
+          filterCards();
+        });
+      });
+
+      // Search Input
+      searchInput.addEventListener('input', function (e) {
+        currentSearch = e.target.value;
+        filterCards();
+      });
+    })();
+  </script>
+</body>
+
+</html>
