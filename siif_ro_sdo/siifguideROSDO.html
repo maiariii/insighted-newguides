@@ -1064,6 +1064,56 @@
         font-weight: 700;
       }
     }
+
+    .tag.violet {
+      background: #ede9fe;
+      color: #6d28d9;
+    }
+
+    /* Placeholder shown while an updated walkthrough video is being recorded */
+    .video-pending {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      max-height: 420px;
+      padding: 24px;
+      text-align: center;
+      background: linear-gradient(135deg, #091326 0%, #08315f 100%);
+      color: rgba(255, 255, 255, .75);
+      font-size: 13px;
+    }
+
+    .video-pending strong {
+      color: #fff;
+      font-family: var(--font-heading);
+      font-size: 15px;
+    }
+
+    @media print {
+      .video-pending {
+        display: none;
+      }
+    }
+    /* Phones: keep wide tables and long links inside the card instead of widening the page */
+    @media (max-width: 600px) {
+      .section-card a {
+        overflow-wrap: anywhere;
+      }
+
+      .section-head {
+        flex-wrap: wrap;
+      }
+
+      .status-table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+    }
   </style>
 </head>
 
@@ -1075,8 +1125,14 @@
         <div class="eyebrow">InsightED RO & SDO · SIIF Monitoring Hub</div>
         <h1>SIIF User Guide for Regional & Division Offices</h1>
         <p class="subtitle">An operational guide for Regional Office (RO) and Schools Division Office (SDO) personnel
-          on monitoring, evaluating, approving, and tracking the School Innovation
-          and Improvement Fund (SIIF) across beneficiary schools.</p>
+          on monitoring SIIF plan submissions, reviewing school plans, and tracking quarterly fund utilization across
+          beneficiary schools.</p>
+        <div class="quick-note">
+          <strong>Quick Rule · SIIF Plan:</strong> Open the <strong>Schools</strong> tab ➔ Review submitted plans ➔
+          Confirm Review or request a revision.<br>
+          <strong>Quick Rule · Utilization:</strong> Open the <strong>Utilization</strong> tab ➔ Check each school's
+          quarterly spending ➔ Follow up on schools with no entries.
+        </div>
       </div>
     </header>
 
@@ -1109,9 +1165,13 @@
                 rel="noopener noreferrer"><strong>https://stride.deped.gov.ph/insighted/</strong></a></li>
             <li>Click the <strong>ENTER INSIGHTED</strong> button.</li>
             <li>Select <strong>HROD Portals</strong> from the available portal cards.</li>
-            <li>Click <strong>Continue as RO/SDO Personnel</strong>.</li>
+            <li>Click <strong>Continue as RO/SDO Personnel</strong> and sign in (see Section B).</li>
             <li>Click the <strong>SIIF Monitoring Hub</strong> card to launch the module.</li>
           </ol>
+          <div class="callout">
+            <strong>System Under Maintenance:</strong> If the SIIF Monitoring Hub is temporarily closed, a maintenance
+            screen appears instead of the dashboard. Return to Nexus and try again later.
+          </div>
         </div>
       </article>
 
@@ -1121,12 +1181,13 @@
           <div class="letter">B</div>
           <h2>Login and Registration</h2>
         </div>
-        <p class="section-intro">Sign into your official RO/SDO account and complete account registration.</p>
+        <p class="section-intro">Sign into your official RO/SDO account, register a new account, and confirm that your
+          office is authorized for SIIF.</p>
 
         <div class="section-video">
           <div class="video-badge">Video · Account Sign In & Registration</div>
           <video controls playsinline preload="metadata">
-            <source src="login.mp4" type="video/mp4">
+            <source src="rosdo_login_registration.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
@@ -1135,29 +1196,45 @@
           <h3>Step 1: Sign in with Official Account Credentials (Login)</h3>
           <ol>
             <li>Enter your registered official <strong>DepEd Email</strong> address.</li>
-            <li>Enter your authorized <strong>Password</strong>. If logging in via <strong>Passcode</strong>, toggle to
-              the passcode option and input your designated quick sign-in code.</li>
-            <li>Click the <strong>Sign In</strong> button to log into the platform.</li>
+            <li>Enter your <strong>Password</strong>, or switch to the <strong>6-digit Passcode</strong> dialpad and
+              enter your quick sign-in code.</li>
+            <li>Click <strong>Sign In</strong>.</li>
+            <li>Forgot your password? Click <strong>Forgot Password?</strong>.
+            </li>
           </ol>
         </div>
 
         <div class="step">
           <h3>Step 2: Create a New Account (Registration)</h3>
           <ol>
-            <li>Click the <strong>Create New Account</strong> button on the login screen.</li>
-            <li>Fill out all required fields, including your <strong>First Name</strong>, <strong>Last Name</strong>,
-              assigned <strong>Region / Division Scope</strong>, official <strong>Office Unit</strong> (SGOD, HRMO, or
-              FTAD), and designated <strong>Role / Position</strong> (including <strong>Regional SBM
-                Coordinator</strong> or <strong>Division SBM Coordinator</strong>).</li>
-            <li>Submit your registration.</li>
+            <li>Click <strong>Create New Account</strong> on the login screen.</li>
+            <li><strong>Primary Details:</strong> enter your <strong>First Name</strong> and <strong>Last
+                Name</strong>, and choose <strong>Your Role</strong> (<strong>RO Personnel</strong> or <strong>SDO
+                Personnel</strong>).</li>
+            <li><strong>Credentials:</strong> enter your <strong>DepEd Email Address</strong> and add your
+              <strong>Contact Number</strong>.</li>
+            <li><strong>Area Alignment:</strong> select your <strong>Region</strong> and <strong>Division</strong>,
+              then pick your <strong>Office/Bureau</strong> and <strong>Position</strong> from the dropdowns. Under
+              <strong>Designation</strong>, choose <strong>Regional SBM Coordinator</strong> or <strong>Division SBM
+                Coordinator</strong>.</li>
+            <li><strong>Final Security:</strong> enter the <strong>Authorization Code</strong> (request this code
+              from the SIIF team), set and confirm your <strong>Account Password</strong>, then click
+              <strong>Register Account</strong>.</li>
           </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Confirm Your SIIF Access</h3>
           <div class="callout warning">
-            <strong>Mandatory Access Restriction:</strong> Access to the SIIF Monitoring Hub is strictly authorized for
-            personnel assigned to the <strong>School Governance and Operations Division (SGOD)</strong>, <strong>Human
-              Resources and Management Office (HRMO)</strong>, or <strong>Field Technical Assistance Division
-              (FTAD)</strong>, as well as personnel holding the official designation of <strong>Regional SBM
-              Coordinator</strong> or <strong>Division SBM Coordinator</strong>. Accounts outside these authorized
-            office and designations will receive an automatic <em>Access Restricted</em> security guard screen.
+            <strong>Mandatory Access Restriction:</strong> The SIIF Monitoring Hub is open only to RO/SDO personnel
+            whose <strong>Office</strong> is the <strong>Field Technical Assistance Division (FTAD)</strong> or the
+            <strong>School Governance and Operations Division (SGOD)</strong>. Other offices see an <em>Access
+            Restricted</em> screen with a <strong>Return to Nexus</strong> button.
+          </div>
+          <div class="callout">
+            <strong>SBM Coordinators:</strong> Accounts with the Regional or Division SBM Coordinator designation can
+            open only <strong>SIIF Monitoring</strong>, <strong>Registry Management</strong>, and <strong>User
+            Lookup</strong>. For SIIF, their office must still be FTAD or SGOD.
           </div>
         </div>
       </article>
@@ -1168,8 +1245,8 @@
           <div class="letter">C</div>
           <h2>Division Overview</h2>
         </div>
-        <p class="section-intro">Understand the primary navigation tabs available in the Division Office view for
-          Division SBM Coordinators and SDO personnel.</p>
+        <p class="section-intro">Understand the navigation tabs in the Division Office (SDO) view and the plan status
+          labels used throughout the hub.</p>
 
         <div class="step">
           <h3>Step 1: Navigation Tabs Breakdown</h3>
@@ -1182,29 +1259,74 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>Home Tab</strong></td>
-                <td>Check division summary metrics (Total Scope, Plan Accomplished, Pending Submission, Financial
-                  Allocation), view progress accomplishment charts and status donut graphs, filter schools by district
-                  or municipality, and download summary reports.</td>
+                <td><strong>Home</strong></td>
+                <td>Division dashboard with two views: <strong>Plan Submissions</strong> (plan status overview) and
+                  <strong>Utilization</strong> (allocation, spending, and quarterly charts).</td>
               </tr>
               <tr>
-                <td><strong>Schools Tab</strong></td>
-                <td>Inspect submitted school plans, filter schools by status (Submitted, Reviewed, Pending,
-                  Overdue), check active review schedule dates, evaluate plans, confirm reviews with remarks, and
-                  message School Heads via chat for needed revisions.</td>
+                <td><strong>Schools</strong></td>
+                <td>List of schools with their SIIF plan status. Open plans and review them, request revisions, or
+                  rescind reviews.</td>
               </tr>
               <tr>
-                <td><strong>Utilization Tab</strong></td>
-                <td>Track financial spending across quarterly cover periods (July–Sept, Oct–Dec, Jan–March, Remaining
-                  Balance) and inspect detailed activity spending records submitted by schools.</td>
+                <td><strong>Utilization</strong></td>
+                <td>Track quarterly spending per school (July–Sept, Oct–Dec, Jan–March, Remaining) and open each
+                  school's declared interventions.</td>
               </tr>
               <tr>
-                <td><strong>Settings Tab</strong></td>
-                <td>View your account profile, manage security settings (password and passcode), toggle Dark Mode, and
-                  access technical support guidelines.</td>
+                <td><strong>User Lookup</strong></td>
+                <td>Retrieve a School Head's active passcode by 6-digit School ID (within your jurisdiction only).</td>
+              </tr>
+              <tr>
+                <td><strong>Settings</strong></td>
+                <td>View your profile and manage your password, passcode, and preferences.</td>
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Plan Status Labels</h3>
+          <table class="status-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Meaning</th>
+                <th>Typical Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tag green">Reviewed</span></td>
+                <td>Checked and accepted by the SDO.</td>
+                <td>None. Rescind only if the review was made in error.</td>
+              </tr>
+              <tr>
+                <td><span class="tag blue">Submitted</span></td>
+                <td>Submitted, awaiting SDO review.</td>
+                <td>Open the plan and mark it reviewed or request a revision.</td>
+              </tr>
+              <tr>
+                <td><span class="tag orange">For Revision</span></td>
+                <td>Returned to the school for changes.</td>
+                <td>Click <strong>Resolve Revision</strong> once the school has submitted its revised plan.</td>
+              </tr>
+              <tr>
+                <td><span class="tag violet">Draft</span></td>
+                <td>Started by the school but not yet submitted.</td>
+                <td>Monitor only.</td>
+              </tr>
+              <tr>
+                <td><span class="tag red">No Plan Yet</span></td>
+                <td>The school has not started a plan yet.</td>
+                <td>Monitor and follow up with the school.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="callout">
+            The <strong>Plan Submission Rate</strong> counts Submitted + Reviewed plans. Schools without a plan can
+            still record utilization.
+          </div>
         </div>
       </article>
 
@@ -1214,50 +1336,53 @@
           <div class="letter">I</div>
           <h2>Division Home Tab</h2>
         </div>
-        <p class="section-intro">Monitor division progress metrics, filter schools by district, view visual
-          accomplishment charts, and export summary reports.</p>
-
+        <p class="section-intro">Switch between the Plan Submissions and Utilization views to monitor your division at a glance.</p>
         <div class="section-video">
           <div class="video-badge">Video · Division Dashboard</div>
           <video controls playsinline preload="metadata">
-            <source src="SDOhome.mp4" type="video/mp4">
+            <source src="sdo_home.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
 
         <div class="step">
-          <h3>Step 1: Monitor Summary KPI Cards</h3>
+          <h3>Step 1: Choose the Home View</h3>
+          <ol>
+            <li>Use the switch at the top of Home: <strong>Plan Submissions</strong> (default) or
+              <strong>Utilization</strong>.</li>
+            <li>Use the <strong>District</strong> filter to narrow the view. Click <strong>Reset</strong> to clear it,
+              or <strong>Refresh</strong> to reload the latest data.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Read the Plan Submissions View</h3>
           <ul>
-            <li><strong>Total Scope:</strong> View total beneficiary schools expected to submit plans in your
-              division. <i>(Hover to see breakdown per district).</i></li>
-            <li><strong>Plan Accomplished:</strong> Track total submitted plans awaiting review or already reviewed.
-            </li>
-            <li><strong>Pending Submission:</strong> Identify schools that have not yet submitted their plan.</li>
-            <li><strong>Financial Allocation:</strong> View total DepEd budget allocated for your division.</li>
+            <li><strong>Headline numbers:</strong> <strong>Plan Submission Rate</strong> (schools with a Submitted or
+              Reviewed plan), <strong>Reviewed by SDO</strong>, <strong>For Revision</strong> (returned to schools for
+              changes), and <strong>Not Yet Submitted</strong> (Draft + No Plan Yet).</li>
+            <li><strong>Plan Status:</strong> a ring chart and table of schools by current plan status, with counts
+              and percentages.</li>
+            <li><strong>Plan Status by District:</strong> submission rate per district, sorted from highest. Switch
+              between <strong>Chart</strong> and <strong>Table</strong>.</li>
+            <li><strong>Interventions in Submitted Plans:</strong> how many schools plan each intervention.</li>
+            <li>Click <strong>Open school plan list</strong> to go to the <strong>Schools</strong> tab.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Filter & Search Schools</h3>
+          <h3>Step 3: Read the Utilization View</h3>
           <ul>
-            <li><strong>Cascading Dropdowns:</strong> Select <strong>Division</strong>, <strong>District</strong>, or
-              <strong>Municipality</strong> to filter records.
-            </li>
-            <li><strong>Status & Category:</strong> Filter by status (<span class="tag orange">Submitted</span>, <span
-                class="tag green">Reviewed</span>, <span class="tag blue">Pending</span>, <span
-                class="tag red">Overdue</span>) or school type.</li>
-            <li><strong>Search Bar:</strong> Type a School Name or 6-digit School ID. Click <strong>Reset</strong> to
-              clear.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Review Progress Charts & Export</h3>
-          <ul>
-            <li><strong>Accomplishment Gauge:</strong> Track review progress toward 100% completion.</li>
-            <li><strong>Status Donut Chart:</strong> Click any color segment to view matching schools.</li>
-            <li><strong>Export Report:</strong> Click <strong>Export Report</strong> to download a summary CSV
-              spreadsheet.</li>
+            <li><strong>KPI cards:</strong> <strong>Total SIIF Allocation</strong>, <strong>Total Fund
+                Utilized</strong>, <strong>Remaining Balance</strong>, and <strong>Overall Utilization Rate</strong>.
+              Hover a card to see its breakdown by district.</li>
+            <li><strong>Filters:</strong> <strong>District</strong>, <strong>Quarter</strong>, and <strong>Intervention</strong>.
+              Click <strong>Reset</strong> to clear them.</li>
+            <li><strong>Intervention Spending by District:</strong> declared spending per district, shown by
+              <strong>Amount (₱)</strong> or <strong>No. of Schools</strong>. Click a row to drill down to the
+              schools, then click a school to open its details.</li>
+            <li><strong>Quarterly Disbursement by Intervention:</strong> spending per intervention for each quarter.
+              Switch between <strong>Chart</strong> and <strong>Table</strong>.</li>
           </ul>
         </div>
       </article>
@@ -1268,114 +1393,111 @@
           <div class="letter">II</div>
           <h2>Division Schools Tab</h2>
         </div>
-        <p class="section-intro">Inspect submitted proposals, check review schedule dates, evaluate compliance, and
-          confirm reviews or request revisions.</p>
+        <p class="section-intro">Monitor each school's SIIF plan, open submitted plans, and take review actions.</p>
 
         <div class="section-video">
           <div class="video-badge">Video · Plan Evaluation & Review Action</div>
           <video controls playsinline preload="metadata">
-            <source src="SDOschools.mp4" type="video/mp4">
+            <source src="sdo_schools.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
 
         <div class="step">
-          <h3>Step 1: Filter School Proposals</h3>
+          <h3>Step 1: Filter the School List</h3>
           <ul>
-            <li>Click top status cards (<span class="tag blue">Total Scope</span>, <span
-                class="tag orange">Submitted</span>, <span class="tag green">Reviewed</span>, <span
-                class="tag blue">Pending</span>, <span class="tag red">Overdue</span>) to isolate school lists.</li>
-            <li>Toggle between <strong>Table View</strong> and <strong>Cards View</strong>.</li>
+            <li>Click a status card (Total Schools, Reviewed, Submitted, For Revision, Draft, No Plan Yet) to filter
+              the list. Use <strong>Clear status filter</strong> to reset.</li>
+            <li>Search by school name, School ID, or district, or use the <strong>Filter…</strong> box under each
+              column.</li>
+            <li>Switch between <strong>Table</strong> and <strong>Cards</strong> view.</li>
+            <li>Columns include School ID, School Name, District, Plan Status, Allocation, Estimate, % of Alloc.,
+              Progress, and Updated.</li>
+            <li>Click the download icon to save the plan list as CSV.</li>
           </ul>
-        </div>
-
-        <!-- Callout Note — Review Window Period -->
-        <div class="callout warning" style="margin: 0 0 16px; border-radius: 14px; padding: 14px 16px;">
-          <div
-            style="display: flex; align-items: center; gap: 8px; font-family: var(--font-heading); font-weight: 800; font-size: 14px; color: #92400e; margin-bottom: 6px;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            Important System Rule — Official Review Window Schedule
-          </div>
-          <div style="font-size: 13.5px; line-height: 1.5; color: #78350f;">
-            Evaluations and review confirmations are enabled only during the active <strong>Review Window</strong>
-            schedule shown on the system banner. Outside active dates, review action buttons are locked to enforce DepEd
-            schedule policy.
+          <div class="callout">
+            Click <strong>View remarks</strong> on the For Revision card to see the revision instructions sent to
+            schools.
           </div>
         </div>
 
         <div class="step">
-          <h3>Step 2: Inspect Detailed Proposal</h3>
-          <ul>
-            <li>Click any school row to open the slide-up <strong>School Detailed Proposal Sheet</strong>.</li>
-            <li>Verify requested budget estimates against the official allocation ceiling bar.</li>
-            <li>Review Priority Improvement Areas, Interventions , Beneficiaries, and Activities.
-            </li>
-            <li>Click <strong>Printable Report Download</strong> if a hardcopy copy is needed.</li>
-          </ul>
+          <h3>Step 2: Open a School's Plan</h3>
+          <ol>
+            <li>Click a school row to open its plan details.</li>
+            <li>Check the <strong>Allocation Appropriation Percentage</strong> (Budget Estimate vs. Total
+              Allocation) and the <strong>Priority Improvement Area</strong>.</li>
+            <li>Expand each intervention to review its allocated budget, learners per grade level, and planned
+              activities. Use the download button for a printable report.</li>
+            <li>You can also take review actions here: <strong>Review</strong>, <strong>For Revision</strong> (opens
+              <strong>Request Plan Revision</strong>; enter what needs to change, then click <strong>Submit
+                Request</strong>), <strong>Manage Plan Revision</strong>, or <strong>Rescind Review</strong>.</li>
+          </ol>
         </div>
 
         <div class="step">
-          <h3>Step 3: Evaluate & Action Proposals (Decision Paths)</h3>
-          <ul>
-            <li><strong>Path A — Confirm Review (Approved):</strong> Click the green <strong>Confirm Review
-                (Check)</strong> button, enter optional evaluation remarks, and confirm status as <span
-                class="tag green">Reviewed</span>.</li>
-            <li><strong>Path B — Request Revision (Adjustments Needed):</strong> Click the <strong>Revision</strong> button to open the <strong>Request Revision</strong> modal. Input your evaluation remarks detailing the specific items that need to be updated, then click <strong>Request Revision</strong> to submit the feedback to the School Head.
-              <p style="margin-top: 8px; margin-bottom: 6px;">Once the School Head completes the requested revisions and resubmits the proposal:</p>
-              <ol style="margin-top: 4px; margin-bottom: 10px;">
-                <li>Click on the <strong>Review</strong> button under the Actions column to open the <strong>Manage Plan Revision</strong> window.</li>
-                <li>In the pop-up window, click the <strong>Resolve Revision</strong> button at the bottom.</li>
-                <li>Once the revision status is resolved, click the <strong>Review</strong> button again to proceed with reviewing and evaluating the resubmitted SIIF Plan.</li>
-              </ol>
-              <div class="section-video" style="margin: 12px 0 6px;">
-                <div class="video-badge">Video · Resolving & Reviewing Resubmitted Plan</div>
-                <video controls playsinline preload="metadata">
-                  <source src="ReviewRevision.mp4" type="video/mp4">
-                  Your browser does not support HTML5 video.
-                </video>
-              </div>
-            </li>
-          </ul>
-          <div class="callout warning" style="margin-top: 12px;">
-            <strong>Role Restriction Note:</strong> Please ensure you are logged in using the <strong>Division SBM Coordinator</strong> account, as this action can only be performed at the division level.
-          </div>
-        </div>
-
-        <div class="step">
-          <h3>Step 4: Status Badge Lifecycle</h3>
+          <h3>Step 3: Take a Review Action</h3>
           <table class="status-table">
-            <tr>
-              <th>Status Badge</th>
-              <th>Meaning in Roster</th>
-              <th>Required Action</th>
-            </tr>
-            <tr>
-              <td><span class="tag blue">Pending / Draft</span></td>
-              <td>School Head is preparing or revising the proposal.</td>
-              <td>Monitor progress; remind if deadline approaches.</td>
-            </tr>
-            <tr>
-              <td><span class="tag orange">Submitted</span></td>
-              <td>Proposal submitted; ready for Division evaluation.</td>
-              <td>Inspect proposal, send chat for revisions, or confirm review.</td>
-            </tr>
-            <tr>
-              <td><span class="tag green">Reviewed</span></td>
-              <td>Proposal evaluated and reviewed by Division Office.</td>
-              <td>Baseline locked; school proceeds to quarterly tracking.</td>
-            </tr>
-            <tr>
-              <td><span class="tag red">Overdue</span></td>
-              <td>School missed expected submission deadline.</td>
-              <td>Issue advisory via chat or dispatch technical assistance.</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>When</th>
+                <th>How</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Mark as Reviewed</strong></td>
+                <td>Plan is <span class="tag blue">Submitted</span></td>
+                <td>Click the review (check) button, add optional remarks, then click <strong>Confirm
+                    Review</strong>.</td>
+              </tr>
+              <tr>
+                <td><strong>Request Revision</strong></td>
+                <td>Plan needs changes</td>
+                <td>Click the revision button, enter <strong>Revision Remarks</strong>, then click <strong>Request
+                    Revision</strong>. The school sees your remarks.</td>
+              </tr>
+              <tr>
+                <td><strong>Manage / Resolve Revision</strong></td>
+                <td>Plan is <span class="tag orange">For Revision</span></td>
+                <td>Click the revision button to open <strong>Manage Plan Revision</strong>. Use <strong>Update Revision
+                    Remarks</strong> to change your instructions, or <strong>Resolve Revision</strong> once the school
+                  has updated its plan (returns it to Submitted).</td>
+              </tr>
+              <tr>
+                <td><strong>Rescind Review</strong></td>
+                <td>Plan is <span class="tag green">Reviewed</span></td>
+                <td>Click the rescind button, then <strong>Rescind Review</strong> to revert the plan to Submitted.</td>
+              </tr>
+            </tbody>
           </table>
+          <div class="callout warning">
+            A plan that is <strong>For Revision</strong> cannot be marked reviewed. Resolve the revision first, then
+            review the updated plan.
+          </div>
+        </div>
+
+        <div class="step">
+          <h3>Step 4: Resolve and Review a Resubmitted Plan</h3>
+          <div class="section-video">
+            <div class="video-badge">Video · Resolving & Reviewing Resubmitted Plan</div>
+            <video controls playsinline preload="metadata">
+              <source src="ReviewRevision.mp4" type="video/mp4">
+              Your browser does not support HTML5 video.
+            </video>
+          </div>
+          <ol>
+            <li>Open <strong>Manage Plan Revision</strong> for the school and click <strong>Resolve Revision</strong>.
+            </li>
+            <li>Confirm the prompt. The plan returns to <span class="tag blue">Submitted</span>.</li>
+            <li>Click the review button again to evaluate the updated plan and <strong>Confirm Review</strong>.</li>
+          </ol>
+          <div class="callout warning">
+            <strong>Role &amp; schedule rules:</strong> Review actions are available only to Division (SDO) accounts.
+            If your division set a review period, the buttons are disabled outside it and a banner shows when reviews
+            open or closed (<em>Review period closed</em>).
+          </div>
         </div>
       </article>
 
@@ -1385,105 +1507,125 @@
           <div class="letter">III</div>
           <h2>Division Utilization Tab</h2>
         </div>
-        <p class="section-intro">Monitor quarterly spending reports, verify activity implementation statuses, and
-          enforce fiscal allocation caps post-review.</p>
-
+        <p class="section-intro">Monitor quarterly spending declared by the schools in your division.</p>
         <div class="section-video">
           <div class="video-badge">Video · Utilization Overview</div>
           <video controls playsinline preload="metadata">
-            <source src="SDOutilization.mp4" type="video/mp4">
+            <source src="sdo_utilization.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
 
         <div class="step">
-          <h3>Step 1: Check Division Fiscal Summaries</h3>
+          <h3>Step 1: Check the Cover Period Cards</h3>
           <ul>
-            <li>Monitor top metrics: <strong>Total Allocation</strong>, <strong>Utilized Amount</strong>, and
-              <strong>Remaining Balance</strong>.
-            </li>
-            <li><i>Note:</i> Quarterly reporting activates after baseline proposal reaches <span
-                class="tag green">Reviewed</span> status.</li>
+            <li>The <strong>JULY-SEPT</strong>, <strong>OCT-DEC</strong>, and <strong>JAN-MARCH</strong> cards show
+              the <strong>Utilized Amount</strong> for each quarter. The <strong>REMAINING</strong> card shows the
+              <strong>Remaining Balance</strong>.</li>
+            <li>Click a card to open its <strong>Quarter Breakdown</strong>: detailed school utilization for that
+              period.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Monitor Reporting Cover Periods</h3>
-          <table class="status-table">
-            <tr>
-              <th>Reporting Cover Period</th>
-              <th>Period Covered</th>
-              <th>Monitoring Focus</th>
-            </tr>
-            <tr>
-              <td><strong>JULY–SEPT</strong> (Cover Period 1)</td>
-              <td>July, August, September</td>
-              <td>Initial fund mobilization and session supplies.</td>
-            </tr>
-            <tr>
-              <td><strong>OCT–DEC</strong> (Cover Period 2)</td>
-              <td>October, November, December</td>
-              <td>Mid-year implementation and learning materials.</td>
-            </tr>
-            <tr>
-              <td><strong>JAN–MARCH</strong> (Cover Period 3)</td>
-              <td>January, February, March</td>
-              <td>Final quarter utilization and liquidation reports.</td>
-            </tr>
-            <tr>
-              <td><strong>REMAINING</strong> (Balance)</td>
-              <td>Fiscal Year Unutilized Balance</td>
-              <td>Tracks unliquidated balance remaining against allocation ceiling.</td>
-            </tr>
-          </table>
-          <div class="callout warning" style="margin-top: 12px;">
-            Clicking any cover period card in the header opens a detailed <strong>Quarter Breakdown</strong> summary
-            window.
+          <h3>Step 2: Review the School List</h3>
+          <ol>
+            <li>Check the summary: <strong>Schools in Division</strong>, <strong>Division Allocation</strong>,
+              <strong>Division Utilized</strong>, and <strong>Remaining Balance</strong>.</li>
+            <li>Sort the list by School ID, School Name, District, Allocation, Total Utilized, or Remaining Balance.
+            </li>
+            <li>Click a school row to expand <strong>Declared Interventions by Quarter</strong>: each intervention's
+              amount per quarter and the school's <strong>Remarks / Justification</strong>.</li>
+          </ol>
+          <div class="callout">
+            A school with no entries shows <em>This school has not declared any SIIF utilization yet.</em>
           </div>
         </div>
 
         <div class="step">
-          <h3>Step 3: Analyze Activity Spending & Justifications</h3>
+          <h3>Step 3: Print or Export</h3>
           <ul>
-            <li>Click a school row to expand detailed activity spending records.</li>
-            <li>Inspect activity status tags: <span class="tag blue">Pending</span>, <span
-                class="tag orange">Ongoing</span>, <span class="tag green">Completed</span>.</li>
-            <li>Review expenditure justifications for any budget variances. Enforce allocation ceiling caps.</li>
+            <li>Click <strong>Print Division Report</strong> for a printable report.</li>
+            <li>Click <strong>Download CSV</strong> to export the figures.</li>
           </ul>
         </div>
       </article>
 
-      <!-- SECTION C.IV: DIVISION SETTINGS TAB -->
+      <!-- SECTION C.IV: USER LOOKUP -->
       <article class="section-card" data-letter="C" data-badge="IV" data-sub="true" data-parent="C">
         <div class="section-head">
           <div class="letter">IV</div>
+          <h2>User Lookup Tab</h2>
+        </div>
+        <p class="section-intro">Help a School Head who cannot sign in by retrieving their active passcode.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · User Lookup</div>
+          <video controls playsinline preload="metadata">
+            <source src="sdo_user_lookup.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+
+        <div class="step">
+          <h3>Step 1: Search the School Account</h3>
+          <ol>
+            <li>Open <strong>User Lookup</strong>.</li>
+            <li>Enter the school's <strong>6-digit School ID</strong> and click <strong>Search Account</strong>.</li>
+            <li>Review the School ID, Region, and Division shown.</li>
+            <li>Click the eye icon to show the <strong>Active Passcode</strong>, then share it only with the verified
+              School Head.</li>
+          </ol>
+          <div class="callout warning">
+            You can only view accounts within your jurisdiction. Searching outside it shows an <em>Access Denied</em>
+            message. Treat passcodes as confidential credentials.
+          </div>
+        </div>
+      </article>
+
+      <!-- SECTION C.V: DIVISION SETTINGS TAB -->
+      <article class="section-card" data-letter="C" data-badge="V" data-sub="true" data-parent="C">
+        <div class="section-head">
+          <div class="letter">V</div>
           <h2>Division Settings Tab</h2>
         </div>
-        <p class="section-intro">View account profile details, manage security credentials, and customize general
-          preferences.</p>
+        <p class="section-intro">View your profile, manage your password and passcode, and set preferences.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Settings</div>
+          <video controls playsinline preload="metadata">
+            <source src="sdo_settings.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
 
         <div class="step">
-          <h3>Step 1: View Profile & Assigned Scope</h3>
+          <h3>Step 1: My Profile</h3>
           <ul>
-            <li>Verify your <strong>Full Name</strong>, <strong>DepEd Email</strong>, <strong>Assigned Scope
-                (SDO)</strong>, and <strong>Office Unit</strong>.</li>
+            <li>Under <strong>Personal Identity</strong>, check your <strong>First Name</strong>, <strong>Last
+                Name</strong>, and <strong>Registered Email</strong>. Click <strong>Edit</strong> to update them, then
+              <strong>Save Changes</strong>.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Manage Account Security</h3>
+          <h3>Step 2: Account Security</h3>
           <ul>
-            <li>Click <strong>Change Password</strong> to update password or <strong>Update Passcode</strong> to change
-              quick sign-in code.</li>
+            <li><strong>Change Password:</strong> verify with your 6-digit security passcode, then enter and confirm
+              your new password.</li>
+            <li><strong>Update Passcode:</strong> enter your current passcode and your new 6-digit passcode.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 3: General System Preferences</h3>
+          <h3>Step 3: General</h3>
           <ul>
-            <li><strong>Dark Mode:</strong> Toggle theme display.</li>
-            <li><strong>Optimize App:</strong> Clear cache and repair platform files for smooth performance.</li>
-            <li><strong>Help & About:</strong> Access FAQs, user guides, and system version details.</li>
+            <li>Toggle <strong>Dark Mode</strong>.</li>
+            <li><strong>Optimize App:</strong> check for updates and repair the app.</li>
+            <li>Open <strong>FAQ &amp; Help</strong>, <strong>Rate &amp; Feedback</strong>, or <strong>About
+                InsightEd</strong>.</li>
           </ul>
         </div>
       </article>
@@ -1494,8 +1636,7 @@
           <div class="letter">D</div>
           <h2>Region Overview</h2>
         </div>
-        <p class="section-intro">Understand the primary navigation tabs available in the Regional Office view for
-          Regional SBM Coordinators and RO personnel.</p>
+        <p class="section-intro">Understand the navigation tabs available in the Regional Office (RO) view.</p>
 
         <div class="step">
           <h3>Step 1: Navigation Tabs Breakdown</h3>
@@ -1508,30 +1649,30 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>Home Tab</strong></td>
-                <td>Monitor region-wide summary cards (Total Scope, Plan Accomplished, Pending Submission, Financial
-                  Allocation), view accomplishment progress charts, and export regional analytics.</td>
+                <td><strong>Home</strong></td>
+                <td>Region dashboard with <strong>Plan Submissions</strong> and <strong>Utilization</strong> views,
+                  filterable by Division and District.</td>
               </tr>
               <tr>
-                <td><strong>Division View Tab</strong></td>
-                <td>Exclusive to Regional Office personnel: compare performance metrics across all Schools Division
-                  Offices (SDOs) in the region, monitor utilization rates %, and dispatch technical assistance teams.
-                </td>
+                <td><strong>Division</strong></td>
+                <td>Exclusive to RO: compare all Schools Division Offices by school count, allocation, and utilization,
+                  then drill into a division's schools.</td>
               </tr>
               <tr>
-                <td><strong>Schools Tab</strong></td>
-                <td>Filter and inspect recipient school proposals across all divisions in the region to verify policy
-                  compliance and allocation ceiling alignment.</td>
+                <td><strong>Schools</strong></td>
+                <td>Region-wide school list with SIIF plan status (view only; reviews are done by the SDO).</td>
               </tr>
               <tr>
-                <td><strong>Utilization Tab</strong></td>
-                <td>Track regional financial utilization velocity across reporting cover periods (July–Sept, Oct–Dec,
-                  Jan–March, Remaining Balance) and monitor regional fund usage.</td>
+                <td><strong>Utilization</strong></td>
+                <td>Region-wide fiscal summary and division utilization table with drill-down to schools.</td>
               </tr>
               <tr>
-                <td><strong>Settings Tab</strong></td>
-                <td>View user profile details, confirm assigned Region scope, manage security credentials, and customize
-                  system preferences.</td>
+                <td><strong>User Lookup</strong></td>
+                <td>Retrieve a School Head's active passcode within your region.</td>
+              </tr>
+              <tr>
+                <td><strong>Settings</strong></td>
+                <td>Profile, security credentials, and preferences.</td>
               </tr>
             </tbody>
           </table>
@@ -1544,41 +1685,53 @@
           <div class="letter">I</div>
           <h2>Region Home Tab</h2>
         </div>
-        <p class="section-intro">Monitor region-wide metrics across all divisions, view accomplishment charts, and
-          export regional analytics.</p>
-
+        <p class="section-intro">Switch between the Plan Submissions and Utilization views to monitor all divisions in your region.</p>
         <div class="section-video">
-          <div class="video-badge">Video · Regional Dashboard & Metrics</div>
+          <div class="video-badge">Video · Regional Dashboard &amp; Metrics</div>
           <video controls playsinline preload="metadata">
-            <source src="ROhome.mp4" type="video/mp4">
+            <source src="ro_home.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
 
         <div class="step">
-          <h3>Step 1: Check Region KPI Summary Cards</h3>
+          <h3>Step 1: Choose the Home View</h3>
+          <ol>
+            <li>Use the switch at the top of Home: <strong>Plan Submissions</strong> (default) or
+              <strong>Utilization</strong>.</li>
+            <li>Select a <strong>Division</strong>, then a <strong>District</strong>, to narrow the view. Click
+              <strong>Reset</strong> to clear them.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Read the Plan Submissions View</h3>
           <ul>
-            <li><strong>Total Scope:</strong> Total beneficiary schools across all divisions in your region. <i>(Hover
-                for division breakdown).</i></li>
-            <li><strong>Plan Accomplished:</strong> Region-wide submitted and reviewed school plans.</li>
-            <li><strong>Pending Submission:</strong> Schools across the region yet to submit.</li>
-            <li><strong>Financial Allocation:</strong> Total budget allocated for the entire region.</li>
+            <li><strong>Headline numbers:</strong> <strong>Plan Submission Rate</strong> (schools with a Submitted or
+              Reviewed plan), <strong>Reviewed by SDO</strong>, <strong>For Revision</strong> (returned to schools for
+              changes), and <strong>Not Yet Submitted</strong> (Draft + No Plan Yet).</li>
+            <li><strong>Plan Status:</strong> a ring chart and table of schools by current plan status, with counts
+              and percentages.</li>
+            <li><strong>Plan Status by Division:</strong> submission rate per division, sorted from highest. Switch
+              between <strong>Chart</strong> and <strong>Table</strong>. Click a division to focus on it.</li>
+            <li><strong>Interventions in Submitted Plans:</strong> how many schools plan each intervention.</li>
+            <li>Click <strong>Open school plan list</strong> to go to the <strong>Schools</strong> tab.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Track Progress & Analytics</h3>
+          <h3>Step 3: Read the Utilization View</h3>
           <ul>
-            <li>Monitor the regional accomplishment progress bar toward 100%.</li>
-            <li>Click Status Donut Chart segments to view list of matching schools across divisions.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Filter & Export Regional Analytics</h3>
-          <ul>
-            <li>Use cascading dropdowns to filter by Division, District, or Municipality.</li>
-            <li>Click <strong>Export Report</strong> to download regional CSV spreadsheets.</li>
+            <li><strong>KPI cards:</strong> <strong>Total SIIF Allocation</strong>, <strong>Total Fund
+                Utilized</strong>, <strong>Remaining Balance</strong>, and <strong>Overall Utilization Rate</strong>.
+              Hover a card to see its breakdown by division.</li>
+            <li><strong>Filters:</strong> <strong>Division</strong>, <strong>District</strong>, <strong>Quarter</strong>, and <strong>Intervention</strong>.
+              Click <strong>Reset</strong> to clear them.</li>
+            <li><strong>Intervention Spending by Division:</strong> declared spending per division, shown by
+              <strong>Amount (₱)</strong> or <strong>No. of Schools</strong>. Click a row to drill down to the
+              schools, then click a school to open its details.</li>
+            <li><strong>Quarterly Disbursement by Intervention:</strong> spending per intervention for each quarter.
+              Switch between <strong>Chart</strong> and <strong>Table</strong>.</li>
           </ul>
         </div>
       </article>
@@ -1589,13 +1742,12 @@
           <div class="letter">II</div>
           <h2>Division View Tab</h2>
         </div>
-        <p class="section-intro">Exclusive to Regional Office personnel: compare performance metrics and utilization
-          rates across all Schools Division Offices (SDOs).</p>
+        <p class="section-intro">Exclusive to Regional Office personnel: compare all SDOs and drill into each division's schools.</p>
 
         <div class="section-video">
-          <div class="video-badge">Video · Regional Analytics & Division Comparison</div>
+          <div class="video-badge">Video · Regional Analytics &amp; Division Comparison</div>
           <video controls playsinline preload="metadata">
-            <source src="ROdivision.mp4" type="video/mp4">
+            <source src="ro_division.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
@@ -1603,22 +1755,30 @@
         <div class="step">
           <h3>Step 1: Compare Division Performance</h3>
           <ul>
-            <li>Inspect SDO listing table showing school count, total allocation, and utilization rate %.</li>
-            <li>Sort divisions by spending velocity or school count.</li>
+            <li>Review the <strong>Division List</strong>: each division's Schools, Allocation, and Utilization.</li>
+            <li>Use <strong>Search or select division…</strong> to find a division.</li>
+            <li>Click <strong>Filter</strong> to open <strong>Division Filters</strong> (Select Division, Total
+              Allocation Min/Max, Utilization Rate Min %), then click <strong>Apply</strong> or
+              <strong>Reset</strong>.</li>
+            <li>Switch between <strong>Table</strong> and <strong>Cards</strong> view.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Dispatch Technical Assistance</h3>
-          <ul>
-            <li>Identify lagging SDOs and provide technical assistance.</li>
-          </ul>
+          <h3>Step 2: Drill Into a Division</h3>
+          <ol>
+            <li>Click a division to open its <strong>School List</strong> with plan status and utilization cards.
+            </li>
+            <li>Click a school to open its <strong>SIIF Plan</strong> and <strong>Utilization</strong> tabs.</li>
+            <li>Click <strong>← Back to All Divisions</strong> to return to the Division List.</li>
+          </ol>
         </div>
 
         <div class="step">
-          <h3>Step 3: Drilldown into Division School Lists</h3>
+          <h3>Step 3: Print, Export &amp; Provide Technical Assistance</h3>
           <ul>
-            <li>Click <strong>View Division Schools</strong> on any division row to open its recipient school list.</li>
+            <li>Click <strong>Print Aggregate Report</strong> or <strong>Download Data</strong>.</li>
+            <li>Identify lagging SDOs and coordinate technical assistance.</li>
           </ul>
         </div>
       </article>
@@ -1629,33 +1789,35 @@
           <div class="letter">III</div>
           <h2>Region Schools Tab</h2>
         </div>
-        <p class="section-intro">Inspect recipient school proposals across all divisions to verify policy compliance and
-          allocation alignment.</p>
-
+        <p class="section-intro">View the plan status of schools across all divisions in the region.</p>
         <div class="section-video">
           <div class="video-badge">Video · Recipient Schools Roster Oversight</div>
           <video controls playsinline preload="metadata">
-            <source src="ROschools.mp4" type="video/mp4">
+            <source src="ro_schools.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
 
         <div class="step">
-          <h3>Step 1: Search & Filter Region-Wide Roster</h3>
+          <h3>Step 1: Search &amp; Filter the Region-Wide List</h3>
           <ul>
-            <li>Filter schools by status cards (<span class="tag orange">Submitted</span>, <span
-                class="tag green">Reviewed</span>, <span class="tag blue">Pending</span>, <span
-                class="tag red">Overdue</span>), Division, District, or Type.</li>
-            <li>Search by School Name or School ID.</li>
+            <li>Click a status card to filter by plan status. Use <strong>Clear status filter</strong> to reset.</li>
+            <li>Use <strong>Filter by division</strong>, the search box (school, ID, district), and the column
+              filters.</li>
+            <li>Download the plan list as CSV.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Inspect Detailed School Submission</h3>
+          <h3>Step 2: View a School's Plan</h3>
           <ul>
-            <li>Click any school row to open the proposal detail modal and verify policy compliance and budget ceilings.
-            </li>
+            <li>Click a school row to open its plan details: priority improvement area, budget estimate vs. total
+              allocation, and each intervention's budget, learners per grade level, and planned activities.</li>
           </ul>
+          <div class="callout">
+            Review actions (Review, For Revision, Rescind Review) are performed by the Division Office. The Region view
+            is read-only.
+          </div>
         </div>
       </article>
 
@@ -1665,96 +1827,68 @@
           <div class="letter">IV</div>
           <h2>Region Utilization Tab</h2>
         </div>
-        <p class="section-intro">Monitor financial spending velocity across cover periods and divisions to enforce
-          fiscal ceiling compliance.</p>
-
+        <p class="section-intro">Monitor regional spending by cover period and drill down from divisions to schools.</p>
         <div class="section-video">
           <div class="video-badge">Video · Financial Utilization Oversight</div>
           <video controls playsinline preload="metadata">
-            <source src="ROutilization.mp4" type="video/mp4">
+            <source src="ro_utilization.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
           </video>
         </div>
 
         <div class="step">
-          <h3>Step 1: Regional Fiscal Summaries</h3>
+          <h3>Step 1: Check the Cover Period Cards</h3>
           <ul>
-            <li>Track top regional metrics: Total Allocation, Utilized Amount, and Remaining Balance.</li>
+            <li>The <strong>JULY-SEPT</strong>, <strong>OCT-DEC</strong>, and <strong>JAN-MARCH</strong> cards show
+              the <strong>Utilized Amount</strong> for each quarter. The <strong>REMAINING</strong> card shows the
+              <strong>Remaining Balance</strong>.</li>
+            <li>Click a card to open its <strong>Quarter Breakdown</strong>: detailed school utilization for that
+              period.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Monitor Reporting Cover Periods</h3>
-          <table class="status-table">
-            <tr>
-              <th>Reporting Cover Period</th>
-              <th>Period Covered</th>
-              <th>Monitoring Focus</th>
-            </tr>
-            <tr>
-              <td><strong>JULY–SEPT</strong> (Cover Period 1)</td>
-              <td>July, August, September</td>
-              <td>Initial fund mobilization and session supplies.</td>
-            </tr>
-            <tr>
-              <td><strong>OCT–DEC</strong> (Cover Period 2)</td>
-              <td>October, November, December</td>
-              <td>Mid-year implementation and learning materials.</td>
-            </tr>
-            <tr>
-              <td><strong>JAN–MARCH</strong> (Cover Period 3)</td>
-              <td>January, February, March</td>
-              <td>Final quarter utilization and liquidation reports.</td>
-            </tr>
-            <tr>
-              <td><strong>REMAINING</strong> (Balance)</td>
-              <td>Fiscal Year Unutilized Balance</td>
-              <td>Tracks unliquidated balance remaining against allocation ceiling.</td>
-            </tr>
-          </table>
-          <div class="callout warning" style="margin-top: 12px;">
-            Clicking any cover period card in the header opens a detailed <strong>Quarter Breakdown</strong> summary
-            window.
-          </div>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Track Division Spending Velocity</h3>
-          <ul>
-            <li>Expand school rows to inspect activity status (<span class="tag blue">Pending</span>, <span
-                class="tag orange">Ongoing</span>, <span class="tag green">Completed</span>) and expenditure
-              justifications.</li>
-          </ul>
+          <h3>Step 2: Drill Down from Division to School</h3>
+          <ol>
+            <li>Check the summary: <strong>Divisions Count</strong>, <strong>Total Allocation</strong>,
+              <strong>Total Utilized</strong>, and <strong>Remaining Balance</strong>.</li>
+            <li>Click a division to open its <strong>School Utilization Breakdown</strong> (Schools in Division,
+              Division Allocation, Division Utilized, Remaining Balance).</li>
+            <li>Click a school row to expand its <strong>Declared Interventions by Quarter</strong>.</li>
+            <li>Click <strong>Back to All Divisions</strong> to return. Use <strong>Print Division Report</strong> or
+              <strong>Download CSV</strong> as needed.</li>
+          </ol>
         </div>
       </article>
 
-      <!-- SECTION D.V: REGION SETTINGS TAB -->
+      <!-- SECTION D.V: REGION USER LOOKUP & SETTINGS -->
       <article class="section-card" data-letter="D" data-badge="V" data-sub="true" data-parent="D">
         <div class="section-head">
           <div class="letter">V</div>
-          <h2>Region Settings Tab</h2>
+          <h2>Region User Lookup &amp; Settings</h2>
         </div>
-        <p class="section-intro">View user profile details, manage security credentials, and customize general system
-          preferences.</p>
+        <p class="section-intro">Retrieve School Head passcodes within your region and manage your account.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Region User Lookup</div>
+          <video controls playsinline preload="metadata">
+            <source src="ro_user_lookup.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
 
         <div class="step">
-          <h3>Step 1: View Profile & Scope</h3>
+          <h3>Step 1: User Lookup</h3>
           <ul>
-            <li>Verify Regional Office scope assignment and user details.</li>
+            <li>Works the same as the Division User Lookup (Section C.IV), scoped to your region.</li>
           </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Manage Account Security</h3>
+          <h3>Step 2: Settings</h3>
           <ul>
-            <li>Update password or quick sign-in passcode.</li>
-          </ul>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: System Preferences</h3>
-          <ul>
-            <li>Manage Dark Mode, app optimization cache, FAQs, and system info.</li>
+            <li>Same as the Division Settings tab (Section C.V): My Profile, Account Security, and General.</li>
           </ul>
         </div>
       </article>
@@ -1765,8 +1899,8 @@
           <div class="letter">E</div>
           <h2>Adding New Schools</h2>
         </div>
-        <p class="section-intro">Register a newly established school into the SIIF Monitoring Hub via the Registry
-          Management portal. Once registered, notify school heads to begin their SIIF registration.</p>
+        <p class="section-intro">Register a newly established school through the Registry Management Portal. Once
+          registered, notify the School Head to sign in and use SIIF.</p>
 
         <div class="section-video">
           <div class="video-badge">Video · Adding New Schools</div>
@@ -1777,65 +1911,57 @@
         </div>
 
         <div class="step">
-          <h3>Step 1: Click Registry Management in the RO/SDO Portal</h3>
+          <h3>Step 1: Open Registry Management</h3>
           <ol>
-            <li>From the main RO/SDO portal dashboard, locate and click the <strong>Registry Management</strong> module
-              card.</li>
+            <li>From the RO/SDO Nexus dashboard, click the <strong>Registry Management</strong> card.</li>
+            <li>Sign in with your registered DepEd Email and Password (or Passcode) if prompted.</li>
           </ol>
         </div>
 
         <div class="step">
-          <h3>Step 2: Login Using Your Registered InsightED Account</h3>
-          <ol>
-            <li>Enter your registered <strong>DepEd Email</strong> and <strong>Password</strong> (or Passcode).</li>
-            <li>Click <strong>Sign In</strong> to authenticate and access Registry Management.</li>
-          </ol>
+          <h3>Step 2: Click Add New School</h3>
+          <ul>
+            <li>Select the <strong>Add New School</strong> tab. Your Region and Division are locked to your session.
+            </li>
+          </ul>
         </div>
 
         <div class="step">
-          <h3>Step 3: Click Add New School</h3>
+          <h3>Step 3: Input the Necessary Fields</h3>
           <ol>
-            <li>Inside Registry Management, click the <strong>Add New School</strong> button.</li>
-          </ol>
-        </div>
-
-        <div class="step">
-          <h3>Step 4: Input the Necessary Fields</h3>
-          <ol>
-            <li>Fill in all required school information fields accurately (e.g., School Name, School ID, Division,
-              District, Municipality, School Type, and other required details).</li>
+            <li><strong>School Identification:</strong> School ID (the system warns if it is already registered),
+              School Name, Curricular Offering, and Mother School ID (or NA).</li>
+            <li><strong>Location Hierarchy:</strong> District, Province, Municipality / City, Legislative District,
+              Barangay, and Street Address / Sitio.</li>
+            <li><strong>Precise Geographic Coordinates:</strong> Latitude and Longitude.</li>
           </ol>
           <div class="callout warning">
-            <strong>Important:</strong> Ensure all fields are correctly filled before submitting. Incomplete or
-            incorrect entries may delay or block school registration.
+            <strong>Important:</strong> Ensure all fields are correct before submitting. Incomplete or incorrect
+            entries may delay or block school registration.
           </div>
         </div>
 
         <div class="step">
-          <h3>Step 5: Submit Registration &amp; Notify School Heads</h3>
+          <h3>Step 4: Submit Registration & Notify School Heads</h3>
           <ol>
-            <li>Review the inputted information and click <strong>Submit Registration</strong>.</li>
-            <li>Once the school has been successfully registered, notify the concerned <strong>School Heads</strong>
-              that they can now proceed with their SIIF registration on the platform.</li>
+            <li>Review the details and click <strong>Submit Registration</strong>.</li>
+            <li>Track your entries under <strong>My Submissions</strong>.</li>
+            <li>Notify the School Head that they can now sign in and use the SIIF Hub.</li>
           </ol>
-          <div class="callout success">
-            <strong>Next Step for School Heads:</strong> After receiving notification, school heads should log in to
-            InsightED and begin their school's SIIF plan submission.
-          </div>
         </div>
       </article>
 
-      <!-- SECTION F: CONVERTING NEW SCHOOLS -->
+      <!-- SECTION F: CONVERTING SCHOOLS -->
       <article class="section-card" data-letter="F">
         <div class="section-head">
           <div class="letter">F</div>
-          <h2>Converting New Schools</h2>
+          <h2>Converting Schools</h2>
         </div>
-        <p class="section-intro">Convert an existing school record into the SIIF Monitoring Hub via the Registry
-          Management portal. Once converted, notify school heads to proceed with their SIIF registration.</p>
+        <p class="section-intro">Register a converted school using its legacy master record. Once converted, inform the
+          School Head of their new School ID.</p>
 
         <div class="section-video">
-          <div class="video-badge">Video · Converting New Schools</div>
+          <div class="video-badge">Video · Converting Schools</div>
           <video controls playsinline preload="metadata">
             <source src="conversion.mp4" type="video/mp4">
             Your browser does not support HTML5 video.
@@ -1843,185 +1969,204 @@
         </div>
 
         <div class="step">
-          <h3>Step 1: Click Registry Management in the RO/SDO Portal</h3>
+          <h3>Step 1: Open Register Converted</h3>
+          <ul>
+            <li>In the Registry Management Portal, select the <strong>Register Converted</strong> tab.</li>
+          </ul>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Search the Legacy Master Record</h3>
           <ol>
-            <li>From the main RO/SDO portal dashboard, locate and click the <strong>Registry Management</strong> module
-              card.</li>
+            <li>Enter the <strong>Legacy School ID (6 Digits)</strong> and click <strong>Search Master
+                Record</strong>.</li>
+            <li>Review the <strong>Found Legacy Master Record</strong> details (region, division, location, curricular
+              offering, coordinates).</li>
+            <li>Click <strong>Proceed to Conversion Registration →</strong>.</li>
           </ol>
         </div>
 
         <div class="step">
-          <h3>Step 2: Login Using Your Registered InsightED Account</h3>
-          <ol>
-            <li>Enter your registered <strong>DepEd Email</strong> and <strong>Password</strong> (or Passcode).</li>
-            <li>Click <strong>Sign In</strong> to authenticate and access Registry Management.</li>
-          </ol>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Search the Legacy / Old School Record</h3>
-          <ol>
-            <li>Enter the <strong>Legacy School ID</strong> or <strong>Old School ID</strong> in the search bar within
-              Registry Management.</li>
-            <li>If found, the system will display the previous school details for your review.</li>
-            <li>Click <strong>Proceed to Conversion Registration</strong> to continue.</li>
-          </ol>
-        </div>
-
-        <div class="step">
-          <h3>Step 4: Fill Up the Necessary Fields</h3>
-          <ol>
-            <li>Complete all required fields in the conversion registration form accurately.</li>
-          </ol>
+          <h3>Step 3: Fill Up the Necessary Fields</h3>
+          <ul>
+            <li>In the <strong>Convert School</strong> form, enter the <strong>Target (New) 6-digit School
+                ID</strong>.</li>
+            <li>Verify the details and complete all required fields for the newly converted school.</li>
+          </ul>
           <div class="callout warning">
-            <strong>Important:</strong> Double-check all entered details before submitting. Incorrect information may
-            affect the school's records and SIIF data.
+            <strong>Important:</strong> Double-check all details before submitting. Incorrect information may affect
+            the school's records and SIIF data.
           </div>
         </div>
 
         <div class="step">
-          <h3>Step 5: Submit Conversion &amp; Inform School Heads</h3>
+          <h3>Step 4: Submit Conversion & Inform School Heads</h3>
           <ol>
-            <li>Review all details and click <strong>Submit</strong> to confirm the conversion.</li>
-            <li>Once submitted, inform the concerned <strong>School Head</strong> that the conversion is complete.</li>
-            <li>Advise the School Head to log in using the <strong>New School ID</strong> together with the <strong>old
-                password or passcode</strong> of the original school account.</li>
+            <li>Review all details and click <strong>Submit for Registration</strong>.</li>
+            <li>Tell the School Head to sign in with the <strong>New School ID</strong> and the password or passcode of
+              the original school account.</li>
           </ol>
           <div class="callout success">
-            <strong>Note for School Heads:</strong> Use your <strong>New School ID</strong> as your login credential.
-            Your previous <strong>password or passcode</strong> from the original school account remains valid — no need
-            to reset.
+            <strong>Note for School Heads:</strong> Use your New School ID to sign in. Your previous password or
+            passcode remains valid; no reset is needed.
           </div>
         </div>
       </article>
 
-      <!-- SECTION G: TROUBLESHOOTING & SUPPORT -->
+      <!-- SECTION G: UPDATING SCHOOL INFORMATION & STATUS -->
       <article class="section-card" data-letter="G">
         <div class="section-head">
           <div class="letter">G</div>
-          <h2>Troubleshooting & Support Guidelines</h2>
+          <h2>Updating School Information & Status</h2>
         </div>
-        <p class="section-intro">Quick solutions to common access restrictions, status sync issues, and operational
-          readiness checklists.</p>
+        <p class="section-intro">Correct a school's master record or change its operational status in the Registry
+          Management Portal.</p>
+
+        <div class="section-video">
+          <div class="video-badge">Video · Updating School Information &amp; Status</div>
+          <video controls playsinline preload="metadata">
+            <source src="registry_update_school.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+
+
+        <div class="step">
+          <h3>Step 1: Find the School Record</h3>
+          <ol>
+            <li>Select the <strong>Update School &amp; Status</strong> tab.</li>
+            <li>Enter the 6-digit School ID or IERN and click <strong>Find Record</strong>.</li>
+            <li>Permanent identifiers (School ID, IERN, Region, Division) are shown as read-only.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 2: Edit Details & Operational Status</h3>
+          <ol>
+            <li>Update the school name, Mother School ID, location fields, street address, or coordinates as needed.
+            </li>
+            <li>Set the <strong>Operational Status</strong>: Open (Active), Closed (Archived), Merged (Absorbing other
+              schools), Reopened, or Converted.</li>
+            <li>For <strong>Merged</strong>, select the schools (same region and division) that this school will
+              absorb. They change to Merged status and sync to this school's IERN.</li>
+            <li>Enter the <strong>Reason for Update / Clearance Justification</strong>.</li>
+          </ol>
+        </div>
+
+        <div class="step">
+          <h3>Step 3: Save</h3>
+          <ol>
+            <li>Click <strong>Save School Updates &amp; Operational Status</strong>.</li>
+            <li>Check the result under <strong>My Submissions</strong>.</li>
+          </ol>
+          <div class="callout warning">
+            Status changes affect the school's records across InsightED. Double-check the school and justification
+            before saving.
+          </div>
+        </div>
+      </article>
+
+      <!-- SECTION H: TROUBLESHOOTING & CHECKLIST -->
+      <article class="section-card" data-letter="H">
+        <div class="section-head">
+          <div class="letter">H</div>
+          <h2>Troubleshooting & Checklist</h2>
+        </div>
+        <p class="section-intro">Quick solutions to common access and data issues, plus an operations checklist.</p>
 
         <div class="step">
           <h3>Step 1: Resolve Common Access & System Issues</h3>
           <table class="status-table">
-            <tr>
-              <th>Issue / Error Message</th>
-              <th>Likely Cause</th>
-              <th>Corrective Action</th>
-            </tr>
-            <tr>
-              <td><strong>Access Restricted Screen</strong></td>
-              <td>User office or designation is not among authorized assignments (SGOD, HRMO, FTAD, Regional SBM
-                Coordinator, or Division SBM Coordinator).</td>
-              <td>Update user office assignment or designation in user profile or contact InsightEd Support Team.</td>
-            </tr>
-            <tr>
-              <td><strong>Confirm Review Button Disabled</strong></td>
-              <td>Review window is inactive (outside the designated review schedule period) or proposal is still in
-                Pending / Draft state.</td>
-              <td>Check active review period dates in the system banner on the Schools tab; remind School Head to submit
-                proposal.</td>
-            </tr>
-            <tr>
-              <td><strong>Status Update Failed Alert</strong></td>
-              <td>Network drop or system connection glitch during status update execution.</td>
-              <td>Check internet connectivity, refresh page, and retry.</td>
-            </tr>
-            <tr>
-              <td><strong>Allocation Ceilings Showing ₱0</strong></td>
-              <td>Master allocation table for division/school has not loaded into state.</td>
-              <td>Refresh data cache.</td>
-            </tr>
-            <tr>
-              <td><strong>Utilization Tab Locked / No Data</strong></td>
-              <td>School baseline proposal has not reached <span class="tag green">Reviewed</span> status.</td>
-              <td>Complete baseline plan review actions first before opening quarterly tracking.</td>
-            </tr>
+            <thead>
+              <tr>
+                <th>Issue / Message</th>
+                <th>Likely Cause</th>
+                <th>Corrective Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Access Restricted screen</td>
+                <td>Your office is not FTAD or SGOD.</td>
+                <td>Update your office assignment in your profile or contact InsightED support.</td>
+              </tr>
+              <tr>
+                <td>System Under Maintenance</td>
+                <td>The SIIF module is temporarily closed.</td>
+                <td>Return to Nexus and try again later.</td>
+              </tr>
+              <tr>
+                <td>Review buttons disabled (<em>Review period closed</em>)</td>
+                <td>Outside the division's review period, or you are using an RO account.</td>
+                <td>Check the review banner dates on the Schools tab; reviews are done by SDO accounts.</td>
+              </tr>
+              <tr>
+                <td>Cannot mark a plan reviewed</td>
+                <td>The plan is For Revision, or not yet Submitted.</td>
+                <td>Resolve the revision first, or wait for the school to submit.</td>
+              </tr>
+              <tr>
+                <td>Could not load plan submissions</td>
+                <td>Network issue or server delay.</td>
+                <td>Click <strong>Try again</strong> or <strong>Refresh</strong>.</td>
+              </tr>
+              <tr>
+                <td>A school shows no utilization</td>
+                <td>The school has not declared spending yet.</td>
+                <td>Remind the School Head to record quarterly utilization.</td>
+              </tr>
+              <tr>
+                <td>User Lookup: Access Denied / not found</td>
+                <td>The school is outside your jurisdiction, or the ID is wrong.</td>
+                <td>Verify the 6-digit School ID and your assigned scope.</td>
+              </tr>
+            </tbody>
           </table>
         </div>
 
         <div class="step">
-          <h3>Step 2: Use the RO/SDO Officer Monitoring Checklist</h3>
+          <h3>Step 2: RO/SDO Monitoring Checklist</h3>
           <div class="checklist">
-            <label class="check-item"><input type="checkbox" /> <span>Logged in under authorized RO or SDO account
-                (SGOD, HRMO, FTAD, or Regional/Division SBM Coordinator).</span></label>
-            <label class="check-item"><input type="checkbox" /> <span>Assigned Division / Region scope verified on
-                topbar.</span></label>
-            <label class="check-item"><input type="checkbox" /> <span>Review window start and deadline dates checked on
-                banner.</span></label>
-            <label class="check-item"><input type="checkbox" /> <span>All submitted school proposals inspected in School
-                Detail Modal.</span></label>
-            <label class="check-item"><input type="checkbox" /> <span>Optional evaluation remarks provided in Review
-                Submission Modal.</span></label>
-            <label class="check-item"><input type="checkbox" /> <span>Cumulative utilization checked against official
-                allocation caps.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Logged in with an FTAD or SGOD
+                account.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Assigned Division / Region scope
+                verified.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Submitted plans opened and reviewed or returned
+                with clear remarks.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>For Revision plans resolved after the school's
+                update.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Quarterly utilization checked per cover
+                period.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Schools with no declared utilization
+                followed up.</span></label>
+            <label class="check-item"><input type="checkbox" /> <span>Reports exported (CSV / print) for
+                records.</span></label>
           </div>
         </div>
 
         <div class="step">
-          <h3>Step 3: Technical Support Escalation Protocol</h3>
-          <ol>
-            <li>Document the exact error message, School ID, Division Name, and step where the issue occurred.</li>
-            <li>Take a full-screen screenshot showing the topbar header and browser console (if technical).</li>
-            <li>Contact InsightED system support focal person.</li>
-          </ol>
-        </div>
-      </article>
-
-      <!-- SECTION H: PRE-REVIEW AND POST-REVIEW CHECKLIST -->
-      <article class="section-card" data-letter="H">
-        <div class="section-head">
-          <div class="letter">H</div>
-          <h2>Pre-Review and Post-Review Operations Checklist</h2>
-        </div>
-        <p class="section-intro">Use this operational checklist before opening the review window or generating final
-          monitoring reports for regional leadership.</p>
-
-        <div class="step">
-          <h3>Step 1: Pre-Review Readiness Checklist</h3>
-          <div class="checklist">
-            <label class="check-item"><input type="checkbox" /> <span>Official school allocations loaded and verified on
-                Dashboard KPI cards.</span></label>
-            <label class="check-item"><input type="checkbox" /> <span>Review window schedule (start &
-                deadline).</span></label>
-
-            <label class="check-item"><input type="checkbox" /> <span>School masterlist updated with latest active
-                school IDs.</span></label>
-          </div>
+          <h3>Step 3: Plan Evaluation Quality Standards</h3>
+          <ul>
+            <li><strong>Logical Coherence:</strong> Priority areas, interventions, beneficiaries, activities, and
+              budget form one logical plan.</li>
+            <li><strong>No Empty / Zero Items:</strong> Request a revision for interventions with zero beneficiaries,
+              no activities, or blank budgets.</li>
+            <li><strong>ARAL Compliance:</strong> Verify subject-specific learner counts for remediation.</li>
+            <li><strong>Ceiling Compliance:</strong> The plan estimate must not exceed the school allocation (check %
+              of Alloc.).</li>
+          </ul>
         </div>
 
         <div class="step">
-          <h3>Step 2: Proposal Evaluation Quality Standards</h3>
+          <h3>Step 4: Technical Support Escalation</h3>
           <ol>
-            <li><strong>Logical Coherence:</strong> Priority improvement areas, interventions, beneficiaries,
-              activities, and budget estimates form one unified, logical intervention.</li>
-            <li><strong>No Empty / Zero Items:</strong> Reject proposals containing interventions with zero
-              beneficiaries, zero activities, or blank budget entries.</li>
-            <li><strong>ARAL Program Compliance:</strong> Verify subject-specific learner counts for remediation
-              activities under ARAL guidelines.</li>
-            <li><strong>Strict Ceiling Compliance:</strong> Reject any plan where total estimated budget exceeds
-              assigned school allocation.</li>
-          </ol>
-        </div>
-
-        <div class="step">
-          <h3>Step 3: Track Post-Review & Quarterly Operations</h3>
-          <ol>
-            <li>Verify that all submitted plans in the division have reached <span class="tag green">Reviewed</span>
-              status before the review deadline.</li>
-            <li>Export the finalized Division/Region Masterlist report for administrative archiving via the Export
-              Report button.</li>
-            <li>Transition to <strong>Utilization Tracking</strong> across cover periods (JULY-SEPT, OCT-DEC,
-              JAN-MARCH).</li>
-            <li>Monitor quarterly spending reports and provide technical assistance to lagging schools.</li>
+            <li>Document the exact message, School ID, Division, and the step where the issue occurred.</li>
+            <li>Take a screenshot showing the page header.</li>
+            <li>Contact the InsightED system support focal person.</li>
           </ol>
           <div class="callout success">
-            <strong>Final Operating Rule:</strong> Maintain the complete SIIF cycle: Allocation verification ➔ Proposal
-            submission oversight ➔ Rigorous SDO review & confirmation ➔ Quarterly utilization tracking ➔ Regional
-            performance reporting.
+            <strong>Final Operating Rule:</strong> Monitor quarterly utilization for all schools ➔ review plans
+            as they are submitted ➔ return plans with clear remarks when needed ➔ export reports for leadership.
           </div>
         </div>
       </article>
@@ -2029,11 +2174,10 @@
     </section>
 
     <div class="footer-note">
-      InsightED SIIF RO/SDO Flow: Verify permissions & scope ➔ Monitor dashboard metrics ➔ Review submitted school
-      proposals ➔ Confirm review with remarks ➔ Track quarterly utilization by active cover period.
+      InsightED SIIF RO/SDO Flow: Verify access &amp; scope ➔ Monitor Home (Plans &amp; Utilization) ➔ Review submitted
+      plans ➔ Track quarterly utilization ➔ Export reports.
     </div>
   </main>
-
   <!-- Script for Dynamic Navigation, Step Pills, Auto-Collapsible Sidebar & Print Framing -->
   <script>
     (function () {
@@ -2058,7 +2202,7 @@
       aside.className = 'side-nav';
       aside.innerHTML = [
         '<div class="side-top">',
-        '  <span class="side-brand">SIIF MON HUB GUIDE</span>',
+        '  <span class="side-brand">SIIF MONITORING HUB GUIDE</span>',
         '  <button class="side-toggle" type="button" title="Toggle Sidebar">☰</button>',
         '</div>',
         '<div class="nav-list"></div>',
